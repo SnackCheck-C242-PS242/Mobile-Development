@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">SnackCheck</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="app_logo">App logo</string>
+    <string name="background">Background</string>
+
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_btn_text">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="login_btn_text">Log In</string>
+    <string name="email">Email</string>
+    <string name="enter_your_email_here">Enter your email here</string>
+    <string name="username">Username</string>
+    <string name="enter_your_username_here">Enter your username here</string>
+    <string name="password">Password</string>
+    <string name="enter_your_password_here">Enter your password here</string>
+
+    <string name="login_page_title_content_description">Login page title content description</string>
+    <string name="login_button_content_description">Login button content description</string>
+</resources>
