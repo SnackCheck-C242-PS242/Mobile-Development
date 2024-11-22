@@ -94,4 +94,32 @@
         app:layout_constraintEnd_toEndOf="@id/form_background"
         app:layout_constraintStart_toStartOf="@id/form_background"
         tools:ignore="RedundantDescriptionCheck,RedundantDescriptionCheck,TextContrastCheck" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/btn_login"
+        app:layout_constraintStart_toStartOf="@id/form_background"
+        app:layout_constraintEnd_toEndOf="@id/form_background">
+
+        <TextView
+            android:id="@+id/tv_do_not_have_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/do_not_have_any_account"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/tb_login"
+            android:layout_marginStart="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/md_theme_primary"
+            />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

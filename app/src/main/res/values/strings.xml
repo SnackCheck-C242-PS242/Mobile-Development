@@ -17,4 +17,5 @@
 
     <string name="login_page_title_content_description">Login page title content description</string>
     <string name="login_button_content_description">Login button content description</string>
+    <string name="do_not_have_any_account">Don\'t have any account?</string>
 </resources>
