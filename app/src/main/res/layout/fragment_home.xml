@@ -137,5 +137,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_history"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
