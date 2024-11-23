@@ -31,4 +31,9 @@
     <string name="name">John Doe</string>
     <string name="result">Result</string>
     <string name="timestamp">Timestamp</string>
+    <string name="verification">Verification</string>
+    <string name="verify">Verify</string>
+    <string name="resend_code">Re-send code</string>
+    <string name="verification_page_title_content_description">Verification page tittle content description</string>
+    <string name="did_not_receive_code">Didn’t receive any verification code?</string>
 </resources>
