@@ -25,15 +25,17 @@
     <string name="title_prediction">Prediction</string>
     <string name="title_history">History</string>
     <string name="title_setting">Setting</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="verification">Verification</string>
+    <string name="verify">Verify</string>
+    <string name="resend_code">Re-send code</string>
+    <string name="verification_page_title_content_description">Verification page tittle content description</string>
+    <string name="did_not_receive_code">Didn’t receive any verification code?</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello">Hello</string>
     <string name="name">John Doe</string>
     <string name="result">Result</string>
     <string name="timestamp">Timestamp</string>
-    <string name="verification">Verification</string>
-    <string name="verify">Verify</string>
-    <string name="resend_code">Re-send code</string>
-    <string name="verification_page_title_content_description">Verification page tittle content description</string>
-    <string name="did_not_receive_code">Didn’t receive any verification code?</string>
+    <string name="nutrition">Nutrition</string>
+    <string name="snack_name">Snack name</string>
+    <string name="amount">Amount(g)</string>
 </resources>
