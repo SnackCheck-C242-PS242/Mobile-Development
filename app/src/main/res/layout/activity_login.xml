@@ -112,11 +112,11 @@
             android:textSize="12sp"/>
 
         <TextView
-            android:id="@+id/tb_login"
+            android:id="@+id/tb_sign_up"
             android:layout_marginStart="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login"
+            android:text="@string/sign_up"
             android:textSize="12sp"
             android:textStyle="bold"
             android:textColor="@color/md_theme_primary"
