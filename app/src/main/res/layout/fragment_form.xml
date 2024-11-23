@@ -1,88 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.prediction.form.FormFragment">
 
     <TextView
         android:id="@+id/tv_prediction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="72dp"
         android:text="@string/title_prediction"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingHorizontal="32dp"
         android:paddingVertical="8dp"
-        android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tv_prediction"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/tv_prediction">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_snack_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_snack_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/snack_name"
-                tools:ignore="TextContrastCheck" />
+                tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dynamic_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:orientation="vertical"
+            android:paddingVertical="8dp"
+            android:descendantFocusability="afterDescendants"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_prediction">
+        </androidx.recyclerview.widget.RecyclerView>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/dropdown_menu"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end">
+            <ImageView
+                android:focusable="false"
+                android:id="@+id/btn_min"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_min"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:focusable="false"
+                android:id="@+id/btn_plus"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_plus"
+                tools:ignore="ContentDescription" />
 
-                <AutoCompleteTextView
-                    android:id="@+id/tv_auto_complete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/nutrition"
-                    android:inputType="none"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ti_nutrition"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@id/dropdown_menu"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/amount"
-                    tools:ignore="TextContrastCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+        </LinearLayout>
 
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
