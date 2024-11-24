@@ -41,7 +41,7 @@ class NutritionDataFormAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: NutritionItem) {
-            val dropdownItems = listOf("Protein", "Carbohydrate", "Fat", "Fiber")
+            val dropdownItems = listOf("fat", "saturated fat", "carbohydrates", "sugars", "fiber", "proteins", "sodium")
             val adapter = ArrayAdapter(
                 binding.root.context,
                 android.R.layout.simple_dropdown_item_1line,
