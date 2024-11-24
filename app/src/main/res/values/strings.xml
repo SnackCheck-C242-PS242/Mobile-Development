@@ -34,13 +34,18 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello">Hello</string>
     <string name="name">John Doe</string>
+
     <string name="result">Result</string>
     <string name="timestamp">Timestamp</string>
+
     <string name="nutrition">Nutrition</string>
     <string name="snack_name">Snack name</string>
     <string name="amount">Amount(g)</string>
+    <string name="analyze_btn_text">Analyze</string>
+
     <string name="title_verification_success">Verification Success!</string>
     <string name="can_login_text">You can now login with your account!</string>
     <string name="enjoy_text">Enjoy your snack, take care of your health, with our only app, SnackCheck</string>
     <string name="back_to_login">Log In</string>
+
 </resources>

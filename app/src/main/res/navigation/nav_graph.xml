@@ -10,9 +10,39 @@
         android:name="com.snackcheck.view.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+
     <fragment
         android:id="@+id/navigation_prediction"
         android:name="com.snackcheck.view.prediction.form.FormFragment"
         android:label="fragment_form"
-        tools:layout="@layout/fragment_form" />
+        tools:layout="@layout/fragment_form">
+        <action
+            android:id="@+id/action_form_to_result"
+            app:destination="@id/navigation_result"
+            app:popUpTo="@id/navigation_prediction"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_result"
+        android:name="com.snackcheck.view.prediction.result.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result">
+        <argument
+            android:name="snackDetail"
+            app:argType="com.snackcheck.data.local.entity.SnackDetail" />
+        <argument
+            android:name="result"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_history"
+        android:name="com.snackcheck.view.history.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.snackcheck.view.setting.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>
