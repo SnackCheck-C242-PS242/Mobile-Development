@@ -5,13 +5,15 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.snackcheck.data.local.entity.NutritionItem
 import com.snackcheck.databinding.ItemNutritionFormBinding
+import com.snackcheck.view.prediction.form.FormViewModel
 
-class NutritionDataFormAdapter :
+class NutritionDataFormAdapter(private val viewModel: FormViewModel) :
     ListAdapter<NutritionItem, NutritionDataFormAdapter.NutritionViewHolder>(DIFF_CALLBACK) {
 
     companion object {
@@ -40,25 +42,49 @@ class NutritionDataFormAdapter :
     inner class NutritionViewHolder(private val binding: ItemNutritionFormBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        private var previousSelection: String? = null
+
+
         fun bind(item: NutritionItem) {
-            val dropdownItems = listOf("fat", "saturated fat", "carbohydrates", "sugars", "fiber", "proteins", "sodium")
-            val adapter = ArrayAdapter(
-                binding.root.context,
-                android.R.layout.simple_dropdown_item_1line,
-                dropdownItems
-            )
-            binding.tvAutoComplete.setAdapter(adapter)
+            // Observasi perubahan status nutrisi
+            viewModel.nutrientStatus.observe((binding.root.context as LifecycleOwner)) { statusMap ->
+                // Ambil daftar nutrisi yang tersedia
+                val availableNutrients = statusMap.filterValues { it == 0 }.keys.toMutableList()
 
-            // Bind current item data
-            binding.tvAutoComplete.setText(item.name, false) // false untuk menghindari auto-callback
-            binding.etInputNutrition.setText(item.amount)
+                // Jika item.name sudah dipilih, tambahkan ke daftar dropdown
+                if (item.name.isNotEmpty() && !availableNutrients.contains(item.name)) {
+                    availableNutrients.add(0, item.name)
+                }
 
-            // Handle dropdown selection
-            binding.tvAutoComplete.setOnItemClickListener { _, _, position, _ ->
-                item.name = dropdownItems[position]
+                val adapter = ArrayAdapter(
+                    binding.root.context,
+                    android.R.layout.simple_dropdown_item_1line,
+                    availableNutrients
+                )
+                binding.tvAutoComplete.setAdapter(adapter)
+
+                // Tetapkan nilai dropdown berdasarkan item.name
+                binding.tvAutoComplete.setText(item.name, false)
             }
 
-            // Handle text input
+            // Tangani pemilihan dropdown
+            binding.tvAutoComplete.setOnItemClickListener { _, _, pos, _ ->
+                val selected = (binding.tvAutoComplete.adapter.getItem(pos) as String)
+
+                // Perbarui status nutrisi di ViewModel
+                viewModel.updateNutrientStatus(selected, previousSelection)
+
+                // Perbarui nilai item
+                previousSelection = selected
+                item.name = selected
+
+                // Tetapkan nilai dropdown dengan segera
+                binding.tvAutoComplete.setText(selected, false)
+            }
+
+
+            // Tangani input jumlah nutrisi
+            binding.etInputNutrition.setText(item.amount)
             binding.etInputNutrition.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
                     item.amount = s.toString()

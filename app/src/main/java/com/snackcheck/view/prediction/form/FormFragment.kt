@@ -30,13 +30,18 @@ class FormFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Setup RecyclerView
-        adapter = NutritionDataFormAdapter()
+        adapter = NutritionDataFormAdapter(viewModel)
         binding.dynamicContainer.layoutManager = LinearLayoutManager(requireContext())
         binding.dynamicContainer.adapter = adapter
 
         // Observe ViewModel
         viewModel.nutritionData.observe(viewLifecycleOwner) { data ->
             adapter.submitList(data)
+        }
+
+        // Button Plus Click
+        viewModel.isAddButtonVisible.observe(viewLifecycleOwner) { isVisible ->
+            binding.btnPlus.visibility = if (isVisible) View.VISIBLE else View.GONE
         }
 
         // Button Plus Click
