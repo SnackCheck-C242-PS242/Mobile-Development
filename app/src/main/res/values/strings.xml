@@ -25,11 +25,12 @@
     <string name="title_prediction">Prediction</string>
     <string name="title_history">History</string>
     <string name="title_setting">Setting</string>
-    <string name="verification">Verification</string>
+    <string name="title_verification">Verification</string>
     <string name="verify">Verify</string>
     <string name="resend_code">Re-send code</string>
-    <string name="verification_page_title_content_description">Verification page tittle content description</string>
-    <string name="did_not_receive_code">Didn’t receive any verification code?</string>
+    <string name="verification_page_title_content_description">Verification page title content description</string>
+    <string name="verif_success_page_title_content_description">Verification Success page title content description</string>
+    <string name="did_not_receive_code_text">Didn’t receive any verification code?</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello">Hello</string>
     <string name="name">John Doe</string>
@@ -38,4 +39,8 @@
     <string name="nutrition">Nutrition</string>
     <string name="snack_name">Snack name</string>
     <string name="amount">Amount(g)</string>
+    <string name="title_verification_success">Verification Success!</string>
+    <string name="can_login_text">You can now login with your account!</string>
+    <string name="enjoy_text">Enjoy your snack, take care of your health, with our only app, SnackCheck</string>
+    <string name="back_to_login">Log In</string>
 </resources>
