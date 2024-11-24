@@ -76,7 +76,8 @@ class FormFragment : Fragment() {
             // Buat Bundle untuk mengirim data
             val bundle = Bundle().apply {
                 putParcelable("snackDetail", snackDetail) // SnackDetail adalah Parcelable
-                putString("result", predictionResult)
+                putString("predictionResult", predictionResult)
+                Log.d("FormFragment", "Hasil prediksi: $predictionResult")
             }
 
             // Navigasi ke ResultFragment
