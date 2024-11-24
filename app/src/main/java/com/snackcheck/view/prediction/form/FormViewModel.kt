@@ -61,13 +61,13 @@ class FormViewModel : ViewModel() {
         }
 
         val nutritionData = NutritionData(
-            fat = formData["fat"] ?: 0.0,
-            saturatedFat = formData["saturated fat"] ?: 0.0,
-            carbohydrates = formData["carbohydrates"] ?: 0.0,
-            sugars = formData["sugars"] ?: 0.0,
-            fiber = formData["fiber"] ?: 0.0,
-            proteins = formData["proteins"] ?: 0.0,
-            sodium = formData["sodium"] ?: 0.0
+            fat = formData["Fat"] ?: 0.0,
+            saturatedFat = formData["Saturated Fat"] ?: 0.0,
+            carbohydrates = formData["Carbohydrates"] ?: 0.0,
+            sugars = formData["Sugars"] ?: 0.0,
+            fiber = formData["Fiber"] ?: 0.0,
+            proteins = formData["Proteins"] ?: 0.0,
+            sodium = formData["Sodium"] ?: 0.0
         )
 
         return SnackDetail(name = snackName, nutritionData = nutritionData)
