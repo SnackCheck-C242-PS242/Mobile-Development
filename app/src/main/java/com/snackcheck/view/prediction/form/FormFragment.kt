@@ -54,14 +54,15 @@ class FormFragment : Fragment() {
         }
 
         binding.btnMin.setOnClickListener {
-            binding.btnMin.setOnClickListener {
-                if (viewModel.nutritionData.value.orEmpty().size > 1) {
-                    viewModel.removeLastNutritionItem() // Hapus elemen terakhir
-                } else {
-                    Toast.makeText(requireContext(), "Tidak bisa menghapus elemen terakhir.", Toast.LENGTH_SHORT).show()
-                }
+            val currentSize = viewModel.nutritionData.value.orEmpty().size
+            if (currentSize > 1) {
+                viewModel.removeLastNutritionItem()
+                adapter.notifyItemRemoved(currentSize - 1)
+            } else {
+                Toast.makeText(requireContext(), "Tidak bisa menghapus elemen terakhir.", Toast.LENGTH_SHORT).show()
             }
         }
+
 
         binding.btnAnalyze.setOnClickListener {
             val snackName = binding.etSnackName.text.toString()
@@ -83,7 +84,6 @@ class FormFragment : Fragment() {
             // Navigasi ke ResultFragment
             findNavController().navigate(R.id.navigation_result, bundle)
         }
-
     }
 
     private fun sendToPredictionModel(snackDetail: SnackDetail) {

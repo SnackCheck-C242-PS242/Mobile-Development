@@ -8,7 +8,7 @@ import com.snackcheck.data.local.entity.NutritionItem
 import com.snackcheck.data.local.entity.SnackDetail
 
 class FormViewModel : ViewModel() {
-    private val allNutrients = listOf("fat", "saturated fat", "carbohydrates", "sugars", "fiber", "proteins", "sodium")
+    private val allNutrients = listOf("Fat", "Saturated Fat", "Carbohydrates", "Sugars", "Fiber", "Proteins", "Sodium")
 
     private val _snacks = MutableLiveData<List<SnackDetail>>(emptyList())
     val snacks: LiveData<List<SnackDetail>> get() = _snacks
