@@ -69,5 +69,6 @@
     <string name="welcome_description">SnackCheck helps you make healthier food choices! Simply input the nutritional data, and let our machine learning model analyze it to determine if the food is healthy or not.\n\nStart making better food choices for your health today!</string>
     <string name="logout_btn_text">Log Out</string>
     <string name="hint_search_history">Search History\n</string>
+    <string name="clear_history">Clear History</string>
 
 </resources>

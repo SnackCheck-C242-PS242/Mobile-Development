@@ -37,12 +37,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_history"/>
 
-    <com.google.android.material.button.MaterialButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_clear_history"
+        style="?attr/materialIconButtonFilledStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:icon="@drawable/ic_clear"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="48dp"
+        android:contentDescription="@string/clear_history"
+        app:cornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_clear" />
 </androidx.constraintlayout.widget.ConstraintLayout>
