@@ -2,6 +2,7 @@
 #noinspection AndroidGradlePluginVersion
 agp = "8.6.0"
 #noinspection GradleDependency
+datastorePreferences = "1.1.1"
 fragmentKtx = "1.9.3"
 fragmentKtxVersion = "1.8.5"
 glide = "4.16.0"
@@ -26,6 +27,7 @@ retrofit = "2.11.0"
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 androidx-fragment-ktx-v185 = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtxVersion" }
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }

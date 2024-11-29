@@ -63,5 +63,9 @@
     <string name="title_nutritional_data_form">Nutritional Data Form</string>
     <string name="no_prediction">No Prediction</string>
     <string name="recommendation_example">This snack is better for you to consume at once a week</string>
+    <string name="register_now">Register Now</string>
+    <string name="welcome_to_snackcheck">Welcome to SnackCheck App!</string>
+    <string name="welcome_description">SnackCheck helps you make healthier food choices! Simply input the nutritional data, and let our machine learning model analyze it to determine if the food is healthy or not.\n\nStart making better food choices for your health today!</string>
+    <string name="logout_btn_text">Log Out</string>
 
 </resources>
