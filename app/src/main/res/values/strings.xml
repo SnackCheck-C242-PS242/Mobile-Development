@@ -48,7 +48,7 @@
     <string name="enjoy_text">Enjoy your snack, take care of your health, with our only app, SnackCheck</string>
     <string name="back_to_login">Log In</string>
     <string name="title_result">Result</string>
-    <string name="snack_name_example">Keripik Kentang Japota</string>
+    <string name="snack_name_example">This is snack name</string>
     <string name="fat">Fat</string>
     <string name="colon_char">:</string>
     <string name="carbohydrates">Carbohydrates</string>
@@ -61,5 +61,6 @@
     <string name="prediction_result">Prediction Result</string>
     <string name="no_data">No data</string>
     <string name="no_prediction">No Prediction</string>
+    <string name="recommendation_example">This snack is better for you to consume at once a week</string>
 
 </resources>

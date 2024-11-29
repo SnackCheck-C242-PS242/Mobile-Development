@@ -112,11 +112,12 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_signup"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
         android:layout_marginBottom="72dp"
-        android:text="@string/login_btn_text"
+        android:text="@string/sign_up_btn_text"
         app:layout_constraintBottom_toBottomOf="@id/form_background"
         app:layout_constraintEnd_toEndOf="@id/form_background"
         app:layout_constraintStart_toStartOf="@id/form_background"
@@ -127,7 +128,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/btn_login"
+        app:layout_constraintTop_toBottomOf="@id/btn_signup"
         app:layout_constraintStart_toStartOf="@id/form_background"
         app:layout_constraintEnd_toEndOf="@id/form_background">
 
