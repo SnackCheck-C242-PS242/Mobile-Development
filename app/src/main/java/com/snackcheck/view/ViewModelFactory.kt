@@ -8,6 +8,7 @@ import com.snackcheck.di.Injection
 import com.snackcheck.view.authorization.login.LoginViewModel
 import com.snackcheck.view.main.MainViewModel
 import com.snackcheck.view.setting.SettingFragmentViewModel
+import com.snackcheck.view.splash.SplashViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
 
@@ -16,6 +17,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
         return when {
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(SplashViewModel::class.java) -> {
+                SplashViewModel(repository) as T
             }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(repository) as T
