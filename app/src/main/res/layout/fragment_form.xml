@@ -7,12 +7,12 @@
     tools:context=".view.prediction.form.FormFragment">
 
     <TextView
-        android:id="@+id/tv_prediction"
+        android:id="@+id/tv_nutritional_data_form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="72dp"
-        android:text="@string/title_prediction"
+        android:text="@string/title_nutritional_data_form"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:paddingVertical="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_prediction">
+        app:layout_constraintTop_toBottomOf="@id/tv_nutritional_data_form">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_snack_name"
@@ -56,7 +56,7 @@
             android:focusableInTouchMode="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_prediction"
+            app:layout_constraintTop_toBottomOf="@id/tv_nutritional_data_form"
             tools:listitem="@layout/item_nutrition_form"
             tools:itemCount="7"/>
 

@@ -60,6 +60,7 @@
     <string name="nutrition_data">Nutrition Data</string>
     <string name="prediction_result">Prediction Result</string>
     <string name="no_data">No data</string>
+    <string name="title_nutritional_data_form">Nutritional Data Form</string>
     <string name="no_prediction">No Prediction</string>
     <string name="recommendation_example">This snack is better for you to consume at once a week</string>
 
