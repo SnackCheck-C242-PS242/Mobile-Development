@@ -40,8 +40,7 @@
 
     <string name="nutrition">Nutrition</string>
     <string name="snack_name">Snack name</string>
-    <string name="amount_g">Amount(g)</string>
-    <string name="amount_mg">Amoung(mg)</string>
+    <string name="amount">Amount(g)</string>
     <string name="analyze_btn_text">Analyze</string>
 
     <string name="title_verification_success">Verification Success!</string>
@@ -68,7 +67,14 @@
     <string name="welcome_to_snackcheck">Welcome to SnackCheck App!</string>
     <string name="welcome_description">SnackCheck helps you make healthier food choices! Simply input the nutritional data, and let our machine learning model analyze it to determine if the food is healthy or not.\n\nStart making better food choices for your health today!</string>
     <string name="logout_btn_text">Log Out</string>
-    <string name="hint_search_history">Search History\n</string>
-    <string name="clear_history">Clear History</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="send_code_btn_text">Send Code</string>
+    <string name="reset_password_page_title_content_description">Reset Password page title content description</string>
+    <string name="input_new_password">Input New Password</string>
+    <string name="input_new_password_page_title_content_description">Input New Password page title content description</string>
+    <string name="enter_your_new_password_here">Enter your new password</string>
+    <string name="enter_your_new_password_again">Enter your new password again</string>
+    <string name="confirm_btn_text">Confirm</string>
+    <string name="enter_your_password_again_here">Enter your password here again</string>
 
 </resources>
