@@ -76,5 +76,7 @@
     <string name="enter_your_new_password_again">Enter your new password again</string>
     <string name="confirm_btn_text">Confirm</string>
     <string name="enter_your_password_again_here">Enter your password here again</string>
+    <string name="clear_history">Clear History</string>
+    <string name="hint_search_history">Search History</string>
 
 </resources>
