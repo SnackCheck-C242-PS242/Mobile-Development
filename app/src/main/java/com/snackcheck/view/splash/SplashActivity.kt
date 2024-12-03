@@ -10,14 +10,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.snackcheck.R
+import com.snackcheck.data.pref.UserPreference
+import com.snackcheck.data.pref.dataStore
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.main.MainActivity
 import com.snackcheck.view.main.MainViewModel
 import com.snackcheck.view.welcome.WelcomeActivity
 
 class SplashActivity : AppCompatActivity() {
+
+    private val pref = UserPreference.getInstance(dataStore)
+    private val factory: ViewModelFactory = ViewModelFactory.getInstance(this, pref)
     private val viewModel by viewModels<SplashViewModel> {
-        ViewModelFactory.getInstance(this)
+        factory
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,15 +36,7 @@ class SplashActivity : AppCompatActivity() {
             insets
         }
 
-        viewModel.getSession().observe(this) { user ->
-            if (!user.isLogin) {
-                navigateToWelcome()
-            } else {
-                navigateToMain()
-            }
-        }
-
-
+        navigateToMain()
     }
 
     private fun navigateToMain() {

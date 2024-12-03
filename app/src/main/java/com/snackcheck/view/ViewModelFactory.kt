@@ -4,13 +4,18 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.snackcheck.data.UserRepository
+import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.di.Injection
 import com.snackcheck.view.authorization.login.LoginViewModel
 import com.snackcheck.view.main.MainViewModel
+import com.snackcheck.view.prediction.form.FormViewModel
 import com.snackcheck.view.setting.SettingFragmentViewModel
 import com.snackcheck.view.splash.SplashViewModel
 
-class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory(
+    private val repository: UserRepository,
+    private val pref: UserPreference,
+) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -25,7 +30,10 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
                 LoginViewModel(repository) as T
             }
             modelClass.isAssignableFrom(SettingFragmentViewModel::class.java) -> {
-                SettingFragmentViewModel(repository) as T
+                SettingFragmentViewModel(repository, pref) as T
+            }
+            modelClass.isAssignableFrom(FormViewModel::class.java) -> {
+                FormViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
@@ -33,15 +41,10 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
 
     companion object {
         @Volatile
-        private var INSTANCE: ViewModelFactory? = null
-        @JvmStatic
-        fun getInstance(context: Context): ViewModelFactory {
-            if (INSTANCE == null) {
-                synchronized(ViewModelFactory::class.java) {
-                    INSTANCE = ViewModelFactory(Injection.provideRepository(context))
-                }
-            }
-            return INSTANCE as ViewModelFactory
-        }
+        private var instance: ViewModelFactory? = null
+        fun getInstance(context: Context, pref: UserPreference): ViewModelFactory =
+            instance ?: synchronized(this) {
+                instance ?: ViewModelFactory(Injection.provideRepository(context), pref)
+            }.also { instance = it }
     }
 }

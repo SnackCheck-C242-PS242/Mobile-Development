@@ -12,14 +12,21 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.snackcheck.R
 import com.snackcheck.data.local.entity.SnackDetail
+import com.snackcheck.data.pref.UserPreference
+import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.FragmentFormBinding
+import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.adapter.NutritionDataFormAdapter
 
 class FormFragment : Fragment() {
 
     private var _binding: FragmentFormBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: FormViewModel by viewModels()
+    private val pref = UserPreference.getInstance(requireContext().dataStore)
+    private val factory = ViewModelFactory.getInstance(requireContext(), pref)
+    private val viewModel by viewModels<FormViewModel> {
+        factory
+    }
     private lateinit var adapter: NutritionDataFormAdapter
 
     override fun onCreateView(

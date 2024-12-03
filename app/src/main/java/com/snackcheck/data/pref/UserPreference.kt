@@ -14,21 +14,27 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 
 class UserPreference private constructor(private val dataStore: DataStore<Preferences>) {
 
+    private val themeKey = booleanPreferencesKey("theme_setting")
+    private val token = stringPreferencesKey("token")
+
+    /*
     suspend fun saveSession(user: UserModel) {
         dataStore.edit { preferences ->
             preferences[USERNAME_KEY] = user.username
             preferences[TOKEN_KEY] = user.token
             preferences[IS_LOGIN_KEY] = true
         }
+    }*/
+
+    fun getToken(): Flow<String?> {
+        return dataStore.data.map { preferences ->
+            preferences[token]
+        }
     }
 
-    fun getSession(): Flow<UserModel> {
-        return dataStore.data.map { preferences ->
-            UserModel(
-                preferences[USERNAME_KEY] ?: "",
-                preferences[TOKEN_KEY] ?: "",
-                preferences[IS_LOGIN_KEY] ?: false
-            )
+    suspend fun saveToken(token: String) {
+        dataStore.edit { preferences ->
+            preferences[this.token] = token
         }
     }
 
@@ -38,13 +44,21 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    fun getThemeSetting(): Flow<Boolean> {
+        return dataStore.data.map { preferences ->
+            preferences[themeKey] ?: false
+        }
+    }
+
+    suspend fun saveThemeSetting(isDarkModeActive: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[themeKey] = isDarkModeActive
+        }
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: UserPreference? = null
-
-        private val USERNAME_KEY = stringPreferencesKey("username")
-        private val TOKEN_KEY = stringPreferencesKey("token")
-        private val IS_LOGIN_KEY = booleanPreferencesKey("isLogin")
 
         fun getInstance(dataStore: DataStore<Preferences>): UserPreference {
             return INSTANCE ?: synchronized(this) {

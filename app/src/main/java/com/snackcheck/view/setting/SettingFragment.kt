@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.snackcheck.R
+import com.snackcheck.data.pref.UserPreference
+import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.FragmentSettingBinding
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.authorization.login.LoginActivity
@@ -15,17 +17,18 @@ import com.snackcheck.view.authorization.login.LoginActivity
 
 class SettingFragment : Fragment() {
 
+    private val pref = UserPreference.getInstance(requireContext().dataStore)
+    private val factory: ViewModelFactory = ViewModelFactory.getInstance(requireContext(), pref)
     private val viewModel by viewModels<SettingFragmentViewModel> {
-        ViewModelFactory.getInstance(requireContext())
+        factory
     }
-
     private lateinit var binding: FragmentSettingBinding
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         binding = FragmentSettingBinding.inflate(inflater, container,false)
         return binding.root
     }
@@ -33,12 +36,6 @@ class SettingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getSession().observe(viewLifecycleOwner) { user ->
-            if (!user.isLogin) {
-                startActivity(Intent(requireContext(), LoginActivity::class.java))
-                requireActivity().finish()
-            }
-        }
         setupAction()
     }
 

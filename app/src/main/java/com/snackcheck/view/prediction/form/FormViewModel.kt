@@ -3,11 +3,17 @@ package com.snackcheck.view.prediction.form
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import com.snackcheck.data.UserRepository
 import com.snackcheck.data.local.entity.NutritionData
 import com.snackcheck.data.local.entity.NutritionItem
 import com.snackcheck.data.local.entity.SnackDetail
 
-class FormViewModel : ViewModel() {
+class FormViewModel(private val repository: UserRepository) : ViewModel() {
+    fun getToken(): LiveData<String?> {
+        return repository.getToken().asLiveData()
+    }
+
     private val allNutrients = listOf("Fat", "Saturated Fat", "Carbohydrates", "Sugars", "Fiber", "Proteins", "Sodium")
 
     private val _snacks = MutableLiveData<List<SnackDetail>>(emptyList())
@@ -31,29 +37,16 @@ class FormViewModel : ViewModel() {
 
         val currentSnacks = _snacks.value.orEmpty().toMutableList()
 
-        // Hindari duplikasi berdasarkan nama snack
         if (currentSnacks.any { it.name == snackDetail.name }) {
             throw IllegalArgumentException("Snack with the same name already exists")
         }
 
         currentSnacks.add(snackDetail)
         _snacks.value = currentSnacks
-        // Reset data nutrisi setelah menambahkan snack
         _nutritionData.value = listOf(NutritionItem())
         _nutrientStatus.value = allNutrients.associateWith { 0 }
         updateAddButtonVisibility()
     }
-
-    fun removeLastSnack() {
-        val currentSnacks = _snacks.value.orEmpty().toMutableList()
-        if (currentSnacks.isNotEmpty()) {
-            currentSnacks.removeAt(currentSnacks.size - 1)
-            _snacks.value = currentSnacks
-        } else {
-            throw IllegalStateException("No snacks to remove")
-        }
-    }
-
 
     fun getSnackDetailFromInput(snackName: String): SnackDetail {
         val formData = _nutritionData.value.orEmpty().associate { item ->

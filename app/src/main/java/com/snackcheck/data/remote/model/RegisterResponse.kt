@@ -3,7 +3,7 @@ package com.snackcheck.data.remote.model
 import com.google.gson.annotations.SerializedName
 
 data class RegisterResponse(
-	@field:SerializedName("message")
+	@field:SerializedName("accessToken")
 	val message: String? = null,
 
 	@field:SerializedName("status")

@@ -9,14 +9,18 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.snackcheck.data.pref.UserModel
+import com.snackcheck.data.pref.UserPreference
+import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.ActivityLoginBinding
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.authorization.register.SignUpActivity
 import com.snackcheck.view.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
+    private val pref = UserPreference.getInstance(dataStore)
+    private val factory = ViewModelFactory.getInstance(this, pref)
     private val viewModel by viewModels<LoginViewModel> {
-        ViewModelFactory.getInstance(this)
+        factory
     }
     private lateinit var binding: ActivityLoginBinding
 
@@ -28,17 +32,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupAction()
-        setupPasswordValidation()
-
-        viewModel.passwordError.observe(this) { errorMessage ->
-            if (errorMessage != null) {
-                binding.passwordEditText.error = errorMessage
-                binding.passwordEditTextLayout.isErrorEnabled = true
-                binding.passwordEditTextLayout.errorIconDrawable = null
-            } else {
-                binding.passwordEditTextLayout.isErrorEnabled = false
-            }
-        }
     }
 
     private fun setupAction() {
@@ -46,33 +39,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
-        binding.btnLogin.setOnClickListener {
-            val username = binding.usernameEditText.text.toString()
-            viewModel.saveSession(UserModel(username, "sample_token"))
-            AlertDialog.Builder(this).apply {
-                setTitle("Login Success")
-                setMessage("You have logged in successfully.")
-                setPositiveButton("OK") { _, _ ->
-                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                    finish()
-                }
-            }.show()
-        }
+
     }
 
-    private fun setupPasswordValidation() {
-        binding.passwordEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s.toString().length < 8) {
-                    viewModel.setPasswordError("Password must be at least 8 characters long")
-                } else {
-                    viewModel.setPasswordError(null)
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-        })
-    }
 }

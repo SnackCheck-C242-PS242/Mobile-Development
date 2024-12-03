@@ -32,7 +32,6 @@ class ResultFragment : Fragment() {
         Log.d("FormFragment", "SnackDetail: $snackDetail")
         Log.d("FormFragment", "Hasil prediksi: $predictionResult")
 
-        // Tampilkan data snack dan hasil prediksi
         snackDetail?.let {
             binding.tvSnackNamePlaceholder.text = it.name
             binding.tvFatAmount.text = it.nutritionData.fat.toString()
