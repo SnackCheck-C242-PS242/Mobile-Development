@@ -57,16 +57,15 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_otp_1"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/md_theme_primary"
-            app:boxCornerRadiusTopStart="8dp"
-            app:boxCornerRadiusTopEnd="8dp">
+            app:boxStrokeColor="@color/md_theme_primary">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/otp_1"
+                android:id="@+id/ed_otp_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -77,16 +76,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_otp_2"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/md_theme_primary"
-            app:boxCornerRadiusTopStart="8dp"
-            app:boxCornerRadiusTopEnd="8dp">
+            app:boxStrokeColor="@color/md_theme_primary">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/otp_2"
+                android:id="@+id/ed_otp2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -97,16 +95,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_otp_3"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/md_theme_primary"
-            app:boxCornerRadiusTopStart="8dp"
-            app:boxCornerRadiusTopEnd="8dp">
+            app:boxStrokeColor="@color/md_theme_primary">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/otp_3"
+                android:id="@+id/ed_otp_3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -117,16 +114,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_otp_4"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/md_theme_primary"
-            app:boxCornerRadiusTopStart="8dp"
-            app:boxCornerRadiusTopEnd="8dp">
+            app:boxStrokeColor="@color/md_theme_primary">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/otp_4"
+                android:id="@+id/ed_otp_4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -137,16 +133,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_otp_5"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/md_theme_primary"
-            app:boxCornerRadiusTopStart="8dp"
-            app:boxCornerRadiusTopEnd="8dp">
+            app:boxStrokeColor="@color/md_theme_primary">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/otp_5"
+                android:id="@+id/ed_otp_5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"

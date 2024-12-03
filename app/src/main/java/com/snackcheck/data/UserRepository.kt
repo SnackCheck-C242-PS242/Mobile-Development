@@ -22,6 +22,8 @@ class UserRepository private constructor(
         userPreference.logout()
     }
 
+    suspend fun verifyAccount(email: String, verificationCode: String) = apiService.verifyAccount(email, verificationCode)
+
     companion object {
         @Volatile
         private var instance: UserRepository? = null
