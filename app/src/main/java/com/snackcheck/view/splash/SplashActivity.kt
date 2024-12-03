@@ -36,7 +36,7 @@ class SplashActivity : AppCompatActivity() {
             insets
         }
 
-        navigateToMain()
+        navigateToWelcome()
     }
 
     private fun navigateToMain() {

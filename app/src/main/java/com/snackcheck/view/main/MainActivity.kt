@@ -11,13 +11,17 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.snackcheck.R
+import com.snackcheck.data.pref.UserPreference
+import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.ActivityMainBinding
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.welcome.WelcomeActivity
 
 class MainActivity : AppCompatActivity() {
+    private val pref = UserPreference.getInstance(dataStore)
+    private val factory: ViewModelFactory = ViewModelFactory.getInstance(this, pref)
     private val viewModel by viewModels<MainViewModel> {
-        ViewModelFactory.getInstance(this)
+        factory
     }
     private lateinit var binding: ActivityMainBinding
 
@@ -27,12 +31,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.getSession().observe(this) { user ->
-            if (!user.isLogin) {
-                startActivity(Intent(this, WelcomeActivity::class.java))
-                finish()
-            }
-        }
+
 
         val navView: BottomNavigationView = binding.navView
 

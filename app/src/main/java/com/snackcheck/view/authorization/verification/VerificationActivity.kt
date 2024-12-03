@@ -18,4 +18,8 @@ class VerificationActivity : AppCompatActivity() {
             insets
         }
     }
+
+    companion object {
+        const val EXTRA_EMAIL = "extra_email"
+    }
 }

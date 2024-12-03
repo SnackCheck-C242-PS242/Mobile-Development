@@ -7,6 +7,7 @@ import com.snackcheck.data.UserRepository
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.di.Injection
 import com.snackcheck.view.authorization.login.LoginViewModel
+import com.snackcheck.view.authorization.register.SignUpViewModel
 import com.snackcheck.view.main.MainViewModel
 import com.snackcheck.view.prediction.form.FormViewModel
 import com.snackcheck.view.setting.SettingFragmentViewModel
@@ -28,6 +29,9 @@ class ViewModelFactory(
             }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(SignUpViewModel::class.java) -> {
+                SignUpViewModel(repository) as T
             }
             modelClass.isAssignableFrom(SettingFragmentViewModel::class.java) -> {
                 SettingFragmentViewModel(repository, pref) as T

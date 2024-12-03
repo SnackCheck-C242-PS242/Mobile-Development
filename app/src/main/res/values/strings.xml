@@ -79,5 +79,8 @@
     <string name="clear_history">Clear History</string>
     <string name="hint_search_history">Search History</string>
     <string name="enter_your_full_name">Enter your full name</string>
+    <string name="please_fill_the_form_correctly">Please fill the form correctly</string>
+    <string name="register_success">Registration is success</string>
+    <string name="register_failed">Registration is failed</string>
 
 </resources>

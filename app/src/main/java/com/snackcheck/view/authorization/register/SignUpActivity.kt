@@ -2,13 +2,26 @@ package com.snackcheck.view.authorization.register
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.snackcheck.R
+import com.snackcheck.data.ResultState
+import com.snackcheck.data.pref.UserPreference
+import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.ActivitySignUpBinding
+import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.authorization.login.LoginActivity
+import com.snackcheck.view.authorization.verification.VerificationActivity
 
 class SignUpActivity : AppCompatActivity() {
+    private val pref = UserPreference.getInstance(dataStore)
     private lateinit var binding: ActivitySignUpBinding
+    private val factory: ViewModelFactory = ViewModelFactory.getInstance(this,pref)
+    private val viewModel: SignUpViewModel by viewModels {
+        factory
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
@@ -17,9 +30,59 @@ class SignUpActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        binding.tbLogin.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+        setupAction()
+    }
+
+    private fun setupAction() {
+        binding.apply {
+            tbLogin.setOnClickListener {
+                startActivity(Intent(this@SignUpActivity, LoginActivity::class.java))
+            }
+
+            btnSignup.setOnClickListener{
+                if (edFullName.text!!.isNotEmpty() && edUsername.text!!.isNotEmpty() && edEmail.text!!.isNotEmpty() && edPassword.text?.length!! >= 8 && (edPasswordConfirmation.text!!.toString() == edPassword.text.toString())){
+                    viewModel.register(
+                        fullName = edFullName.text.toString(),
+                        username = edUsername.text.toString(),
+                        email = edEmail.text.toString(),
+                        password = edPassword.text.toString(),
+                        confirmPassword = edPasswordConfirmation.text.toString()
+                    )
+                } else {
+                    Toast.makeText(
+                        this@SignUpActivity,
+                        getString(R.string.please_fill_the_form_correctly),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            viewModel.responseResult.observe(this@SignUpActivity) { response ->
+                when (response) {
+                    is ResultState.Loading -> {}
+                    is ResultState.Success -> {
+                        Toast.makeText(
+                            this@SignUpActivity,
+                            getString(R.string.register_success),
+                            Toast.LENGTH_SHORT
+                            ).show()
+
+                        val email = edEmail.text.toString()
+                        val intent = Intent(this@SignUpActivity, VerificationActivity::class.java)
+                        intent.putExtra(VerificationActivity.EXTRA_EMAIL, email)
+                        startActivity(intent)
+                        finish()
+                    }
+
+                    is ResultState.Error -> {
+                        Toast.makeText(
+                            this@SignUpActivity,
+                            response.error,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
         }
     }
 }

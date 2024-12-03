@@ -9,7 +9,5 @@ import com.snackcheck.data.pref.UserModel
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val repository: UserRepository) : ViewModel() {
-    fun getSession(): LiveData<UserModel> {
-        return repository.getSession().asLiveData()
-    }
+
 }
