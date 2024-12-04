@@ -9,5 +9,7 @@ import com.snackcheck.data.pref.UserModel
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val repository: UserRepository) : ViewModel() {
-
+    fun getToken(): LiveData<String?> {
+        return repository.getToken().asLiveData()
+    }
 }

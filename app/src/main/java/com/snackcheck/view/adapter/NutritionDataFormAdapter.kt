@@ -2,6 +2,7 @@ package com.snackcheck.view.adapter
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -9,6 +10,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.snackcheck.R
 import com.snackcheck.data.local.entity.NutritionItem
 import com.snackcheck.databinding.ItemNutritionFormBinding
 import com.snackcheck.view.prediction.form.FormViewModel
@@ -79,13 +81,26 @@ class NutritionDataFormAdapter(private val viewModel: FormViewModel) :
                 item.name = selected
 
                 // Tetapkan nilai dropdown dengan segera
+                if (selected == "Sodium") {
+                    binding.edNutritionAmount.setText(binding.root.context.getString(R.string.milligram))
+                } else {
+                    binding.edNutritionAmount.setText(binding.root.context.getString(R.string.gram))
+                }
+
+                if (selected == "Carbohydrates" || selected == "Saturated Fat") {
+                    binding.tvAutoComplete.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+                } else {
+                    binding.tvAutoComplete.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
+                }
+
+
                 binding.tvAutoComplete.setText(selected, false)
             }
 
 
             // Tangani input jumlah nutrisi
-            binding.etInputNutrition.setText(item.amount)
-            binding.etInputNutrition.addTextChangedListener(object : TextWatcher {
+            binding.edInputNutrition.setText(item.amount)
+            binding.edInputNutrition.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
                     item.amount = s.toString()
                 }

@@ -33,14 +33,14 @@ class ResultFragment : Fragment() {
         Log.d("FormFragment", "Hasil prediksi: $predictionResult")
 
         snackDetail?.let {
-            binding.tvSnackNamePlaceholder.text = it.name
-            binding.tvFatAmount.text = it.nutritionData.fat.toString()
-            binding.tvSaturatedFatAmount.text = it.nutritionData.saturatedFat.toString()
-            binding.tvCarbohydratesAmount.text = it.nutritionData.carbohydrates.toString()
-            binding.tvSugarsAmount.text = it.nutritionData.sugars.toString()
-            binding.tvFiberAmount.text = it.nutritionData.fiber.toString()
-            binding.tvProteinsAmount.text = it.nutritionData.proteins.toString()
-            binding.tvSodiumAmount.text = it.nutritionData.sodium.toString()
+            binding.tvSnackNamePlaceholder.text = it.snackName
+            binding.tvFatAmount.text = it.nutritions.fat.toString()
+            binding.tvSaturatedFatAmount.text = it.nutritions.saturatedFat.toString()
+            binding.tvCarbohydratesAmount.text = it.nutritions.carbohydrates.toString()
+            binding.tvSugarsAmount.text = it.nutritions.sugars.toString()
+            binding.tvFiberAmount.text = it.nutritions.fiber.toString()
+            binding.tvProteinsAmount.text = it.nutritions.proteins.toString()
+            binding.tvSodiumAmount.text = it.nutritions.sodium.toString()
         } ?: run {
             binding.tvSnackNamePlaceholder.text = getString(R.string.no_data)
         }

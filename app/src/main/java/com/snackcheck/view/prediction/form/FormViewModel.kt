@@ -3,41 +3,35 @@ package com.snackcheck.view.prediction.form
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import com.snackcheck.data.UserRepository
 import com.snackcheck.data.local.entity.NutritionData
 import com.snackcheck.data.local.entity.NutritionItem
 import com.snackcheck.data.local.entity.SnackDetail
 
 class FormViewModel(private val repository: UserRepository) : ViewModel() {
-    fun getToken(): LiveData<String?> {
-        return repository.getToken().asLiveData()
-    }
 
     private val allNutrients = listOf("Fat", "Saturated Fat", "Carbohydrates", "Sugars", "Fiber", "Proteins", "Sodium")
 
-    private val _snacks = MutableLiveData<List<SnackDetail>>(emptyList())
-    val snacks: LiveData<List<SnackDetail>> get() = _snacks
-
-    private val _nutrientStatus = MutableLiveData<Map<String, Int>>(
-        allNutrients.associateWith { 0 } // Default: semua nutrisi belum dipilih
+    private val _nutrientStatus = MutableLiveData(
+        allNutrients.associateWith { 0 }
     )
     val nutrientStatus: LiveData<Map<String, Int>> get() = _nutrientStatus
 
     private val _isAddButtonVisible = MutableLiveData(true)
     val isAddButtonVisible: LiveData<Boolean> get() = _isAddButtonVisible
 
-    private val _nutritionData = MutableLiveData<List<NutritionItem>>(listOf(NutritionItem()))
+    private val _nutritionData = MutableLiveData(listOf(NutritionItem()))
     val nutritionData: LiveData<List<NutritionItem>> get() = _nutritionData
 
+    /*
     fun addSnack(snackDetail: SnackDetail) {
-        if (snackDetail.name.isEmpty()) {
+        if (snackDetail.snackName.isEmpty()) {
             throw IllegalArgumentException("Snack name cannot be empty")
         }
 
         val currentSnacks = _snacks.value.orEmpty().toMutableList()
 
-        if (currentSnacks.any { it.name == snackDetail.name }) {
+        if (currentSnacks.any { it.snackName == snackDetail.snackName }) {
             throw IllegalArgumentException("Snack with the same name already exists")
         }
 
@@ -46,7 +40,7 @@ class FormViewModel(private val repository: UserRepository) : ViewModel() {
         _nutritionData.value = listOf(NutritionItem())
         _nutrientStatus.value = allNutrients.associateWith { 0 }
         updateAddButtonVisibility()
-    }
+    }*/
 
     fun getSnackDetailFromInput(snackName: String): SnackDetail {
         val formData = _nutritionData.value.orEmpty().associate { item ->
@@ -60,13 +54,11 @@ class FormViewModel(private val repository: UserRepository) : ViewModel() {
             sugars = formData["Sugars"] ?: 0.0,
             fiber = formData["Fiber"] ?: 0.0,
             proteins = formData["Proteins"] ?: 0.0,
-            sodium = formData["Sodium"] ?: 0.0
+            sodium = ((formData["Sodium"] ?: 0.0) * 1/1000)
         )
 
-        return SnackDetail(name = snackName, nutritionData = nutritionData)
+        return SnackDetail(snackName = snackName, nutritions = nutritionData)
     }
-
-
 
     fun addEmptyNutritionItem() {
         val currentList = _nutritionData.value.orEmpty().toMutableList()
@@ -105,6 +97,7 @@ class FormViewModel(private val repository: UserRepository) : ViewModel() {
 
         _nutrientStatus.value = currentStatus
         updateAddButtonVisibility()
+
     }
 
     private fun updateAddButtonVisibility() {

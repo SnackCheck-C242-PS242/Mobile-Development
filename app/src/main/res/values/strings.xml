@@ -40,7 +40,11 @@
 
     <string name="nutrition">Nutrition</string>
     <string name="snack_name">Snack name</string>
-    <string name="amount">Amount(g)</string>
+    <string name="amount">Amount</string>
+    <string name="gram">(g)</string>
+    <string name="milligram">(mg)</string>
+    <string name="amount_gram">Amount (g)</string>
+    <string name="amount_milligram">Amount (mg)</string>
     <string name="analyze_btn_text">Analyze</string>
 
     <string name="title_verification_success">Verification Success!</string>

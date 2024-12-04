@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -14,15 +15,12 @@ import com.snackcheck.R
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.ActivityMainBinding
+import com.snackcheck.di.Injection
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.welcome.WelcomeActivity
 
 class MainActivity : AppCompatActivity() {
-    private val pref = UserPreference.getInstance(dataStore)
-    private val factory: ViewModelFactory = ViewModelFactory.getInstance(this, pref)
-    private val viewModel by viewModels<MainViewModel> {
-        factory
-    }
+    private lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +29,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val pref = UserPreference.getInstance(dataStore)
+        val userRepository = Injection.provideRepository(this)
+        val viewModelFactory = ViewModelFactory(userRepository, pref)
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
 
+        viewModel.getToken().observe(this) { token ->
+            if (token.isNullOrEmpty()) {
+                startActivity(Intent(this, WelcomeActivity::class.java))
+                finish()
+            }
+        }
 
         val navView: BottomNavigationView = binding.navView
 
@@ -41,6 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         // Hubungkan Bottom Navigation dengan NavController
         navView.setupWithNavController(navController)
+
 
         navView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {

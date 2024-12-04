@@ -6,9 +6,9 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ti_dropdown_menu"
+        android:id="@+id/tl_dropdown_menu"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="192dp"
+        android:layout_width="164dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -16,32 +16,56 @@
         <AutoCompleteTextView
             android:id="@+id/tv_auto_complete"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:hint="@string/nutrition"
             android:inputType="none"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:focusable="true"
-            android:focusableInTouchMode="true" />
+            tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ti_input_nutrition"
+        android:id="@+id/tl_input_nutrition"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ti_dropdown_menu"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@id/tl_nutrition_amount"
+        app:layout_constraintStart_toEndOf="@id/tl_dropdown_menu"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_input_nutrition"
+            android:id="@+id/ed_input_nutrition"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/amount"
-            android:inputType="number"
-            tools:ignore="TextContrastCheck,VisualLintTextFieldSize"
+            android:layout_height="match_parent"
             android:focusable="true"
-            android:focusableInTouchMode="true" />
+            android:focusableInTouchMode="true"
+            android:hint="@string/amount"
+            android:inputType="numberDecimal"
+            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tl_nutrition_amount"
+        android:layout_width="64dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:focusable="false"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tl_input_nutrition"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_nutrition_amount"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:focusable="false"
+            android:gravity="center"
+            android:inputType="none"
+            android:text="@string/gram"
+            android:textSize="14sp"
+            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
