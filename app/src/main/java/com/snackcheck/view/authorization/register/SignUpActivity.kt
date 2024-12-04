@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.snackcheck.R
 import com.snackcheck.data.ResultState
 import com.snackcheck.data.pref.UserPreference
@@ -61,10 +63,16 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
 
+            val builder: AlertDialog.Builder =
+                MaterialAlertDialogBuilder(this@SignUpActivity, R.style.MaterialAlertDialog_Rounded)
+            builder.setView(R.layout.layout_loading)
+            val dialog: AlertDialog = builder.create()
+
             viewModel.responseResult.observe(this@SignUpActivity) { response ->
                 when (response) {
-                    is ResultState.Loading -> {}
+                    is ResultState.Loading -> dialog.show()
                     is ResultState.Success -> {
+                        dialog.dismiss()
                         Toast.makeText(
                             this@SignUpActivity,
                             getString(R.string.register_success),
@@ -77,14 +85,15 @@ class SignUpActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     }
-
                     is ResultState.Error -> {
+                        dialog.dismiss()
                         Toast.makeText(
                             this@SignUpActivity,
                             response.error,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
+                    else -> dialog.dismiss()
                 }
             }
         }

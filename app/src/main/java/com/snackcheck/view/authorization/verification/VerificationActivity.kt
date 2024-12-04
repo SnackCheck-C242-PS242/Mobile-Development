@@ -3,18 +3,19 @@ package com.snackcheck.view.authorization.verification
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.snackcheck.R
 import com.snackcheck.data.ResultState
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.ActivityVerificationBinding
 import com.snackcheck.view.ViewModelFactory
-import com.snackcheck.view.authorization.login.LoginActivity
+import com.snackcheck.view.authorization.verification_success.VerificationSuccessActivity
 
 class VerificationActivity : AppCompatActivity() {
     private val pref = UserPreference.getInstance(dataStore)
@@ -25,9 +26,10 @@ class VerificationActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivityVerificationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_verification)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -54,15 +56,22 @@ class VerificationActivity : AppCompatActivity() {
             }
         }
 
+        val builder: AlertDialog.Builder =
+            MaterialAlertDialogBuilder(this@VerificationActivity, R.style.MaterialAlertDialog_Rounded)
+        builder.setView(R.layout.layout_loading)
+        val dialog: AlertDialog = builder.create()
+
         viewModel.responseResult.observe(this){ response ->
             when(response){
-                is ResultState.Loading -> {}
+                is ResultState.Loading -> dialog.show()
                 is ResultState.Success -> {
-                    val intent = Intent(this@VerificationActivity, LoginActivity::class.java)
+                    dialog.dismiss()
+                    val intent = Intent(this@VerificationActivity, VerificationSuccessActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
                 is ResultState.Error -> {
+                    dialog.dismiss()
                     Toast.makeText(
                         this@VerificationActivity,
                         response.error,

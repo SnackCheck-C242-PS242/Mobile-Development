@@ -59,7 +59,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_otp_1"
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/md_theme_primary">
@@ -78,7 +78,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_otp_2"
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/md_theme_primary">
@@ -97,7 +97,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_otp_3"
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/md_theme_primary">
@@ -116,7 +116,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_otp_4"
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/md_theme_primary">
@@ -135,7 +135,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_otp_5"
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/md_theme_primary">
@@ -180,11 +180,11 @@
         android:id="@+id/btn_verify"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
+        android:layout_marginBottom="72dp"
         android:text="@string/verify"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tb_resend_code"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="TextContrastCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

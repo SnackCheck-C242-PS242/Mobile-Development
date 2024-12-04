@@ -35,7 +35,7 @@
         android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/login"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -45,6 +45,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/form_background" />
 
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/message_login_page"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login" />
+
     <LinearLayout
         android:id="@+id/login_form_container"
         android:layout_width="0dp"
@@ -53,14 +66,22 @@
         android:paddingHorizontal="32dp"
         android:paddingVertical="8dp"
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tv_login"
-        app:layout_constraintBottom_toBottomOf="@id/form_background"
+        app:layout_constraintTop_toBottomOf="@id/tv_message"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintStart_toStartOf="@id/form_background"
         app:layout_constraintEnd_toEndOf="@id/form_background">
 
+        <TextView
+            android:id="@+id/tv_title_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/username"
+            android:layout_gravity="start" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_username"
-            android:layout_marginTop="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -68,23 +89,36 @@
                 android:id="@+id/ed_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_your_email_here" />
-
+                android:ems="10"
+                android:inputType="text"
+                tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_title_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/password"
+            android:layout_gravity="start" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            app:hintEnabled="true"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@null"
             app:endIconMode="password_toggle">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.snackcheck.view.component.CustomPasswordEditText
                 android:id="@+id/ed_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_your_password_here"
-                android:inputType="textPassword" />
+                android:ems="10"
+                android:inputType="textPassword"
+                tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 

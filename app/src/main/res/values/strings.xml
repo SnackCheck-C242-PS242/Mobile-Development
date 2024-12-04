@@ -33,7 +33,7 @@
     <string name="did_not_receive_code_text">Didn’t receive any verification code?</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello">Hello</string>
-    <string name="name">John Doe</string>
+    <string name="name">Name</string>
 
     <string name="result">Result</string>
     <string name="timestamp">Timestamp</string>
@@ -46,7 +46,7 @@
     <string name="title_verification_success">Verification Success!</string>
     <string name="can_login_text">You can now login with your account!</string>
     <string name="enjoy_text">Enjoy your snack, take care of your health, with our only app, SnackCheck</string>
-    <string name="back_to_login">Log In</string>
+    <string name="go_to_login">Go to Login Page</string>
     <string name="title_result">Result</string>
     <string name="snack_name_example">This is snack name</string>
     <string name="fat">Fat</string>
@@ -80,7 +80,14 @@
     <string name="hint_search_history">Search History</string>
     <string name="enter_your_full_name">Enter your full name</string>
     <string name="please_fill_the_form_correctly">Please fill the form correctly</string>
-    <string name="register_success">Registration is success</string>
+    <string name="register_success">Registration is success. Please verify your account</string>
     <string name="register_failed">Registration is failed</string>
-
+    <string name="error_invalid_email">Please enter a valid email address</string>
+    <string name="regex_email">[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}</string>
+    <string name="password_minimum_characters">Password must be at least 8 characters long</string>
+    <string name="password_confirmation_error">Password confirmation must be same as password</string>
+    <string name="password_confirmation">Confirm Password</string>
+    <string name="message_signup_page">Please enter your personal data</string>
+    <string name="message_login_page">Enter your username and password to login</string>
+    <string name="please_wait">Please Wait..</string>
 </resources>

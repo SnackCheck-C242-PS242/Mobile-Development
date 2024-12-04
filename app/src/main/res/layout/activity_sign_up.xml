@@ -35,99 +35,162 @@
         android:id="@+id/tv_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/sign_up"
         android:textSize="32sp"
         android:textStyle="bold"
         android:contentDescription="@string/sign_up_page_title_content_description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/form_background" />
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/message_signup_page"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sign_up" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
         android:paddingHorizontal="32dp"
-        android:paddingVertical="8dp"
+        android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tv_sign_up"
-        app:layout_constraintBottom_toBottomOf="@id/form_background"
+        app:layout_constraintTop_toBottomOf="@id/tv_message"
+        app:layout_constraintBottom_toTopOf="@id/btn_signup"
         app:layout_constraintStart_toStartOf="@id/form_background"
         app:layout_constraintEnd_toEndOf="@id/form_background">
 
+        <TextView
+            android:id="@+id/tv_title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:layout_gravity="start" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_full_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_marginTop="16dp"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_full_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_your_full_name" />
-
+                android:ems="10"
+                android:inputType="text"
+                tools:ignore="SpeakableTextPresentCheck"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_title_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/username"
+            android:layout_gravity="start" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_username"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_marginTop="16dp"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_your_username_here" />
-
+                android:ems="10"
+                android:inputType="text"
+                tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_title_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/email"
+            android:layout_gravity="start" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintEnabled="true"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@null"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.snackcheck.view.component.CustomEmailEditText
                 android:id="@+id/ed_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_your_email_here"
-                android:inputType="textEmailAddress"/>
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                tools:ignore="SpeakableTextPresentCheck"/>
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_title_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password"
+            android:layout_gravity="start" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            app:hintEnabled="true"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@null"
             app:endIconMode="password_toggle">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.snackcheck.view.component.CustomPasswordEditText
                 android:id="@+id/ed_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_your_password_here"
-                android:inputType="textPassword" />
+                android:ems="10"
+                android:inputType="textPassword"
+                tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_title_password_confirmation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password_confirmation"
+            android:layout_gravity="start" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_password_confirmation"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            app:hintEnabled="true"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@null"
             app:endIconMode="password_toggle">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.snackcheck.view.component.CustomConfirmPasswordEditText
                 android:id="@+id/ed_password_confirmation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_your_password_again_here"
-                android:inputType="textPassword" />
+                android:ems="10"
+                android:inputType="textPassword"
+                tools:ignore="SpeakableTextPresentCheck"  />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
