@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.snackcheck.R
 import com.snackcheck.data.local.entity.SnackDetail
+import com.snackcheck.data.remote.model.SnackPredictResponse
 import com.snackcheck.databinding.FragmentResultBinding
 
 
@@ -26,26 +27,35 @@ class ResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Ambil data dari arguments
-        val snackDetail = arguments?.getParcelable<SnackDetail>("snackDetail")
-        val predictionResult = arguments?.getString("predictionResult")
-        Log.d("FormFragment", "SnackDetail: $snackDetail")
-        Log.d("FormFragment", "Hasil prediksi: $predictionResult")
+        val snackPredictResponse = arguments?.getParcelable<SnackPredictResponse>("snackPredictResponse")
+        Log.d("ResultFragment", "Snack Predict Response: $snackPredictResponse")
+        val snackName = snackPredictResponse?.result?.snackName
+        Log.d("ResultFragment", "Snack Name: $snackName")
+        val snackDetail = snackPredictResponse?.result?.nutritions
+        val healthStatus = snackPredictResponse?.result?.healthStatus
+        val recommendation = snackPredictResponse?.result?.recommendation
 
         snackDetail?.let {
-            binding.tvSnackNamePlaceholder.text = it.snackName
-            binding.tvFatAmount.text = it.nutritions.fat.toString()
-            binding.tvSaturatedFatAmount.text = it.nutritions.saturatedFat.toString()
-            binding.tvCarbohydratesAmount.text = it.nutritions.carbohydrates.toString()
-            binding.tvSugarsAmount.text = it.nutritions.sugars.toString()
-            binding.tvFiberAmount.text = it.nutritions.fiber.toString()
-            binding.tvProteinsAmount.text = it.nutritions.proteins.toString()
-            binding.tvSodiumAmount.text = it.nutritions.sodium.toString()
+            binding.tvSnackNamePlaceholder.text = snackName ?: getString(R.string.no_data)
+            binding.tvFatAmount.text = it.fat.toString()
+            binding.tvSaturatedFatAmount.text = it.saturatedFat.toString()
+            binding.tvCarbohydratesAmount.text = it.carbohydrates.toString()
+            binding.tvSugarsAmount.text = it.sugars.toString()
+            binding.tvFiberAmount.text = it.fiber.toString()
+            binding.tvProteinsAmount.text = it.proteins.toString()
+            binding.tvSodiumAmount.text = it.sodium.toString()
         } ?: run {
             binding.tvSnackNamePlaceholder.text = getString(R.string.no_data)
         }
 
-        binding.tvPredictionResultPlaceholder.text = predictionResult ?: getString(R.string.no_prediction)
+        binding.tvPredictionResultPlaceholder.setTextColor(resources.getColor(R.color.md_theme_inversePrimary_highContrast))
+        if (healthStatus == "Healthy") {
+            binding.cvPredictionResult.setCardBackgroundColor(resources.getColor(R.color.card_color_green))
+        } else {
+            binding.cvPredictionResult.setCardBackgroundColor(resources.getColor(R.color.card_color_red))
+        }
+        binding.tvPredictionResultPlaceholder.text = healthStatus.toString()
+        binding.tvRecommendationPlaceholder.text = recommendation.toString()
     }
 
     override fun onDestroyView() {

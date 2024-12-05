@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:contentDescription="@string/verif_success_page_title_content_description"
+        android:contentDescription="@string/verification_success_page_title_content_description"
         android:text="@string/title_verification_success"
         android:textSize="32sp"
         android:textStyle="bold"

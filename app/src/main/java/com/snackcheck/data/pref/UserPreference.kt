@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.snackcheck.data.remote.model.ProfileData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -16,7 +17,11 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
 
     private val themeKey = booleanPreferencesKey("theme_setting")
     private val token = stringPreferencesKey("token")
+
+    private val nameKey = stringPreferencesKey("name")
+    private val emailKey = stringPreferencesKey("email")
     private val username = stringPreferencesKey("username")
+    private val profilePhotoUrlKey = stringPreferencesKey("profile_picture")
 
 
     fun getToken(): Flow<String?> {
@@ -46,6 +51,26 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     suspend fun logout() {
         dataStore.edit { preferences ->
             preferences.clear()
+        }
+    }
+
+    suspend fun saveProfile(profileData: ProfileData) {
+        dataStore.edit { preferences ->
+            preferences[nameKey] = profileData.fullName
+            preferences[username] = profileData.username
+            preferences[emailKey] = profileData.email
+            preferences[profilePhotoUrlKey] = profileData.profilePhoto
+        }
+    }
+
+    fun getProfileData(): Flow<ProfileData?> {
+        return dataStore.data.map { preferences ->
+            val name = preferences[nameKey] ?: ""
+            val username = preferences[username] ?: ""
+            val email = preferences[emailKey] ?: ""
+            val profilePhotoUrl = preferences[profilePhotoUrlKey] ?: ""
+
+            ProfileData(name, username, email, profilePhotoUrl)
         }
     }
 

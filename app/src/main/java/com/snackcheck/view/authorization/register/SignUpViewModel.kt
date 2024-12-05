@@ -23,7 +23,9 @@ class SignUpViewModel(private val repository: UserRepository) : ViewModel() {
             try {
                 _responseResult.value = ResultState.Loading
                 val response = repository.register(username, fullName, email, password, confirmPassword)
-                _responseResult.value = ResultState.Success(response)
+                if (response.status=="success") {
+                    _responseResult.value = ResultState.Success(response)
+                }
             } catch (e: Exception) {
                 _responseResult.value = ResultState.Error(e.message.toString())
             }

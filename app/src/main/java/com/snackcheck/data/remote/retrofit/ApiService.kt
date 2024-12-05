@@ -1,13 +1,16 @@
 package com.snackcheck.data.remote.retrofit
 
 import com.snackcheck.data.local.entity.SnackDetail
+import com.snackcheck.data.remote.model.HistoryResponse
 import com.snackcheck.data.remote.model.LoginResponse
 import com.snackcheck.data.remote.model.MessageResponse
+import com.snackcheck.data.remote.model.ProfileResponse
 import com.snackcheck.data.remote.model.SnackPredictResponse
 import com.snackcheck.data.remote.model.TokenResponse
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 
@@ -72,9 +75,16 @@ interface ApiService {
 
     // ** SNACK API **
     // Predict API
-    @FormUrlEncoded
     @POST("snack/predicts")
     suspend fun predictSnack(
         @Body snackDetail: SnackDetail
     ): SnackPredictResponse
+
+    // History API
+    @GET("snack/histories")
+    suspend fun getHistory(): HistoryResponse
+
+    // ** PROFILE API **
+    @GET("profile")
+    suspend fun getProfile(): ProfileResponse
 }

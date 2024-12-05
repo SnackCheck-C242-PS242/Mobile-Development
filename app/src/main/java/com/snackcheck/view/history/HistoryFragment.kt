@@ -5,56 +5,74 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.snackcheck.R
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.snackcheck.data.pref.UserPreference
+import com.snackcheck.data.pref.dataStore
+import com.snackcheck.databinding.FragmentHistoryBinding
+import com.snackcheck.view.ViewModelFactory
+import com.snackcheck.view.adapter.HistoryAdapter
+import com.snackcheck.view.home.HomeViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HistoryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HistoryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentHistoryBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var pref: UserPreference
+    private lateinit var factory: ViewModelFactory
+    private val viewModel by viewModels<HomeViewModel> { factory }
+    private lateinit var historyAdapter: HistoryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false)
+    ): View {
+        _binding = FragmentHistoryBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HistoryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HistoryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        pref = UserPreference.getInstance(requireContext().dataStore)
+        factory = ViewModelFactory.getInstance(requireContext(), pref)
+
+        historyAdapter = HistoryAdapter()
+        binding.rvHistory.adapter = historyAdapter
+
+        loadHistory()
+        setupRecyclerView()
+    }
+
+    private fun setupRecyclerView() {
+        binding.rvHistory.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = historyAdapter
+        }
+    }
+
+    private fun loadHistory() {
+        binding.apply {
+            progressBar.visibility = View.VISIBLE
+            rvHistory.visibility = View.GONE
+            btnReloadHistory.visibility = View.GONE
+
+            viewModel.getHistory()
+            viewModel.historyList.observe(viewLifecycleOwner) { result ->
+                progressBar.visibility = View.GONE
+                result.onSuccess { historyList ->
+                    btnReloadHistory.visibility = View.GONE
+                    rvHistory.visibility = View.VISIBLE
+                    historyAdapter.submitList(historyList)
+                }
+                result.onFailure {
+                    Toast.makeText(requireContext(), "Failed to load history", Toast.LENGTH_SHORT).show()
+                    btnReloadHistory.visibility = View.VISIBLE
+                    rvHistory.visibility = View.GONE
                 }
             }
+        }
     }
+
 }

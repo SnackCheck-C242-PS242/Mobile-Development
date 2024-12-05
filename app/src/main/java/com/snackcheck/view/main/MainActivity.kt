@@ -1,16 +1,15 @@
 package com.snackcheck.view.main
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.snackcheck.Helper.isTokenExpired
 import com.snackcheck.R
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.data.pref.dataStore
@@ -36,6 +35,15 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getToken().observe(this) { token ->
             if (token.isNullOrEmpty()) {
+                startActivity(Intent(this, WelcomeActivity::class.java))
+                finish()
+            } else if (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    isTokenExpired(token)
+
+                } else {
+                    true
+                }
+            ) {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             }

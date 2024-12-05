@@ -29,10 +29,11 @@
     <string name="verify">Verify</string>
     <string name="resend_code">Re-send code</string>
     <string name="verification_page_title_content_description">Verification page title content description</string>
-    <string name="verif_success_page_title_content_description">Verification Success page title content description</string>
-    <string name="did_not_receive_code_text">Didn’t receive any verification code?</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="verification_success_page_title_content_description">Verification Success page title content description</string>
+    <string name="did_not_receive_code_text">Didn’t receive any verification code?</string>
+    <string name="hi">Hi</string>
     <string name="hello">Hello</string>
+    <string name="you">You!</string>
     <string name="name">Name</string>
 
     <string name="result">Result</string>
@@ -94,4 +95,5 @@
     <string name="message_signup_page">Please enter your personal data</string>
     <string name="message_login_page">Enter your username and password to login</string>
     <string name="please_wait">Please Wait..</string>
+    <string name="reload_history">Reload History</string>
 </resources>

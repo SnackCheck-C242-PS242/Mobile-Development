@@ -7,12 +7,16 @@ import androidx.lifecycle.viewModelScope
 import com.snackcheck.data.ResultState
 import com.snackcheck.data.UserRepository
 import com.snackcheck.data.remote.model.LoginResponse
+import com.snackcheck.data.remote.model.ProfileResponse
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     private val _responseResult = MutableLiveData<ResultState<LoginResponse>>()
     val responseResult = _responseResult
+
+    private val _profileResult = MutableLiveData<ResultState<ProfileResponse>>()
+    val profileResult = _profileResult
 
     fun login(username: String, password: String) {
         viewModelScope.launch {
@@ -21,8 +25,23 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
                 val response = repository.login(username, password)
                 if (response.accessToken.isNotEmpty()) {
                     repository.saveToken(response.accessToken)
-                    repository.saveUsername(username)
-                    Log.d("LoginViewModel", "Token: ${response.accessToken}, Username: $username")
+                    getProfile()
+
+                    _profileResult.observeForever { result ->
+                        when (result) {
+                            is ResultState.Success -> {
+                                val profileData = result.data.data
+                                viewModelScope.launch {
+                                    repository.saveUserDataPreferences(profileData)
+                                    Log.d("LoginViewModel", "User Data: $profileData")
+                                }
+                            }
+                            is ResultState.Error -> {
+                                Log.d("LoginViewModel", "Error: ${result.error}")
+                            }
+                            else -> {}
+                        }                        }
+                    Log.d("LoginViewModel", "Token: ${repository.getToken()}")
                     _responseResult.value = ResultState.Success(response)
                 } else {
                     _responseResult.value = ResultState.Error(response.message)
@@ -34,4 +53,21 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
+    private fun getProfile() {
+        viewModelScope.launch {
+            try {
+                _profileResult.value = ResultState.Loading
+                val response = repository.getApiProfile()
+                if (response.status == "success") {
+                    _profileResult.value = ResultState.Success(response)
+                    Log.d("LoginViewModel", "Profile Response: $response")
+                } else {
+                    _profileResult.value = ResultState.Error(response.status)
+                }
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                _profileResult.value = ResultState.Error(errorBody ?: e.message())
+            }
+        }
+    }
 }

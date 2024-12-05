@@ -1,7 +1,10 @@
 package com.snackcheck.data.remote.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class SnackPredictResponse(
     @field:SerializedName("message")
     val message: String? = null,
@@ -10,9 +13,10 @@ data class SnackPredictResponse(
     val status: String? = null,
 
     @field:SerializedName("result")
-    val data: SnackPredictResult? = null
-)
+    val result: SnackPredictResult? = null
+) : Parcelable
 
+@Parcelize
 data class SnackPredictResult(
     @field:SerializedName("snackID")
     val snackId: String? = null,
@@ -20,7 +24,7 @@ data class SnackPredictResult(
     @field:SerializedName("snackName")
     val snackName: String? = null,
 
-    @field:SerializedName("nutritionData")
+    @field:SerializedName("nutritions")
     val nutritions: Nutritions? = null,
 
     @field:SerializedName("health_status")
@@ -28,8 +32,9 @@ data class SnackPredictResult(
 
     @field:SerializedName("recommendation")
     val recommendation: String? = null
-)
+) : Parcelable
 
+@Parcelize
 data class Nutritions(
     @field:SerializedName("fat")
     val fat: Double? = null,
@@ -51,4 +56,4 @@ data class Nutritions(
 
     @field:SerializedName("sodium")
     val sodium: Double? = null
-)
+) : Parcelable

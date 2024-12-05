@@ -20,7 +20,6 @@ class VerificationViewModel (private val repository: UserRepository) : ViewModel
                 if (response.status=="success") {
                     _responseResult.value = ResultState.Success(response)
                 }
-                _responseResult.value = ResultState.Success(response)
             } catch (e: Exception) {
                 _responseResult.value = ResultState.Error(e.message.toString())
             }

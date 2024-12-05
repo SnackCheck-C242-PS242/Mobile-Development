@@ -3,10 +3,14 @@ package com.snackcheck.view.prediction.form
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.snackcheck.data.ResultState
 import com.snackcheck.data.UserRepository
 import com.snackcheck.data.local.entity.NutritionData
 import com.snackcheck.data.local.entity.NutritionItem
 import com.snackcheck.data.local.entity.SnackDetail
+import com.snackcheck.data.remote.model.SnackPredictResponse
+import kotlinx.coroutines.launch
 
 class FormViewModel(private val repository: UserRepository) : ViewModel() {
 
@@ -23,24 +27,22 @@ class FormViewModel(private val repository: UserRepository) : ViewModel() {
     private val _nutritionData = MutableLiveData(listOf(NutritionItem()))
     val nutritionData: LiveData<List<NutritionItem>> get() = _nutritionData
 
-    /*
-    fun addSnack(snackDetail: SnackDetail) {
-        if (snackDetail.snackName.isEmpty()) {
-            throw IllegalArgumentException("Snack name cannot be empty")
+    private val _responseResult = MutableLiveData<ResultState<SnackPredictResponse>>()
+    val responseResult = _responseResult
+
+    fun predictSnack(snackDetail: SnackDetail) {
+        viewModelScope.launch {
+            try {
+                _responseResult.value = ResultState.Loading
+                val response = repository.predictSnack(snackDetail)
+                if (response.status=="success") {
+                    _responseResult.value = ResultState.Success(response)
+                }
+            } catch (e: Exception) {
+                _responseResult.value = ResultState.Error(e.message.toString())
+            }
         }
-
-        val currentSnacks = _snacks.value.orEmpty().toMutableList()
-
-        if (currentSnacks.any { it.snackName == snackDetail.snackName }) {
-            throw IllegalArgumentException("Snack with the same name already exists")
-        }
-
-        currentSnacks.add(snackDetail)
-        _snacks.value = currentSnacks
-        _nutritionData.value = listOf(NutritionItem())
-        _nutrientStatus.value = allNutrients.associateWith { 0 }
-        updateAddButtonVisibility()
-    }*/
+    }
 
     fun getSnackDetailFromInput(snackName: String): SnackDetail {
         val formData = _nutritionData.value.orEmpty().associate { item ->

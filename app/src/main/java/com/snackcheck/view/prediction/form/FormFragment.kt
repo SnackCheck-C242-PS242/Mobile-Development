@@ -1,21 +1,21 @@
 package com.snackcheck.view.prediction.form
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.snackcheck.R
-import com.snackcheck.data.local.entity.SnackDetail
+import com.snackcheck.data.ResultState
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.FragmentFormBinding
-import com.snackcheck.databinding.ItemNutritionFormBinding
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.adapter.NutritionDataFormAdapter
 
@@ -60,15 +60,6 @@ class FormFragment : Fragment() {
         setupAction()
     }
 
-    private fun sendToPredictionModel(snackDetail: SnackDetail) {
-        Log.d("PredictionModel", "Mengirim data: Nama Snack: ${snackDetail.snackName}, Nutrisi: ${snackDetail.nutritions}")
-
-        // TODO: Panggil model prediksi dengan data snack
-        // val predictionResult = predictionModel.predict(snackDetail)
-        // Tampilkan hasil prediksi
-        Toast.makeText(requireContext(), "Data Snack dikirim: ${snackDetail.snackName}", Toast.LENGTH_SHORT).show()
-    }
-
     private fun setupAction() {
         binding.apply {
             btnPlus.setOnClickListener {
@@ -93,15 +84,37 @@ class FormFragment : Fragment() {
                 }
 
                 val snackDetail = viewModel.getSnackDetailFromInput(snackName)
-                val predictionResult = DummyPredictionModel.predict(snackDetail)
 
-                val bundle = Bundle().apply {
-                    putParcelable("snackDetail", snackDetail) // SnackDetail adalah Parcelable
-                    putString("predictionResult", predictionResult)
-                    Log.d("FormFragment", "Hasil prediksi: $predictionResult")
+                val builder: AlertDialog.Builder =
+                    MaterialAlertDialogBuilder(this@FormFragment.requireContext(), R.style.MaterialAlertDialog_Rounded)
+                builder.setView(R.layout.layout_loading)
+                val dialog: AlertDialog = builder.create()
+
+                viewModel.predictSnack(snackDetail)
+                viewModel.responseResult.observe(viewLifecycleOwner) { result ->
+                    when (result) {
+                        is ResultState.Loading -> dialog.show()
+                        is ResultState.Success -> {
+                            dialog.dismiss()
+                            val snackPredictResponse = result.data
+                            val bundle = Bundle().apply {
+                                snackPredictResponse?.let {
+                                    putParcelable("snackPredictResponse", it)
+                                }
+                            }
+                            findNavController().navigate(R.id.navigation_result, bundle)
+                        }
+                        is ResultState.Error -> {
+                            dialog.dismiss()
+                            Toast.makeText(
+                                requireContext(),
+                                result.error,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        else -> dialog.dismiss()
+                    }
                 }
-
-                findNavController().navigate(R.id.navigation_result, bundle)
             }
         }
     }
