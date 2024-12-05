@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.snackcheck.R
 import com.snackcheck.data.pref.UserPreference
@@ -62,17 +63,19 @@ class HomeFragment : Fragment() {
             progressBar.visibility = View.VISIBLE
             rvHistory.visibility = View.GONE
             btnReloadHistory.visibility = View.GONE
+            tvNoHistory.visibility = View.GONE
 
             viewModel.getHistory()
             viewModel.historyList.observe(viewLifecycleOwner) { result ->
                 progressBar.visibility = View.GONE
                 result.onSuccess { historyList ->
                     if (historyList.isNullOrEmpty()) {
-                        Toast.makeText(requireContext(), "No history found", Toast.LENGTH_SHORT).show()
+                        tvNoHistory.visibility = View.VISIBLE
                         btnReloadHistory.visibility = View.VISIBLE
                         rvHistory.visibility = View.GONE
                         return@observe
                     } else {
+                        tvNoHistory.visibility = View.GONE
                         btnReloadHistory.visibility = View.GONE
                         rvHistory.visibility = View.VISIBLE
                         historyAdapter.submitList(historyList)
@@ -80,7 +83,7 @@ class HomeFragment : Fragment() {
                     }
                 }
                 result.onFailure {
-                    Toast.makeText(requireContext(), "Failed to load history", Toast.LENGTH_SHORT).show()
+                    tvNoHistory.visibility = View.VISIBLE
                     btnReloadHistory.visibility = View.VISIBLE
                     rvHistory.visibility = View.GONE
                 }
@@ -96,6 +99,18 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupAction() {
+        binding.apply {
+            actionPrediction.setOnClickListener {
+                findNavController().navigate(R.id.navigation_prediction)
+            }
 
+            actionHistory.setOnClickListener {
+                findNavController().navigate(R.id.navigation_history)
+            }
+
+            btnReloadHistory.setOnClickListener {
+                loadHistory()
+            }
+        }
     }
 }

@@ -16,7 +16,6 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     val responseResult = _responseResult
 
     private val _profileResult = MutableLiveData<ResultState<ProfileResponse>>()
-    val profileResult = _profileResult
 
     fun login(username: String, password: String) {
         viewModelScope.launch {

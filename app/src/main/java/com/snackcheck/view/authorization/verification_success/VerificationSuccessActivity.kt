@@ -23,6 +23,7 @@ class VerificationSuccessActivity : AppCompatActivity() {
         binding = ActivityVerificationSuccessBinding.inflate(layoutInflater)
         setContentView(binding.root)
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         setupAction()
     }

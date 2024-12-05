@@ -22,18 +22,16 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var viewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val pref = UserPreference.getInstance(dataStore)
         val userRepository = Injection.provideRepository(this)
         val viewModelFactory = ViewModelFactory(userRepository, pref)
         viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
-
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(binding.root)
 
         setupAction()
     }
@@ -72,10 +70,12 @@ class LoginActivity : AppCompatActivity() {
                     is ResultState.Success -> {
                         dialog.dismiss()
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)
                         finish()
                     }
+
                     is ResultState.Error -> {
                         dialog.dismiss()
                         Toast.makeText(
@@ -84,6 +84,7 @@ class LoginActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
+
                     else -> dialog.dismiss()
                 }
             }

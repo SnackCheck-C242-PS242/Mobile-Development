@@ -20,7 +20,9 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
+        enableEdgeToEdge()
         setContentView(binding.root)
+
 
         setupAction()
     }

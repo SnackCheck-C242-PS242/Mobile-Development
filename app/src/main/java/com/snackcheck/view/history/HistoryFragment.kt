@@ -56,17 +56,19 @@ class HistoryFragment : Fragment() {
             progressBar.visibility = View.VISIBLE
             rvHistory.visibility = View.GONE
             btnReloadHistory.visibility = View.GONE
+            tvNoHistory.visibility = View.GONE
 
             viewModel.getHistory()
             viewModel.historyList.observe(viewLifecycleOwner) { result ->
                 progressBar.visibility = View.GONE
                 result.onSuccess { historyList ->
                     if (historyList.isNullOrEmpty()) {
-                        Toast.makeText(requireContext(), "No history found", Toast.LENGTH_SHORT).show()
+                        tvNoHistory.visibility = View.VISIBLE
                         btnReloadHistory.visibility = View.VISIBLE
                         rvHistory.visibility = View.GONE
                         return@observe
                     } else {
+                        tvNoHistory.visibility = View.GONE
                         btnReloadHistory.visibility = View.GONE
                         rvHistory.visibility = View.VISIBLE
                         historyAdapter.submitList(historyList)
@@ -74,7 +76,7 @@ class HistoryFragment : Fragment() {
                     }
                 }
                 result.onFailure {
-                    Toast.makeText(requireContext(), "Failed to load history", Toast.LENGTH_SHORT).show()
+                    tvNoHistory.visibility = View.VISIBLE
                     btnReloadHistory.visibility = View.VISIBLE
                     rvHistory.visibility = View.GONE
                 }

@@ -96,4 +96,5 @@
     <string name="message_login_page">Enter your username and password to login</string>
     <string name="please_wait">Please Wait..</string>
     <string name="reload_history">Reload History</string>
+    <string name="no_history">No history found</string>
 </resources>
