@@ -11,8 +11,8 @@ import com.snackcheck.data.remote.model.ProfileData
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: UserRepository) : ViewModel() {
-    private val _historyList = MutableLiveData<Result<List<HistoryData>>>()
-    val historyList : LiveData<Result<List<HistoryData>>> = _historyList
+    private val _historyList = MutableLiveData<Result<List<HistoryData>?>>()
+    val historyList : LiveData<Result<List<HistoryData>?>> = _historyList
 
     private val _userData = MutableLiveData<ProfileData?>()
     val userData: LiveData<ProfileData?> = _userData

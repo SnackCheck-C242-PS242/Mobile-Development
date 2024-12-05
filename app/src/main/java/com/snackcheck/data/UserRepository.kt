@@ -28,7 +28,7 @@ class UserRepository private constructor(
         userPreference.saveProfile(profileData)
     }
 
-    suspend fun getHistory(): Result<List<HistoryData>>{
+    suspend fun getHistory(): Result<List<HistoryData>?>{
         return try {
             val response = apiService.getHistory()
             if (response.status == "success") {
