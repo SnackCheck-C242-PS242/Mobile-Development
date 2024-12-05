@@ -13,7 +13,6 @@ import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.FragmentHistoryBinding
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.adapter.HistoryAdapter
-import com.snackcheck.view.home.HomeViewModel
 
 class HistoryFragment : Fragment() {
 
@@ -21,7 +20,7 @@ class HistoryFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var pref: UserPreference
     private lateinit var factory: ViewModelFactory
-    private val viewModel by viewModels<HomeViewModel> { factory }
+    private val viewModel by viewModels<HistoryViewModel> { factory }
     private lateinit var historyAdapter: HistoryAdapter
 
     override fun onCreateView(
