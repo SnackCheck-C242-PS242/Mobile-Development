@@ -98,7 +98,7 @@ class FormFragment : Fragment() {
                             dialog.dismiss()
                             val snackPredictResponse = result.data
                             val bundle = Bundle().apply {
-                                snackPredictResponse?.let {
+                                snackPredictResponse.let {
                                     putParcelable("snackPredictResponse", it)
                                 }
                             }

@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.snackcheck.R
-import com.snackcheck.data.local.entity.SnackDetail
 import com.snackcheck.data.remote.model.SnackPredictResponse
 import com.snackcheck.databinding.FragmentResultBinding
 
