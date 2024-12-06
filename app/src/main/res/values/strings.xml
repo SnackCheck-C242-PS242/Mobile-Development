@@ -117,4 +117,8 @@
     <string name="full_name_icon">Fullname Icon</string>
     <string name="title_email_profile">Email</string>
     <string name="email_icon">Email Icon</string>
+    <string name="theme">Theme</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="go_to_language_setting">Go to language setting</string>
+    <string name="language">Language</string>
 </resources>

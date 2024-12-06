@@ -1,5 +1,4 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,11 +21,11 @@
         android:id="@+id/iv_profile_picture"
         android:layout_width="140dp"
         android:layout_height="140dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="136dp"
+        android:layout_marginTop="48dp"
         android:padding="2dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_profile_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_profile_title"
         app:shapeAppearanceOverlay="@style/CircularImage"
         app:strokeColor="?attr/colorPrimary"
         app:strokeWidth="4dp"
@@ -39,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         android:orientation="vertical"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,13 +57,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:contentDescription="@string/username_icon"
-                android:src="@drawable/ic_account" />
+                android:src="@drawable/ic_account"
+                app:tint="@color/md_theme_primary"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/tv_username_profile"
@@ -73,7 +75,6 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:text="@string/user_name_profile"
-                android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -90,13 +91,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:contentDescription="@string/full_name_icon"
-                android:src="@drawable/ic_account" />
+                android:src="@drawable/ic_account"
+                app:tint="@color/md_theme_primary"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/tv_full_name_profile"
@@ -105,7 +109,6 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:text="@string/full_name_profile"
-                android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -121,13 +124,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:contentDescription="@string/email_icon"
-                android:src="@drawable/ic_email" />
+                android:src="@drawable/ic_email"
+                app:tint="@color/md_theme_primary"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/tv_email_profile"
@@ -136,7 +142,6 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:text="@string/email_profile"
-                android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
@@ -150,16 +155,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_profile_picture" />
+        app:layout_constraintTop_toBottomOf="@id/iv_profile_picture"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btn_edit_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/edit_photo"
-        app:layout_constraintTop_toBottomOf="@id/iv_profile_picture"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:visibility="gone"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_profile_picture" />
 </androidx.constraintlayout.widget.ConstraintLayout>
