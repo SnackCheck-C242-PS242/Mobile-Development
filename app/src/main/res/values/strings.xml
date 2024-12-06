@@ -101,4 +101,20 @@
     <string name="dark_mode_title">Dark Mode</string>
     <string name="dark_mode_subtitle">Enable dark mode</string>
     <string name="language_title">Language</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_profile">Profile</string>
+    <string name="profile_picture_description">Profile Picture</string>
+    <string name="user_name_profile">johndoe007</string>
+    <string name="edit_photo">Edit Photo</string>
+    <string name="upload_photo">Upload Photo</string>
+    <string name="full_name_profile">John Doe</string>
+    <string name="email_profile">johndoe@gmail.com</string>
+    <string name="language_setting_title">Language</string>
+    <string name="title_username_profile">Username</string>
+    <string name="username_icon">Username Icon</string>
+    <string name="title_full_name_profile">Fullname</string>
+    <string name="full_name_icon">Fullname Icon</string>
+    <string name="title_email_profile">Email</string>
+    <string name="email_icon">Email Icon</string>
 </resources>
