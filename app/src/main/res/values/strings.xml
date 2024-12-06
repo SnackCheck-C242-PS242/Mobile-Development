@@ -97,4 +97,8 @@
     <string name="please_wait">Please Wait..</string>
     <string name="reload_history">Reload History</string>
     <string name="no_history">No history found</string>
+    <string name="title_account">Account</string>
+    <string name="dark_mode_title">Dark Mode</string>
+    <string name="dark_mode_subtitle">Enable dark mode</string>
+    <string name="language_title">Language</string>
 </resources>
