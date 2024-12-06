@@ -10,9 +10,11 @@
 
     <ImageView
         android:id="@+id/app_logo"
-        android:layout_width="172dp"
-        android:layout_height="172dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:src="@drawable/logo_with_title"
+        android:padding="16dp"
+        android:scaleType="fitCenter"
         android:contentDescription="@string/app_logo"
         app:layout_constraintBottom_toTopOf="@id/form_background"
         app:layout_constraintTop_toTopOf="parent"

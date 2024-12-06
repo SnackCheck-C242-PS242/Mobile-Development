@@ -16,7 +16,14 @@
         android:title="@string/title_history" />
 
     <item
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/ic_setting"
+        android:title="@string/title_setting" />
+
+    <item
         android:id="@+id/navigation_setting"
         android:icon="@drawable/ic_setting"
         android:title="@string/title_setting" />
+
+
 </menu>
