@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.profile.ProfileFragment">
+    tools:context=".view.profile.info.ProfileFragment">
 
     <TextView
         android:id="@+id/tv_profile_title"
@@ -64,7 +64,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:contentDescription="@string/username_icon"
-                android:src="@drawable/ic_account"
+                android:src="@drawable/ic_profile"
                 app:tint="@color/md_theme_primary"
                 tools:ignore="ImageContrastCheck" />
 
@@ -98,7 +98,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:contentDescription="@string/full_name_icon"
-                android:src="@drawable/ic_account"
+                android:src="@drawable/ic_profile"
                 app:tint="@color/md_theme_primary"
                 tools:ignore="ImageContrastCheck" />
 

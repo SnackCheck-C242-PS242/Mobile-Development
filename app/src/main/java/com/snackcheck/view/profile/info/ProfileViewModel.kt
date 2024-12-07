@@ -1,4 +1,4 @@
-package com.snackcheck.view.profile
+package com.snackcheck.view.profile.info
 
 import android.util.Log
 import androidx.lifecycle.LiveData

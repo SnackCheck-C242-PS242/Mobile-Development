@@ -1,4 +1,4 @@
-package com.snackcheck.view.profile
+package com.snackcheck.view.profile.info
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

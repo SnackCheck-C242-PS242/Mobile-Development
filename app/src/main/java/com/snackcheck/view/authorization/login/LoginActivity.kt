@@ -21,7 +21,6 @@ import com.snackcheck.view.main.MainActivity
 class LoginActivity : AppCompatActivity() {
     private lateinit var viewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -84,7 +83,6 @@ class LoginActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-
                     else -> dialog.dismiss()
                 }
             }

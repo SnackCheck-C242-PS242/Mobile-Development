@@ -47,7 +47,7 @@
         tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.snackcheck.view.profile.ProfileFragment"
+        android:name="com.snackcheck.view.profile.info.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

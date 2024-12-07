@@ -13,7 +13,7 @@ import com.snackcheck.view.history.HistoryViewModel
 import com.snackcheck.view.home.HomeViewModel
 import com.snackcheck.view.main.MainViewModel
 import com.snackcheck.view.prediction.form.FormViewModel
-import com.snackcheck.view.profile.ProfileViewModel
+import com.snackcheck.view.profile.info.ProfileViewModel
 import com.snackcheck.view.setting.SettingFragmentViewModel
 import com.snackcheck.view.splash.SplashViewModel
 
