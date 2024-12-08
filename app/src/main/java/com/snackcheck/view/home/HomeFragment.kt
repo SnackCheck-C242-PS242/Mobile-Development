@@ -50,6 +50,7 @@ class HomeFragment : Fragment() {
                 binding.tvUserFullname.text = profileData.fullName
                 if (profileData.profilePhotoUrl == "") {
                     binding.ivProfile.setImageResource(R.drawable.ic_account)
+                    viewModel.getProfile()
                 } else {
                     Glide.with(requireContext())
                         .load(viewModel.userData.value?.profilePhotoUrl?.toUri())

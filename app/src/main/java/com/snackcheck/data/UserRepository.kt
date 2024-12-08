@@ -22,6 +22,10 @@ class UserRepository private constructor(
         profilePhoto: MultipartBody.Part
     ) = apiService.postPhoto(profilePhoto)
 
+    suspend fun putPhotoProfile(
+        profilePhoto: MultipartBody.Part
+    ) = apiService.putPhoto(profilePhoto)
+
     suspend fun getUserDataPreferences(): ProfileData? {
         val data = userPreference.getProfileData().first()
         return data

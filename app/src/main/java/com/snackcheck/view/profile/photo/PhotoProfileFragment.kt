@@ -114,7 +114,7 @@ class PhotoProfileFragment : Fragment() {
                     val resultBundle = Bundle().apply {
                         putBoolean("isProfileUpdated", true)
                     }
-                    setFragmentResult("profileUpdated", resultBundle)
+                    parentFragmentManager.setFragmentResult("profileUpdated", resultBundle)
 
                     findNavController().navigate(R.id.navigation_profile)
                     bottomNavigationView.visibility = View.VISIBLE

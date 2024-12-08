@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SnackDetail(
-    val nutritions: NutritionData = NutritionData(), // Detail nutrisi
-    val snackName: String = "" // Nama snack
+    val nutritions: NutritionData = NutritionData(),
+    val snackName: String = ""
 ) : Parcelable

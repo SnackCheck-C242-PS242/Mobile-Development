@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
                 finish()
             } else if (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     isTokenExpired(token)
-
                 } else {
                     true
                 }

@@ -30,7 +30,7 @@ class SettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = FragmentSettingBinding.inflate(inflater, container,false)
+        binding = FragmentSettingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -48,7 +48,7 @@ class SettingFragment : Fragment() {
             viewModel.logout()
         }
 
-        viewModel.logoutStatus.observe(viewLifecycleOwner){ isLoggedOut ->
+        viewModel.logoutStatus.observe(viewLifecycleOwner) { isLoggedOut ->
             if (isLoggedOut) {
                 val intent = Intent(requireContext(), LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

@@ -99,4 +99,11 @@ interface ApiService {
     suspend fun postPhoto(
         @Part profilePhoto: MultipartBody.Part
     ): PhotoResponse
+
+    // Put Profile Photo API
+    @Multipart
+    @POST("profile/photo")
+    suspend fun putPhoto(
+        @Part profilePhoto: MultipartBody.Part
+    ): PhotoResponse
 }

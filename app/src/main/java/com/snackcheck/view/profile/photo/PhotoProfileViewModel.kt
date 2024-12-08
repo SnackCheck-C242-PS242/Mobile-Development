@@ -55,7 +55,7 @@ class PhotoProfileViewModel(private val repository: UserRepository) : ViewModel(
     ) {
         viewModelScope.launch {
             _putResponseResult.value = ResultState.Loading
-            val response = repository.postPhotoProfile(profilePhoto)
+            val response = repository.putPhotoProfile(profilePhoto)
             if (response.status == "success") {
                 _putResponseResult.value = ResultState.Success(response)
                 Log.d("PhotoProfileViewModel", "Response: $response")

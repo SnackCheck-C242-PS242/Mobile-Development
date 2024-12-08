@@ -12,6 +12,8 @@ class SettingFragmentViewModel(private val repository: UserRepository, private v
     private val _logoutStatus = MutableLiveData<Boolean>()
     val logoutStatus: LiveData<Boolean> get() = _logoutStatus
 
+
+
     fun logout() {
         viewModelScope.launch {
             try {

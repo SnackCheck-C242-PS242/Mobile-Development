@@ -39,6 +39,14 @@ class ProfileFragment : Fragment() {
         pref = UserPreference.getInstance(requireContext().dataStore)
         factory = ViewModelFactory.getInstance(requireContext(), pref)
 
+        parentFragmentManager.setFragmentResultListener("profileUpdated", viewLifecycleOwner) { _, bundle ->
+            val isProfileUpdated = bundle.getBoolean("isProfileUpdated", false)
+            Log.d("ProfileFragment", "isProfileUpdated: $isProfileUpdated")
+            if (isProfileUpdated) {
+                viewModel.getProfile()
+            }
+        }
+
         viewModel.getProfile()
         viewModel.userData.observe(viewLifecycleOwner) { profileData ->
             if (profileData != null) {
@@ -50,6 +58,7 @@ class ProfileFragment : Fragment() {
                     binding.btnUploadPhoto.visibility = View.VISIBLE
                     binding.btnEditPhoto.visibility = View.GONE
                     binding.ivProfilePicture.setImageResource(R.drawable.ic_account)
+                    viewModel.getProfile()
                 } else {
                     Glide.with(requireContext())
                         .load(viewModel.userData.value?.profilePhotoUrl?.toUri())
@@ -68,13 +77,7 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        setFragmentResultListener("profileUpdated") { _, bundle ->
-            val isProfileUpdated = bundle.getBoolean("isProfileUpdated", false)
-            Log.d("ProfileFragment", "isProfileUpdated: $isProfileUpdated")
-            if (isProfileUpdated) {
-                viewModel.getProfile()
-            }
-        }
+
 
         setupAction()
     }
