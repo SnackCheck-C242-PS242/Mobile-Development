@@ -16,11 +16,13 @@ import com.snackcheck.databinding.ActivityLoginBinding
 import com.snackcheck.di.Injection
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.authorization.register.SignUpActivity
+import com.snackcheck.view.authorization.reset_password.ResetPasswordActivity
 import com.snackcheck.view.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var viewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -37,6 +39,12 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.apply {
+            tbForgotPassword.setOnClickListener {
+                val intent = Intent(this@LoginActivity, ResetPasswordActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
             tbSignUp.setOnClickListener {
                 val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
                 startActivity(intent)

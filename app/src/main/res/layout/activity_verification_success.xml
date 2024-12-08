@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:src="@drawable/logo_with_title"
-        android:padding="16dp"
+        android:paddingTop="32dp"
         android:scaleType="fitCenter"
         android:contentDescription="@string/app_logo"
         app:layout_constraintBottom_toTopOf="@id/form_background"

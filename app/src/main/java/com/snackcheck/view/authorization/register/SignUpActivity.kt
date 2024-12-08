@@ -26,6 +26,7 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val pref = UserPreference.getInstance(dataStore)
         val userRepository = Injection.provideRepository(this)
@@ -34,7 +35,7 @@ class SignUpActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(binding.root)
+
 
         setupAction()
     }

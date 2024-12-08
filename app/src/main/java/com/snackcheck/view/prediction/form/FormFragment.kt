@@ -72,14 +72,14 @@ class FormFragment : Fragment() {
                     viewModel.removeLastNutritionItem()
                     adapter.notifyItemRemoved(currentSize - 1)
                 } else {
-                    Toast.makeText(requireContext(), "Tidak bisa menghapus elemen terakhir.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Failed to remove.", Toast.LENGTH_SHORT).show()
                 }
             }
 
             btnAnalyze.setOnClickListener {
                 val snackName = binding.etSnackName.text.toString()
                 if (snackName.isEmpty()) {
-                    Toast.makeText(requireContext(), "Nama snack tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Snack name cannot be empty.", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
 
@@ -98,9 +98,7 @@ class FormFragment : Fragment() {
                             dialog.dismiss()
                             val snackPredictResponse = result.data
                             val bundle = Bundle().apply {
-                                snackPredictResponse.let {
-                                    putParcelable("snackPredictResponse", it)
-                                }
+                                putParcelable("snackPredictResponse", snackPredictResponse)
                             }
                             findNavController().navigate(R.id.navigation_result, bundle)
                         }

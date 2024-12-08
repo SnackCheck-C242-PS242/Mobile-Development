@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.snackcheck.Helper.withDateFormat
+import com.snackcheck.helper.withDateFormat
 import com.snackcheck.data.remote.model.HistoryData
 import com.snackcheck.databinding.ItemHistoryBinding
 

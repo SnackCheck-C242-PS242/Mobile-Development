@@ -67,6 +67,10 @@ class UserRepository private constructor(
 
     suspend fun verifyAccount(email: String, verificationCode: String) = apiService.verifyAccount(email, verificationCode)
 
+    suspend fun getResetCode(email: String) = apiService.getResetCode(email)
+
+    suspend fun resetPassword(email: String, resetCode: String, newPassword: String, confirmPassword: String) = apiService.resetPassword(email, resetCode, newPassword, confirmPassword)
+
     companion object {
         @Volatile
         private var instance: UserRepository? = null

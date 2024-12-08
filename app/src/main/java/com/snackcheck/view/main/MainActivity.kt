@@ -9,12 +9,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.snackcheck.Helper.isTokenExpired
 import com.snackcheck.R
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.ActivityMainBinding
 import com.snackcheck.di.Injection
+import com.snackcheck.helper.isTokenExpired
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.welcome.WelcomeActivity
 
@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+        viewModel.getProfile()
 
         val navView: BottomNavigationView = binding.navView
 

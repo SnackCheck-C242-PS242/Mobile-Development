@@ -1,11 +1,5 @@
-package com.snackcheck.Helper
+package com.snackcheck.helper
 
-import android.content.Context
-import android.net.Uri
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone

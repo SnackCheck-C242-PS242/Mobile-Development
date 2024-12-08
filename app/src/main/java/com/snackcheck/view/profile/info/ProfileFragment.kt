@@ -19,7 +19,6 @@ import com.snackcheck.view.home.HomeViewModel
 import com.snackcheck.data.pref.dataStore
 
 class ProfileFragment : Fragment() {
-
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var pref: UserPreference

@@ -64,7 +64,7 @@ interface ApiService {
     // Password Reset API
     @FormUrlEncoded
     @POST("auth/password")
-    suspend fun getPassword(
+    suspend fun getResetCode(
         @Field("email") email: String
     ): MessageResponse
 

@@ -6,8 +6,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.snackcheck.data.UserRepository
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.di.Injection
+import com.snackcheck.view.authorization.input_new_password.InputNewPasswordViewModel
 import com.snackcheck.view.authorization.login.LoginViewModel
 import com.snackcheck.view.authorization.register.SignUpViewModel
+import com.snackcheck.view.authorization.reset_password.ResetPasswordViewModel
 import com.snackcheck.view.authorization.verification.VerificationViewModel
 import com.snackcheck.view.history.HistoryViewModel
 import com.snackcheck.view.home.HomeViewModel
@@ -58,6 +60,12 @@ class ViewModelFactory(
             }
             modelClass.isAssignableFrom(PhotoProfileViewModel::class.java) -> {
                 PhotoProfileViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(ResetPasswordViewModel::class.java) -> {
+                ResetPasswordViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(InputNewPasswordViewModel::class.java) -> {
+                InputNewPasswordViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

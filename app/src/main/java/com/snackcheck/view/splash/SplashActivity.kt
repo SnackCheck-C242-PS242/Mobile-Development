@@ -9,34 +9,42 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.snackcheck.R
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.data.pref.dataStore
+import com.snackcheck.databinding.ActivityMainBinding
+import com.snackcheck.databinding.ActivitySplashBinding
+import com.snackcheck.di.Injection
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.main.MainActivity
 import com.snackcheck.view.main.MainViewModel
 import com.snackcheck.view.welcome.WelcomeActivity
 
 class SplashActivity : AppCompatActivity() {
-
-    private val pref = UserPreference.getInstance(dataStore)
-    private val factory: ViewModelFactory = ViewModelFactory.getInstance(this, pref)
-    private val viewModel by viewModels<SplashViewModel> {
-        factory
-    }
+    private lateinit var viewModel: SplashViewModel
+    private lateinit var binding: ActivitySplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val pref = UserPreference.getInstance(dataStore)
+        val userRepository = Injection.provideRepository(this)
+        val viewModelFactory = ViewModelFactory(userRepository, pref)
+        viewModel = ViewModelProvider(this, viewModelFactory)[SplashViewModel::class.java]
+
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_splash)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        viewModel.getToken().observe(this) { token ->
+            if (token.isNullOrEmpty()) {
+                navigateToWelcome()
+            } else {
+                navigateToMain()
+            }
         }
-
-        navigateToWelcome()
     }
 
     private fun navigateToMain() {

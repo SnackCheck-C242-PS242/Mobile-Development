@@ -20,8 +20,8 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.snackcheck.Helper.imageCompressor
-import com.snackcheck.Helper.uriToFile
+import com.snackcheck.helper.imageCompressor
+import com.snackcheck.helper.uriToFile
 import com.snackcheck.R
 import com.snackcheck.data.ResultState
 import com.snackcheck.data.pref.UserPreference

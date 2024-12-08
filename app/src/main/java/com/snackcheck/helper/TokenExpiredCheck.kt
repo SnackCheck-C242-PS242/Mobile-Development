@@ -1,4 +1,4 @@
-package com.snackcheck.Helper
+package com.snackcheck.helper
 
 import android.os.Build
 import androidx.annotation.RequiresApi

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:src="@drawable/logo_with_title"
-        android:padding="16dp"
+        android:paddingTop="32dp"
         android:scaleType="fitCenter"
         android:contentDescription="@string/app_logo"
         app:layout_constraintBottom_toTopOf="@id/form_background"
@@ -37,7 +37,7 @@
         android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="@string/login"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -122,6 +122,17 @@
                 android:inputType="textPassword"
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tb_forgot_password"
+            android:layout_gravity="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forgot_password"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/md_theme_primary"
+            />
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton

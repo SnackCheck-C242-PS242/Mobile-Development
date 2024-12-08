@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:src="@drawable/logo_with_title"
-        android:padding="16dp"
+        android:paddingTop="32dp"
         android:scaleType="fitCenter"
         android:contentDescription="@string/app_logo"
         app:layout_constraintBottom_toTopOf="@id/form_background"
@@ -37,16 +37,28 @@
         android:id="@+id/tv_verification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:contentDescription="@string/verification_page_title_content_description"
+        android:layout_marginTop="32dp"
         android:text="@string/title_verification"
         android:textSize="32sp"
         android:textStyle="bold"
+        android:contentDescription="@string/verification_page_title_content_description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/form_background"
-        app:layout_goneMarginTop="32dp" />
+        app:layout_constraintTop_toTopOf="@id/form_background" />
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/message_verification_page"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_verification" />
 
     <LinearLayout
         android:id="@+id/otp_box"
@@ -54,7 +66,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_verification"
+        app:layout_constraintTop_toBottomOf="@id/tv_message"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -179,14 +191,27 @@
         tools:ignore="TextContrastCheck" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_verify"
-        android:layout_width="180dp"
+        android:id="@+id/btn_verify_signup"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
         android:layout_marginBottom="72dp"
         android:text="@string/verify"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/form_background"
+        app:layout_constraintStart_toStartOf="@id/form_background"
+        tools:ignore="TextContrastCheck,DuplicateClickableBoundsCheck,DuplicateSpeakableTextCheck" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_verify_forgot_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="72dp"
+        android:layout_marginHorizontal="32dp"
+        android:text="@string/verify"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/form_background"
+        app:layout_constraintStart_toStartOf="@id/form_background"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="TextContrastCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
