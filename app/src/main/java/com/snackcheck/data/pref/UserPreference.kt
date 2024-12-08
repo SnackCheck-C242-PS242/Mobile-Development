@@ -36,18 +36,6 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
-    fun getUsername(): Flow<String?> {
-        return dataStore.data.map { preferences ->
-            preferences[username]
-        }
-    }
-
-    suspend fun saveUsername(username: String) {
-        dataStore.edit { preferences ->
-            preferences[this.username] = username
-        }
-    }
-
     suspend fun logout() {
         dataStore.edit { preferences ->
             preferences.clear()

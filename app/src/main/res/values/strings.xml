@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">SnackCheck</string>
-    <string name="title_activity_login">LoginActivity</string>
     <string name="app_logo">App logo</string>
     <string name="background">Background</string>
 
@@ -9,17 +8,13 @@
     <string name="login">Login</string>
     <string name="login_btn_text">Log In</string>
     <string name="email">Email</string>
-    <string name="enter_your_email_here">Enter your email here</string>
     <string name="username">Username</string>
-    <string name="enter_your_username_here">Enter your username here</string>
     <string name="password">Password</string>
-    <string name="enter_your_password_here">Enter your password here</string>
 
     <string name="login_page_title_content_description">Login page title content description</string>
     <string name="login_button_content_description">Login button content description</string>
     <string name="do_not_have_any_account">Don\'t have any account?</string>
     <string name="sign_up_page_title_content_description">Sign up page title content description</string>
-    <string name="re_enter_password">Re-enter password</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="title_home">Home</string>
     <string name="title_prediction">Prediction</string>
@@ -31,7 +26,6 @@
     <string name="verification_page_title_content_description">Verification page title content description</string>
     <string name="verification_success_page_title_content_description">Verification Success page title content description</string>
     <string name="did_not_receive_code_text">Didn’t receive any verification code?</string>
-    <string name="hi">Hi</string>
     <string name="hello">Hello</string>
     <string name="you">You!</string>
     <string name="name">Name</string>
@@ -75,15 +69,10 @@
     <string name="reset_password">Reset Password</string>
     <string name="send_code_btn_text">Send Code</string>
     <string name="reset_password_page_title_content_description">Reset Password page title content description</string>
-    <string name="input_new_password">Input New Password</string>
     <string name="input_new_password_page_title_content_description">Input New Password page title content description</string>
-    <string name="enter_your_new_password_here">Enter your new password</string>
-    <string name="enter_your_new_password_again">Enter your new password again</string>
     <string name="confirm_btn_text">Confirm</string>
-    <string name="enter_your_password_again_here">Enter your password here again</string>
     <string name="clear_history">Clear History</string>
     <string name="hint_search_history">Search History</string>
-    <string name="enter_your_full_name">Enter your full name</string>
     <string name="please_fill_the_form_correctly">Please fill the form correctly</string>
     <string name="register_success">Registration is success. Please verify your account</string>
     <string name="register_failed">Registration is failed</string>
@@ -97,12 +86,9 @@
     <string name="please_wait">Please Wait..</string>
     <string name="reload_history">Reload History</string>
     <string name="no_history">No history found</string>
-    <string name="title_account">Account</string>
     <string name="dark_mode_title">Dark Mode</string>
     <string name="dark_mode_subtitle">Enable dark mode</string>
     <string name="language_title">Language</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_profile">Profile</string>
     <string name="profile_picture_description">Profile Picture</string>
     <string name="user_name_profile">johndoe007</string>
@@ -110,7 +96,6 @@
     <string name="upload_photo">Upload Photo</string>
     <string name="full_name_profile">John Doe</string>
     <string name="email_profile">johndoe@gmail.com</string>
-    <string name="language_setting_title">Language</string>
     <string name="title_username_profile">Username</string>
     <string name="username_icon">Username Icon</string>
     <string name="title_full_name_profile">Fullname</string>

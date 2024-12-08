@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.data.pref.dataStore
@@ -45,9 +46,16 @@ class SettingFragment : Fragment() {
     private fun setupAction() {
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
-            val intent = Intent(requireContext(), LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
+        }
+
+        viewModel.logoutStatus.observe(viewLifecycleOwner){ isLoggedOut ->
+            if (isLoggedOut) {
+                val intent = Intent(requireContext(), LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+            } else {
+                Toast.makeText(requireContext(), "Logout failed", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

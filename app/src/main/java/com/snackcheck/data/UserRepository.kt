@@ -58,11 +58,12 @@ class UserRepository private constructor(
 
     suspend fun login(username: String, password: String) = apiService.login(username, password)
 
-    suspend fun logout() {
+    suspend fun logout() : Result<String> {
         val username = getUserDataPreferences()?.username
         apiService.logout(username!!)
         Log.d("UserRepository", "username: $username")
         userPreference.logout()
+        return Result.success("Success")
     }
 
     suspend fun verifyAccount(email: String, verificationCode: String) = apiService.verifyAccount(email, verificationCode)
