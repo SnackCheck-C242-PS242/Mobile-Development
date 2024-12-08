@@ -7,6 +7,7 @@ import com.snackcheck.data.remote.model.HistoryData
 import com.snackcheck.data.remote.model.ProfileData
 import com.snackcheck.data.remote.retrofit.ApiService
 import kotlinx.coroutines.flow.first
+import okhttp3.MultipartBody
 
 class UserRepository private constructor(
     private val userPreference: UserPreference,
@@ -15,9 +16,11 @@ class UserRepository private constructor(
 
     fun getToken() = userPreference.getToken()
 
-    private fun getUsername() = userPreference.getUsername()
-
     suspend fun getApiProfile() = apiService.getProfile()
+
+    suspend fun postPhotoProfile(
+        profilePhoto: MultipartBody.Part
+    ) = apiService.postPhoto(profilePhoto)
 
     suspend fun getUserDataPreferences(): ProfileData? {
         val data = userPreference.getProfileData().first()
@@ -26,6 +29,10 @@ class UserRepository private constructor(
 
     suspend fun saveUserDataPreferences(profileData: ProfileData) {
         userPreference.saveProfile(profileData)
+    }
+
+    suspend fun saveProfilePhotoUrl(profilePhotoUrl: String) {
+        userPreference.saveProfilePhotoUrl(profilePhotoUrl)
     }
 
     suspend fun getHistory(): Result<List<HistoryData>?>{
@@ -42,8 +49,6 @@ class UserRepository private constructor(
     }
 
     suspend fun saveToken(token: String) = userPreference.saveToken(token)
-
-
 
     suspend fun predictSnack(snackDetail: SnackDetail) = apiService.predictSnack(snackDetail)
 

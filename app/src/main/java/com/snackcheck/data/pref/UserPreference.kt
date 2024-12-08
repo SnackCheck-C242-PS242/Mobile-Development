@@ -59,7 +59,13 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
             preferences[nameKey] = profileData.fullName
             preferences[username] = profileData.username
             preferences[emailKey] = profileData.email
-            preferences[profilePhotoUrlKey] = profileData.profilePhoto
+            preferences[profilePhotoUrlKey] = profileData.profilePhotoUrl
+        }
+    }
+
+    suspend fun saveProfilePhotoUrl(profilePhotoUrl: String) {
+        dataStore.edit { preferences ->
+            preferences[profilePhotoUrlKey] = profilePhotoUrl
         }
     }
 

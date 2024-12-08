@@ -49,5 +49,22 @@
         android:id="@+id/navigation_profile"
         android:name="com.snackcheck.view.profile.info.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_to_photo_profile"
+            app:destination="@id/navigation_photo_profile"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_photo_profile"
+        android:name="com.snackcheck.view.profile.photo.PhotoProfileFragment"
+        android:label="fragment_photo_profile"
+        tools:layout="@layout/fragment_photo_profile">
+        <action
+            android:id="@+id/action_photo_profile_to_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/navigation_photo_profile"
+            app:popUpToInclusive="false" />
+    </fragment>
 </navigation>

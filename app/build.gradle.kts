@@ -37,6 +37,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -71,4 +72,5 @@ dependencies {
 
     implementation (libs.circleimageview)
 
+    implementation("com.github.yalantis:ucrop:2.2.8")
 }

@@ -14,6 +14,7 @@ import com.snackcheck.view.home.HomeViewModel
 import com.snackcheck.view.main.MainViewModel
 import com.snackcheck.view.prediction.form.FormViewModel
 import com.snackcheck.view.profile.info.ProfileViewModel
+import com.snackcheck.view.profile.photo.PhotoProfileViewModel
 import com.snackcheck.view.setting.SettingFragmentViewModel
 import com.snackcheck.view.splash.SplashViewModel
 
@@ -54,6 +55,9 @@ class ViewModelFactory(
             }
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
                 ProfileViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(PhotoProfileViewModel::class.java) -> {
+                PhotoProfileViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

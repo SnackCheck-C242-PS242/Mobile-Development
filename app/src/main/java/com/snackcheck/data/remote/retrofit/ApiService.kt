@@ -4,15 +4,19 @@ import com.snackcheck.data.local.entity.SnackDetail
 import com.snackcheck.data.remote.model.HistoryResponse
 import com.snackcheck.data.remote.model.LoginResponse
 import com.snackcheck.data.remote.model.MessageResponse
+import com.snackcheck.data.remote.model.PhotoResponse
 import com.snackcheck.data.remote.model.ProfileResponse
 import com.snackcheck.data.remote.model.SnackPredictResponse
 import com.snackcheck.data.remote.model.TokenResponse
+import okhttp3.MultipartBody
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Part
 
 interface ApiService {
     // ** AUTHENTICATION API **
@@ -85,6 +89,14 @@ interface ApiService {
     suspend fun getHistory(): HistoryResponse
 
     // ** PROFILE API **
+    // Profile Info API
     @GET("profile")
     suspend fun getProfile(): ProfileResponse
+
+    // Post Profile Photo API
+    @Multipart
+    @POST("profile/photo")
+    suspend fun postPhoto(
+        @Part profilePhoto: MultipartBody.Part
+    ): PhotoResponse
 }

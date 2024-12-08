@@ -121,4 +121,9 @@
     <string name="dark_mode">Dark mode</string>
     <string name="go_to_language_setting">Go to language setting</string>
     <string name="language">Language</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="choose_from_gallery">Choose from Gallery</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_profile_picture">Profile Picture</string>
+    <string name="no_image_selected">No image selected</string>
 </resources>

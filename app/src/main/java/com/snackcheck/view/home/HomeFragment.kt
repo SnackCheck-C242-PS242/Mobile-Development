@@ -5,10 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.snackcheck.R
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.data.pref.dataStore
@@ -47,6 +48,13 @@ class HomeFragment : Fragment() {
         viewModel.userData.observe(viewLifecycleOwner) { profileData ->
             if (profileData != null) {
                 binding.tvUserFullname.text = profileData.fullName
+                if (profileData.profilePhotoUrl == "") {
+                    binding.ivProfile.setImageResource(R.drawable.ic_account)
+                } else {
+                    Glide.with(requireContext())
+                        .load(viewModel.userData.value?.profilePhotoUrl?.toUri())
+                        .into(binding.ivProfile)
+                }
             } else {
                 binding.tvUserFullname.text = (R.string.you).toString()
             }

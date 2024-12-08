@@ -1,11 +1,16 @@
 package com.snackcheck.view.profile.info
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.snackcheck.R
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.databinding.FragmentProfileBinding
@@ -19,12 +24,12 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var pref: UserPreference
     private lateinit var factory: ViewModelFactory
-    private val viewModel by viewModels<HomeViewModel> { factory }
+    private val viewModel by viewModels<ProfileViewModel> { factory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,11 +47,14 @@ class ProfileFragment : Fragment() {
                 binding.tvEmailProfile.text = profileData.email
                 binding.tvFullNameProfile.text = profileData.fullName
 
-                if (profileData.profilePhoto == "") {
+                if (profileData.profilePhotoUrl == "") {
                     binding.btnUploadPhoto.visibility = View.VISIBLE
                     binding.btnEditPhoto.visibility = View.GONE
                     binding.ivProfilePicture.setImageResource(R.drawable.ic_account)
                 } else {
+                    Glide.with(requireContext())
+                        .load(viewModel.userData.value?.profilePhotoUrl?.toUri())
+                        .into(binding.ivProfilePicture)
                     binding.btnUploadPhoto.visibility = View.GONE
                     binding.btnEditPhoto.visibility = View.VISIBLE
                 }
@@ -61,13 +69,24 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        setFragmentResultListener("profileUpdated") { _, bundle ->
+            val isProfileUpdated = bundle.getBoolean("isProfileUpdated", false)
+            Log.d("ProfileFragment", "isProfileUpdated: $isProfileUpdated")
+            if (isProfileUpdated) {
+                viewModel.getProfile()
+            }
+        }
+
         setupAction()
     }
 
     private fun setupAction() {
         binding.apply {
             btnUploadPhoto.setOnClickListener {
-
+                findNavController().navigate(R.id.navigation_photo_profile)
+            }
+            btnEditPhoto.setOnClickListener {
+                findNavController().navigate(R.id.navigation_photo_profile)
             }
         }
     }

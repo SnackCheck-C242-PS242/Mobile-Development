@@ -20,6 +20,6 @@ data class ProfileData(
     @field:SerializedName("email")
     val email: String,
 
-    @field:SerializedName("profilePhoto")
-    val profilePhoto: String,
+    @field:SerializedName("profilePhotoUrl")
+    val profilePhotoUrl: String,
 )
