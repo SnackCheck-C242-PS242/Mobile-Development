@@ -106,6 +106,7 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     }
+
                     is ResultState.Error -> {
                         dialog.dismiss()
                         Toast.makeText(

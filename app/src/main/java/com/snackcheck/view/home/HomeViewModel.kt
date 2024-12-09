@@ -46,7 +46,6 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
     fun getHistory() {
         viewModelScope.launch {
             _historyList.value = repository.getHistory()
-            Log.d("HomeViewModel", "History List: ${_historyList.value}")
         }
     }
 
@@ -54,7 +53,6 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             val data = repository.getUserDataPreferences()
             _userData.value = data
-            Log.d("HomeViewModel", "User Data: ${_userData.value}")
         }
     }
 }

@@ -17,7 +17,7 @@ class ResetPasswordViewModel(private val repository: UserRepository) : ViewModel
             try {
                 _responseResult.value = ResultState.Loading
                 val response = repository.getResetCode(email)
-                if (response.status=="success") {
+                if (response.status == "success") {
                     _responseResult.value = ResultState.Success(response)
                 }
             } catch (e: Exception) {

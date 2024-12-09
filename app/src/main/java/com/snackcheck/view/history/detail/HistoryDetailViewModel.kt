@@ -10,9 +10,9 @@ import com.snackcheck.data.remote.model.HistoryDetailResponse
 
 import kotlinx.coroutines.launch
 
-class HistoryDetailViewModel(private val repository: UserRepository) : ViewModel(){
+class HistoryDetailViewModel(private val repository: UserRepository) : ViewModel() {
     private val _historyDetail = MutableLiveData<ResultState<HistoryDetailResponse>>()
-    val historyDetail : LiveData<ResultState<HistoryDetailResponse>> = _historyDetail
+    val historyDetail: LiveData<ResultState<HistoryDetailResponse>> = _historyDetail
 
     fun getHistoryDetail(snackId: String) {
         viewModelScope.launch {

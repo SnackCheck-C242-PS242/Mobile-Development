@@ -62,7 +62,7 @@ class HistoryDetailFragment : Fragment() {
     private fun setupUI(historyData: HistoryData) {
         binding.apply {
             tvSnackNamePlaceholder.text = historyData.snackName
-            tvFatAmount.text = historyData.healthStatus
+            tvFatAmount.text = historyData.nutritions.fat.toString()
             tvSaturatedFatAmount.text = historyData.nutritions.saturatedFat.toString()
             tvCarbohydratesAmount.text = historyData.nutritions.carbohydrates.toString()
             tvSugarsAmount.text = historyData.nutritions.sugars.toString()
@@ -93,15 +93,16 @@ class HistoryDetailFragment : Fragment() {
                     binding.tvNoHistory.visibility = View.GONE
                     binding.containerHistoryDetail.visibility = View.GONE
                 }
+
                 is ResultState.Success -> {
                     binding.tvNoHistory.visibility = View.GONE
                     binding.btnReloadHistory.visibility = View.GONE
                     binding.containerHistoryDetail.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
                     val historyData = result.data.data
-                    Log.d("HistoryDetailFragment", "HistoryData: $historyData")
                     setupUI(historyData)
                 }
+
                 is ResultState.Error -> {
                     binding.containerHistoryDetail.visibility = View.GONE
                     binding.progressBar.visibility = View.GONE

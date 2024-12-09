@@ -11,17 +11,16 @@ import com.snackcheck.data.remote.model.HistoryData
 import com.snackcheck.data.remote.model.MessageResponse
 import kotlinx.coroutines.launch
 
-class HistoryViewModel(private val repository: UserRepository) : ViewModel(){
+class HistoryViewModel(private val repository: UserRepository) : ViewModel() {
     private val _historyList = MutableLiveData<Result<List<HistoryData>?>>()
-    val historyList : LiveData<Result<List<HistoryData>?>> = _historyList
+    val historyList: LiveData<Result<List<HistoryData>?>> = _historyList
 
     private val _responseClearHistory = MutableLiveData<ResultState<MessageResponse>>()
-    val responseClearHistory : LiveData<ResultState<MessageResponse>> = _responseClearHistory
+    val responseClearHistory: LiveData<ResultState<MessageResponse>> = _responseClearHistory
 
     fun getHistory() {
         viewModelScope.launch {
             _historyList.value = repository.getHistory()
-            Log.d("HomeViewModel", "History List: ${_historyList.value}")
         }
     }
 

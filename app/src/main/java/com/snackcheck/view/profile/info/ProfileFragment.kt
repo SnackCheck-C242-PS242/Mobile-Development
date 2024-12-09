@@ -27,7 +27,7 @@ class ProfileFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
@@ -39,7 +39,10 @@ class ProfileFragment : Fragment() {
         pref = UserPreference.getInstance(requireContext().dataStore)
         factory = ViewModelFactory.getInstance(requireContext(), pref)
 
-        parentFragmentManager.setFragmentResultListener("profileUpdated", viewLifecycleOwner) { _, bundle ->
+        parentFragmentManager.setFragmentResultListener(
+            "profileUpdated",
+            viewLifecycleOwner
+        ) { _, bundle ->
             val isProfileUpdated = bundle.getBoolean("isProfileUpdated", false)
             Log.d("ProfileFragment", "isProfileUpdated: $isProfileUpdated")
             if (isProfileUpdated) {

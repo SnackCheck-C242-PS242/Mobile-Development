@@ -27,6 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_health_status"
             app:cardCornerRadius="8dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

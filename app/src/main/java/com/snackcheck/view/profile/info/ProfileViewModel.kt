@@ -1,6 +1,5 @@
 package com.snackcheck.view.profile.info
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,7 +16,6 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             val data = repository.getUserDataPreferences()
             _userData.value = data
-            Log.d("HomeViewModel", "User Data: ${_userData.value}")
         }
     }
 }

@@ -10,5 +10,5 @@ data class PhotoResponse(
     val status: String? = null,
 
     @field:SerializedName("url")
-    val profilePhotoUrl: String? = null
+    val profilePhotoUrl: String? = null,
 )

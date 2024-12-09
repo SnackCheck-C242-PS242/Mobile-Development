@@ -8,7 +8,7 @@ import com.snackcheck.databinding.ActivityVerificationSuccessBinding
 import com.snackcheck.view.authorization.login.LoginActivity
 
 class VerificationSuccessActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityVerificationSuccessBinding
+    private lateinit var binding: ActivityVerificationSuccessBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityVerificationSuccessBinding.inflate(layoutInflater)

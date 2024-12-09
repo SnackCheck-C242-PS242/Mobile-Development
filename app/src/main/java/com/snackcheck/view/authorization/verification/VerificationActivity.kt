@@ -10,8 +10,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.snackcheck.R
 import com.snackcheck.data.ResultState
@@ -40,7 +38,7 @@ class VerificationActivity : AppCompatActivity() {
         setupAction()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         val isForgotPassword = intent.getBooleanExtra(FORGOT_PASSWORD, false)
         val email = intent.getStringExtra(EXTRA_EMAIL).toString()
 
@@ -58,23 +56,14 @@ class VerificationActivity : AppCompatActivity() {
                     if (otp1.isEmpty() || otp2.isEmpty() || otp3.isEmpty() || otp4.isEmpty() || otp5.isEmpty()) {
                         Toast.makeText(
                             this@VerificationActivity,
-                            "Please fill in all OTP fields",
+                            getString(R.string.please_fill_in_all_otp_fields),
                             Toast.LENGTH_SHORT
                         ).show()
                         return@setOnClickListener
                     }
 
                     val verificationCode = "$otp1$otp2$otp3$otp4$otp5"
-
-                    val intent =
-                        Intent(this@VerificationActivity, InputNewPasswordActivity::class.java)
-                    intent.putExtra(InputNewPasswordActivity.EXTRA_EMAIL, email)
-                    intent.putExtra(
-                        InputNewPasswordActivity.EXTRA_VERIFICATION_CODE,
-                        verificationCode
-                    )
-                    startActivity(intent)
-                    finish()
+                    viewModel.verifyResetCode(email, verificationCode)
                 }
             } else {
                 btnVerifySignup.visibility = View.VISIBLE
@@ -88,7 +77,11 @@ class VerificationActivity : AppCompatActivity() {
                     val otp5 = edOtp5.text.toString()
 
                     if (otp1.isEmpty() || otp2.isEmpty() || otp3.isEmpty() || otp4.isEmpty() || otp5.isEmpty()) {
-                        Toast.makeText(this@VerificationActivity, "Please fill in all OTP fields", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@VerificationActivity,
+                            getString(R.string.please_fill_in_all_otp_fields),
+                            Toast.LENGTH_SHORT
+                        ).show()
                         return@setOnClickListener
                     }
 
@@ -101,19 +94,47 @@ class VerificationActivity : AppCompatActivity() {
         }
 
         val builder: AlertDialog.Builder =
-            MaterialAlertDialogBuilder(this@VerificationActivity, R.style.MaterialAlertDialog_Rounded)
+            MaterialAlertDialogBuilder(
+                this@VerificationActivity,
+                R.style.MaterialAlertDialog_Rounded
+            )
         builder.setView(R.layout.layout_loading)
         val dialog: AlertDialog = builder.create()
 
-        viewModel.responseResult.observe(this){ response ->
-            when(response){
+        viewModel.resetResponseResult.observe(this) { response ->
+            when (response) {
                 is ResultState.Loading -> dialog.show()
                 is ResultState.Success -> {
                     dialog.dismiss()
-                    val intent = Intent(this@VerificationActivity, VerificationSuccessActivity::class.java)
+                    val intent =
+                        Intent(this@VerificationActivity, InputNewPasswordActivity::class.java)
+                    intent.putExtra(InputNewPasswordActivity.EXTRA_EMAIL, email)
+                    startActivity(intent)
+                }
+
+                is ResultState.Error -> {
+                    dialog.dismiss()
+                    Toast.makeText(
+                        this@VerificationActivity,
+                        response.error,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+        }
+
+        viewModel.responseResult.observe(this) { response ->
+            when (response) {
+                is ResultState.Loading -> dialog.show()
+                is ResultState.Success -> {
+                    dialog.dismiss()
+                    val intent =
+                        Intent(this@VerificationActivity, VerificationSuccessActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
+
                 is ResultState.Error -> {
                     dialog.dismiss()
                     Toast.makeText(
@@ -126,51 +147,117 @@ class VerificationActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupOtpFocus(){
+    private fun setupOtpFocus() {
         binding.apply {
             edOtp1.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {}
-                override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+                override fun beforeTextChanged(
+                    charSequence: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int,
+                ) {
+                }
+
+                override fun onTextChanged(
+                    charSequence: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int,
+                ) {
                     if (edOtp1.text?.length == 1) {
                         edOtp2.requestFocus()
                     }
                 }
+
                 override fun afterTextChanged(editable: Editable?) {}
             })
 
             edOtp2.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {}
-                override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+                override fun beforeTextChanged(
+                    charSequence: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int,
+                ) {
+                }
+
+                override fun onTextChanged(
+                    charSequence: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int,
+                ) {
                     if (edOtp2.text?.length == 1) {
                         edOtp3.requestFocus()
                     }
                 }
+
                 override fun afterTextChanged(editable: Editable?) {}
             })
 
             edOtp3.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {}
-                override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+                override fun beforeTextChanged(
+                    charSequence: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int,
+                ) {
+                }
+
+                override fun onTextChanged(
+                    charSequence: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int,
+                ) {
                     if (edOtp3.text?.length == 1) {
                         edOtp4.requestFocus()
                     }
                 }
+
                 override fun afterTextChanged(editable: Editable?) {}
             })
 
             edOtp4.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {}
-                override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+                override fun beforeTextChanged(
+                    charSequence: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int,
+                ) {
+                }
+
+                override fun onTextChanged(
+                    charSequence: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int,
+                ) {
                     if (edOtp4.text?.length == 1) {
                         edOtp5.requestFocus()
                     }
                 }
+
                 override fun afterTextChanged(editable: Editable?) {}
             })
 
             edOtp5.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {}
-                override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {}
+                override fun beforeTextChanged(
+                    charSequence: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int,
+                ) {
+                }
+
+                override fun onTextChanged(
+                    charSequence: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int,
+                ) {
+                }
+
                 override fun afterTextChanged(editable: Editable?) {}
             })
         }

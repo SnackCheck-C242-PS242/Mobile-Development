@@ -32,45 +32,59 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(repository) as T
             }
+
             modelClass.isAssignableFrom(SplashViewModel::class.java) -> {
                 SplashViewModel(repository) as T
             }
+
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(repository) as T
             }
+
             modelClass.isAssignableFrom(SignUpViewModel::class.java) -> {
                 SignUpViewModel(repository) as T
             }
+
             modelClass.isAssignableFrom(VerificationViewModel::class.java) -> {
                 VerificationViewModel(repository) as T
             }
+
             modelClass.isAssignableFrom(SettingFragmentViewModel::class.java) -> {
                 SettingFragmentViewModel(repository, pref) as T
             }
+
             modelClass.isAssignableFrom(FormViewModel::class.java) -> {
                 FormViewModel(repository) as T
             }
+
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(repository) as T
             }
+
             modelClass.isAssignableFrom(HistoryViewModel::class.java) -> {
                 HistoryViewModel(repository) as T
             }
+
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
                 ProfileViewModel(repository) as T
             }
+
             modelClass.isAssignableFrom(PhotoProfileViewModel::class.java) -> {
                 PhotoProfileViewModel(repository) as T
             }
+
             modelClass.isAssignableFrom(ResetPasswordViewModel::class.java) -> {
                 ResetPasswordViewModel(repository) as T
             }
+
             modelClass.isAssignableFrom(InputNewPasswordViewModel::class.java) -> {
                 InputNewPasswordViewModel(repository) as T
             }
+
             modelClass.isAssignableFrom(HistoryDetailViewModel::class.java) -> {
                 HistoryDetailViewModel(repository) as T
             }
+
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }

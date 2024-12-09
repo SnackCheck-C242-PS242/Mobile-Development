@@ -39,7 +39,7 @@ class ResetPasswordActivity : AppCompatActivity() {
     private fun setupAction() {
         binding.apply {
             btnSendCode.setOnClickListener {
-                if (tlEmail.error.isNullOrEmpty()){
+                if (tlEmail.error.isNullOrEmpty()) {
                     viewModel.getResetCode(
                         email = edEmail.text.toString()
                     )
@@ -47,7 +47,10 @@ class ResetPasswordActivity : AppCompatActivity() {
             }
 
             val builder: AlertDialog.Builder =
-                MaterialAlertDialogBuilder(this@ResetPasswordActivity, R.style.MaterialAlertDialog_Rounded)
+                MaterialAlertDialogBuilder(
+                    this@ResetPasswordActivity,
+                    R.style.MaterialAlertDialog_Rounded
+                )
             builder.setView(R.layout.layout_loading)
             val dialog: AlertDialog = builder.create()
 
@@ -63,12 +66,14 @@ class ResetPasswordActivity : AppCompatActivity() {
                         ).show()
 
                         val email = edEmail.text.toString()
-                        val intent = Intent(this@ResetPasswordActivity, VerificationActivity::class.java)
+                        val intent =
+                            Intent(this@ResetPasswordActivity, VerificationActivity::class.java)
                         intent.putExtra(VerificationActivity.FORGOT_PASSWORD, true)
                         intent.putExtra(VerificationActivity.EXTRA_EMAIL, email)
                         startActivity(intent)
                         finish()
                     }
+
                     is ResultState.Error -> {
                         dialog.dismiss()
                         Toast.makeText(
@@ -77,6 +82,7 @@ class ResetPasswordActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
+
                     else -> dialog.dismiss()
                 }
             }

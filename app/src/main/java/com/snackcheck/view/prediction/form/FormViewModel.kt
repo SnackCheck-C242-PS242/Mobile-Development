@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class FormViewModel(private val repository: UserRepository) : ViewModel() {
 
-    private val allNutrients = listOf("Fat", "Saturated Fat", "Carbohydrates", "Sugars", "Fiber", "Proteins", "Sodium")
+    private val allNutrients = listOf("Fat", "Saturated Fat", "Carbohydrates", "Sugars", "Fiber", "Proteins", "Salt")
 
     private val _nutrientStatus = MutableLiveData(
         allNutrients.associateWith { 0 }
@@ -56,7 +56,7 @@ class FormViewModel(private val repository: UserRepository) : ViewModel() {
             sugars = formData["Sugars"] ?: 0.0,
             fiber = formData["Fiber"] ?: 0.0,
             proteins = formData["Proteins"] ?: 0.0,
-            sodium = ((formData["Sodium"] ?: 0.0) * 1/1000)
+            sodium = ((formData["Salt"] ?: 0.0) * 1/1000)
         )
 
         return SnackDetail(snackName = snackName, nutritions = nutritionData)

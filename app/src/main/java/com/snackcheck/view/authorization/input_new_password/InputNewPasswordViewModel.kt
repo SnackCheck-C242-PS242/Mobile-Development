@@ -8,11 +8,16 @@ import com.snackcheck.data.UserRepository
 import com.snackcheck.data.remote.model.MessageResponse
 import kotlinx.coroutines.launch
 
-class InputNewPasswordViewModel (private val repository: UserRepository) : ViewModel() {
+class InputNewPasswordViewModel(private val repository: UserRepository) : ViewModel() {
     private val _responseResult = MutableLiveData<ResultState<MessageResponse>>()
     val responseResult = _responseResult
 
-    fun resetPassword(email: String, resetCode: String, newPassword: String, confirmPassword: String) {
+    fun resetPassword(
+        email: String,
+        resetCode: String,
+        newPassword: String,
+        confirmPassword: String,
+    ) {
         viewModelScope.launch {
             try {
                 _responseResult.value = ResultState.Loading

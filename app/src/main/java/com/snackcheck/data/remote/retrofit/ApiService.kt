@@ -72,7 +72,7 @@ interface ApiService {
     ): MessageResponse
 
     @FormUrlEncoded
-    @POST("auth/resetCodeVerification")
+    @POST("auth/password/verify")
     suspend fun verifyResetCode(
         @Field("email") email: String,
         @Field("resetCode") resetCode: String

@@ -14,7 +14,7 @@ data class NewsResponse(
     val articles: List<ArticlesItem>,
 
     @field:SerializedName("status")
-    val status: String? = null
+    val status: String? = null,
 ) : Parcelable
 
 @Parcelize
@@ -22,7 +22,7 @@ data class Source(
     @field:SerializedName("name")
     val name: String? = null,
     @field:SerializedName("id")
-    val id: String? = null
+    val id: String? = null,
 ) : Parcelable
 
 @Parcelize
@@ -50,5 +50,5 @@ data class ArticlesItem(
     val url: String? = null,
 
     @field:SerializedName("content")
-    val content: String? = null
+    val content: String? = null,
 ) : Parcelable

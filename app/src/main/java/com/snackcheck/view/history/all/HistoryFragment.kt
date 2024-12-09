@@ -57,7 +57,7 @@ class HistoryFragment : Fragment() {
         binding.apply {
             btnClearHistory.setOnClickListener {
                 viewModel.clearHistory()
-                viewModel.responseClearHistory.observe(viewLifecycleOwner){ response ->
+                viewModel.responseClearHistory.observe(viewLifecycleOwner) { response ->
                     when (response) {
                         is ResultState.Loading -> {
                             progressBar.visibility = View.VISIBLE
@@ -65,12 +65,14 @@ class HistoryFragment : Fragment() {
                             btnReloadHistory.visibility = View.GONE
                             tvNoHistory.visibility = View.GONE
                         }
+
                         is ResultState.Success -> {
                             progressBar.visibility = View.GONE
                             rvHistory.visibility = View.GONE
                             btnReloadHistory.visibility = View.VISIBLE
                             tvNoHistory.visibility = View.VISIBLE
                         }
+
                         is ResultState.Error -> {
                             progressBar.visibility = View.GONE
                             rvHistory.visibility = View.GONE

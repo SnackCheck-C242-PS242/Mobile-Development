@@ -11,19 +11,21 @@ import okhttp3.MultipartBody
 
 class UserRepository private constructor(
     private val userPreference: UserPreference,
-    private val apiService: ApiService
+    private val apiService: ApiService,
 ) {
+
+    fun getThemeSetting() = userPreference.getThemeSetting()
 
     fun getToken() = userPreference.getToken()
 
     suspend fun getApiProfile() = apiService.getProfile()
 
     suspend fun postPhotoProfile(
-        profilePhoto: MultipartBody.Part
+        profilePhoto: MultipartBody.Part,
     ) = apiService.postPhoto(profilePhoto)
 
     suspend fun putPhotoProfile(
-        profilePhoto: MultipartBody.Part
+        profilePhoto: MultipartBody.Part,
     ) = apiService.putPhoto(profilePhoto)
 
     suspend fun getUserDataPreferences(): ProfileData? {
@@ -39,7 +41,7 @@ class UserRepository private constructor(
         userPreference.saveProfilePhotoUrl(profilePhotoUrl)
     }
 
-    suspend fun getHistory(): Result<List<HistoryData>?>{
+    suspend fun getHistory(): Result<List<HistoryData>?> {
         return try {
             val response = apiService.getHistory()
             if (response.status == "success") {
@@ -60,27 +62,40 @@ class UserRepository private constructor(
 
     suspend fun predictSnack(snackDetail: SnackDetail) = apiService.predictSnack(snackDetail)
 
-    suspend fun refreshToken(refreshToken: String) = apiService.getNewAccessToken(refreshToken)
-
-    suspend fun register(username: String, fullName: String, email: String, password: String, confirmPassword: String) = apiService.register(username, fullName, email, password, confirmPassword)
+    suspend fun register(
+        username: String,
+        fullName: String,
+        email: String,
+        password: String,
+        confirmPassword: String,
+    ) = apiService.register(username, fullName, email, password, confirmPassword)
 
     suspend fun login(username: String, password: String) = apiService.login(username, password)
 
-    suspend fun logout() : Result<String> {
+    suspend fun logout(): Result<String> {
         val username = getUserDataPreferences()?.username
         apiService.logout(username!!)
         Log.d("UserRepository", "username: $username")
         userPreference.logout()
-        return Result.success("Success")
+        return Result.success("success")
     }
 
     suspend fun clearUserData() = userPreference.logout()
 
-    suspend fun verifyAccount(email: String, verificationCode: String) = apiService.verifyAccount(email, verificationCode)
+    suspend fun verifyAccount(email: String, verificationCode: String) =
+        apiService.verifyAccount(email, verificationCode)
 
     suspend fun getResetCode(email: String) = apiService.getResetCode(email)
 
-    suspend fun resetPassword(email: String, resetCode: String, newPassword: String, confirmPassword: String) = apiService.resetPassword(email, resetCode, newPassword, confirmPassword)
+    suspend fun verifyResetCode(email: String, resetCode: String) =
+        apiService.verifyResetCode(email, resetCode)
+
+    suspend fun resetPassword(
+        email: String,
+        resetCode: String,
+        newPassword: String,
+        confirmPassword: String,
+    ) = apiService.resetPassword(email, resetCode, newPassword, confirmPassword)
 
     companion object {
         @Volatile

@@ -14,7 +14,6 @@ import com.snackcheck.databinding.ActivityInputNewPasswordBinding
 import com.snackcheck.di.Injection
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.authorization.login.LoginActivity
-import com.snackcheck.view.authorization.verification_success.VerificationSuccessActivity
 
 class InputNewPasswordActivity : AppCompatActivity() {
     private lateinit var viewModel: InputNewPasswordViewModel
@@ -71,8 +70,10 @@ class InputNewPasswordActivity : AppCompatActivity() {
                         ).show()
                         finish()
 
-                        val intent = Intent(this@InputNewPasswordActivity, LoginActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        val intent =
+                            Intent(this@InputNewPasswordActivity, LoginActivity::class.java)
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)
                         finish()
                     }

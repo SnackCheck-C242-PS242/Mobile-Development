@@ -55,7 +55,7 @@
     <string name="sugars">Sugars</string>
     <string name="fiber">Fiber</string>
     <string name="proteins">Proteins</string>
-    <string name="sodium">Sodium</string>
+    <string name="sodium">Salt</string>
     <string name="nutrition_data">Nutrition Data</string>
     <string name="prediction_result">Prediction Result</string>
     <string name="no_data">No data</string>
@@ -126,4 +126,8 @@
     <string name="news_description">News description</string>
     <string name="title_news">News</string>
     <string name="no_news">No news found</string>
+    <string name="please_fill_in_all_otp_fields">Please fill in all OTP fields</string>
+    <string name="failed_to_remove">Failed to remove.</string>
+    <string name="snack_name_cannot_be_empty">Snack name cannot be empty.</string>
+    <string name="logout_failed">Logout failed</string>
 </resources>

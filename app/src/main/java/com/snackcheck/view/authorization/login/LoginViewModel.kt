@@ -52,7 +52,6 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
                 val response = repository.getApiProfile()
                 if (response.status == "success") {
                     _profileResult.value = ResultState.Success(response)
-                    Log.d("LoginViewModel", "Profile Response: $response")
                 } else {
                     _profileResult.value = ResultState.Error(response.status)
                 }

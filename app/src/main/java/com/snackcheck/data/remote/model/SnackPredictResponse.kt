@@ -13,7 +13,7 @@ data class SnackPredictResponse(
     val status: String? = null,
 
     @field:SerializedName("result")
-    val result: SnackPredictResult? = null
+    val result: SnackPredictResult? = null,
 ) : Parcelable
 
 @Parcelize
@@ -31,7 +31,7 @@ data class SnackPredictResult(
     val healthStatus: String? = null,
 
     @field:SerializedName("recommendation")
-    val recommendation: String? = null
+    val recommendation: String? = null,
 ) : Parcelable
 
 @Parcelize
@@ -55,5 +55,5 @@ data class Nutritions(
     val proteins: Double? = null,
 
     @field:SerializedName("sodium")
-    val sodium: Double? = null
+    val sodium: Double? = null,
 ) : Parcelable

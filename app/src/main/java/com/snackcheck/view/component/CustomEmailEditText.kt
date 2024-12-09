@@ -50,7 +50,7 @@ class CustomEmailEditText : TextInputEditText {
 
         if (textInputLayout != null) {
             if (isValid) {
-                textInputLayout.error = null // Clear error if valid
+                textInputLayout.error = null
             } else {
                 textInputLayout.error = context.getString(R.string.error_invalid_email)
             }

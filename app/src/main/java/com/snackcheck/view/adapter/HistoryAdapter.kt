@@ -1,17 +1,18 @@
 package com.snackcheck.view.adapter
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.snackcheck.R
 import com.snackcheck.helper.withDateFormat
 import com.snackcheck.data.remote.model.HistoryData
 import com.snackcheck.databinding.ItemHistoryBinding
 
-class HistoryAdapter(private val onItemClicked: (HistoryData) -> Unit) : ListAdapter<HistoryData, HistoryAdapter.HistoryViewHolder>(DIFF_CALLBACK) {
+class HistoryAdapter(private val onItemClicked: (HistoryData) -> Unit) :
+    ListAdapter<HistoryData, HistoryAdapter.HistoryViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
@@ -27,15 +28,29 @@ class HistoryAdapter(private val onItemClicked: (HistoryData) -> Unit) : ListAda
 
     inner class HistoryViewHolder(private val binding: ItemHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(history: HistoryData) {
-                binding.tvSnackName.text = history.snackName
-                binding.tvResult.text = history.healthStatus
-                binding.tvTimeCreated.text = history.createdAt.withDateFormat()
+        fun bind(history: HistoryData) {
+            binding.tvSnackName.text = history.snackName
+            binding.tvResult.text = history.healthStatus
+            binding.tvTimeCreated.text = history.createdAt.withDateFormat()
 
-                binding.root.setOnClickListener {
-                    onItemClicked(history)
-                }
+
+            val healthStatus = history.healthStatus
+            if (healthStatus == "Healthy") {
+                binding.cvHealthStatus.setCardBackgroundColor(
+                    ContextCompat.getColor(binding.root.context, R.color.card_color_green)
+                )
+            } else {
+                binding.cvHealthStatus.setCardBackgroundColor(
+                    ContextCompat.getColor(binding.root.context, R.color.card_color_red)
+                )
             }
+
+            binding.tvResult.setTextColor(binding.root.context.getColor(R.color.color_white))
+
+            binding.root.setOnClickListener {
+                onItemClicked(history)
+            }
+        }
     }
 
     companion object {

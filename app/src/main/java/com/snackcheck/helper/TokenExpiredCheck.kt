@@ -7,7 +7,6 @@ import java.util.Base64
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun isTokenExpired(refreshToken: String): Boolean {
-    // Decode JWT token (decode bagian payload)
     val parts = refreshToken.split(".")
     if (parts.size != 3) {
         return true // Invalid JWT format

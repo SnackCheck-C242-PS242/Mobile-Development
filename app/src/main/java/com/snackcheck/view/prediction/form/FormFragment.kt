@@ -30,7 +30,7 @@ class FormFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentFormBinding.inflate(inflater, container, false)
         return binding.root
@@ -72,21 +72,29 @@ class FormFragment : Fragment() {
                     viewModel.removeLastNutritionItem()
                     adapter.notifyItemRemoved(currentSize - 1)
                 } else {
-                    Toast.makeText(requireContext(), "Failed to remove.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),
+                        getString(R.string.failed_to_remove), Toast.LENGTH_SHORT).show()
                 }
             }
 
             btnAnalyze.setOnClickListener {
                 val snackName = binding.etSnackName.text.toString()
                 if (snackName.isEmpty()) {
-                    Toast.makeText(requireContext(), "Snack name cannot be empty.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.snack_name_cannot_be_empty),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     return@setOnClickListener
                 }
 
                 val snackDetail = viewModel.getSnackDetailFromInput(snackName)
 
                 val builder: AlertDialog.Builder =
-                    MaterialAlertDialogBuilder(this@FormFragment.requireContext(), R.style.MaterialAlertDialog_Rounded)
+                    MaterialAlertDialogBuilder(
+                        this@FormFragment.requireContext(),
+                        R.style.MaterialAlertDialog_Rounded
+                    )
                 builder.setView(R.layout.layout_loading)
                 val dialog: AlertDialog = builder.create()
 
@@ -102,6 +110,7 @@ class FormFragment : Fragment() {
                             }
                             findNavController().navigate(R.id.navigation_result, bundle)
                         }
+
                         is ResultState.Error -> {
                             dialog.dismiss()
                             Toast.makeText(
@@ -110,6 +119,7 @@ class FormFragment : Fragment() {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
+
                         else -> dialog.dismiss()
                     }
                 }

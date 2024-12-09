@@ -164,6 +164,7 @@ class PhotoProfileFragment : Fragment() {
             .start(requireContext(), this)
     }
 
+    @Suppress("DEPRECATION")
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -185,7 +186,6 @@ class PhotoProfileFragment : Fragment() {
     private fun postProfilePhoto() {
         currentPhotoProfileUri?.let { uri ->
             val imageFile = uriToFile(uri, requireContext()).imageCompressor()
-            Log.d("Image File", "showImage: ${imageFile.path}")
             val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
 
             val multipartBody = MultipartBody.Part.createFormData(
@@ -201,7 +201,6 @@ class PhotoProfileFragment : Fragment() {
     private fun putProfilePhoto() {
         currentPhotoProfileUri?.let { uri ->
             val imageFile = uriToFile(uri, requireContext()).imageCompressor()
-            Log.d("Image File", "showImage: ${imageFile.path}")
             val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
 
             val multipartBody = MultipartBody.Part.createFormData(

@@ -7,7 +7,7 @@ data class HistoryResponse(
     val status: String,
 
     @field:SerializedName("data")
-    val data: List<HistoryData>
+    val data: List<HistoryData>,
 )
 
 data class HistoryData(
@@ -27,5 +27,5 @@ data class HistoryData(
     val recommendation: String,
 
     @field:SerializedName("createdAt")
-    val createdAt: String
+    val createdAt: String,
 )

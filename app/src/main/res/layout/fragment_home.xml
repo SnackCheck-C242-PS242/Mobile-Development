@@ -70,7 +70,7 @@
         app:layout_constraintTop_toTopOf="@id/greeting"
         app:shapeAppearanceOverlay="@style/CircularImage"
         app:strokeColor="?attr/colorPrimary"
-        app:strokeWidth="4dp"
+        app:strokeWidth="2dp"
         tools:ignore="ImageContrastCheck"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -208,7 +208,7 @@
         android:clipToPadding="false"
         android:nestedScrollingEnabled="false"
         android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="24dp"
         android:layout_marginBottom="16dp"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"

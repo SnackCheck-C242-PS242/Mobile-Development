@@ -62,15 +62,21 @@ class HomeFragment : Fragment() {
                     binding.progressBarNews.visibility = View.VISIBLE
                     binding.rvNews.visibility = View.GONE
                 }
+
                 is ResultState.Success -> {
                     binding.progressBarNews.visibility = View.GONE
                     binding.rvNews.visibility = View.VISIBLE
                     newsAdapter = NewsAdapter(result.data)
                     binding.rvNews.apply {
-                        layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                        layoutManager = LinearLayoutManager(
+                            requireContext(),
+                            LinearLayoutManager.HORIZONTAL,
+                            false
+                        )
                         adapter = newsAdapter
                     }
                 }
+
                 is ResultState.Error -> {
                     binding.progressBarNews.visibility = View.GONE
                     binding.rvNews.visibility = View.GONE

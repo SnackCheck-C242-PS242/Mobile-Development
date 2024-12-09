@@ -7,6 +7,7 @@ import android.os.Looper
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
@@ -34,6 +35,13 @@ class SplashActivity : AppCompatActivity() {
         val viewModelFactory = ViewModelFactory(userRepository, pref)
         viewModel = ViewModelProvider(this, viewModelFactory)[SplashViewModel::class.java]
 
+        viewModel.getThemeSetting().observe(this) { isDarkModeActive ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

@@ -24,7 +24,10 @@ class NutritionDataFormAdapter(private val viewModel: FormViewModel) :
                 return oldItem === newItem
             }
 
-            override fun areContentsTheSame(oldItem: NutritionItem, newItem: NutritionItem): Boolean {
+            override fun areContentsTheSame(
+                oldItem: NutritionItem,
+                newItem: NutritionItem,
+            ): Boolean {
                 return oldItem == newItem
             }
         }
@@ -51,7 +54,22 @@ class NutritionDataFormAdapter(private val viewModel: FormViewModel) :
             // Observasi perubahan status nutrisi
             viewModel.nutrientStatus.observe((binding.root.context as LifecycleOwner)) { statusMap ->
                 // Ambil daftar nutrisi yang tersedia
-                val availableNutrients = statusMap.filterValues { it == 0 }.keys.toMutableList()
+                // val availableNutrients = statusMap.filterValues { it == 0 }.keys.toMutableList()
+                val availableNutrients = statusMap.filterValues { it == 0 }
+                    .keys.map { nutrient ->
+                        // Ambil string resource untuk setiap nutrisi
+                        when (nutrient) {
+                            "Fat" -> binding.root.context.getString(R.string.fat)
+                            "Saturated Fat" -> binding.root.context.getString(R.string.saturated_fat)
+                            "Carbohydrates" -> binding.root.context.getString(R.string.carbohydrates)
+                            "Sugars" -> binding.root.context.getString(R.string.sugars)
+                            "Fiber" -> binding.root.context.getString(R.string.fiber)
+                            "Proteins" -> binding.root.context.getString(R.string.proteins)
+                            "Salt" -> binding.root.context.getString(R.string.sodium)
+                            else -> nutrient
+                        }
+                    }.toMutableList()
+
 
                 // Jika item.name sudah dipilih, tambahkan ke daftar dropdown
                 if (item.name.isNotEmpty() && !availableNutrients.contains(item.name)) {
@@ -81,13 +99,13 @@ class NutritionDataFormAdapter(private val viewModel: FormViewModel) :
                 item.name = selected
 
                 // Tetapkan nilai dropdown dengan segera
-                if (selected == "Sodium") {
+                if (selected == binding.root.context.getString(R.string.sodium)) {
                     binding.edNutritionAmount.setText(binding.root.context.getString(R.string.milligram))
                 } else {
                     binding.edNutritionAmount.setText(binding.root.context.getString(R.string.gram))
                 }
 
-                if (selected == "Carbohydrates" || selected == "Saturated Fat") {
+                if (selected == binding.root.context.getString(R.string.carbohydrates) || selected == binding.root.context.getString(R.string.saturated_fat)) {
                     binding.tvAutoComplete.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                 } else {
                     binding.tvAutoComplete.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
@@ -105,7 +123,14 @@ class NutritionDataFormAdapter(private val viewModel: FormViewModel) :
                     item.amount = s.toString()
                 }
 
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int,
+                ) {
+                }
+
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             })
         }

@@ -3,10 +3,10 @@ package com.snackcheck.view.main
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -35,6 +35,14 @@ class MainActivity : AppCompatActivity() {
         val userRepository = Injection.provideRepository(this)
         val viewModelFactory = ViewModelFactory(userRepository, pref)
         viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+
+        viewModel.getThemeSetting().observe(this) { isDarkModeActive ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
 
         viewModel.getToken().observe(this) { token ->
             if (token.isNullOrEmpty()) {

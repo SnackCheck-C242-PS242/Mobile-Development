@@ -47,8 +47,8 @@ class SignUpActivity : AppCompatActivity() {
                 startActivity(Intent(this@SignUpActivity, LoginActivity::class.java))
             }
 
-            btnSignup.setOnClickListener{
-                if (edFullName.text!!.isNotEmpty() && edUsername.text!!.isNotEmpty() && edEmail.text!!.isNotEmpty() && edPassword.text?.length!! >= 8 && (edPasswordConfirmation.text!!.toString() == edPassword.text.toString())){
+            btnSignup.setOnClickListener {
+                if (edFullName.text!!.isNotEmpty() && edUsername.text!!.isNotEmpty() && edEmail.text!!.isNotEmpty() && edPassword.text?.length!! >= 8 && (edPasswordConfirmation.text!!.toString() == edPassword.text.toString())) {
                     if (isNetworkAvailable(this@SignUpActivity)) {
                         viewModel.register(
                             fullName = edFullName.text.toString(),
@@ -87,7 +87,7 @@ class SignUpActivity : AppCompatActivity() {
                             this@SignUpActivity,
                             getString(R.string.register_success),
                             Toast.LENGTH_SHORT
-                            ).show()
+                        ).show()
 
                         val email = edEmail.text.toString()
                         val intent = Intent(this@SignUpActivity, VerificationActivity::class.java)
@@ -95,6 +95,7 @@ class SignUpActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     }
+
                     is ResultState.Error -> {
                         dialog.dismiss()
                         Toast.makeText(
@@ -103,6 +104,7 @@ class SignUpActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
+
                     else -> dialog.dismiss()
                 }
             }

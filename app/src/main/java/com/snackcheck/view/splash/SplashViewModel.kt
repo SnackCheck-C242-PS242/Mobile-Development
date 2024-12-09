@@ -1,6 +1,5 @@
 package com.snackcheck.view.splash
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +13,10 @@ class SplashViewModel(private val repository: UserRepository) : ViewModel() {
     private val _userData = MutableLiveData<ProfileData?>()
     val userData: LiveData<ProfileData?> = _userData
 
+    fun getThemeSetting(): LiveData<Boolean> {
+        return repository.getThemeSetting().asLiveData()
+    }
+
     fun getToken(): LiveData<String?> {
         return repository.getToken().asLiveData()
     }
@@ -22,7 +25,6 @@ class SplashViewModel(private val repository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             val data = repository.getUserDataPreferences()
             _userData.value = data
-            Log.d("HomeViewModel", "User Data: ${_userData.value}")
         }
     }
 }

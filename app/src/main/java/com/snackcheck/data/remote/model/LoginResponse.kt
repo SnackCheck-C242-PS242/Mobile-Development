@@ -10,5 +10,5 @@ data class LoginResponse(
     val status: String,
 
     @field:SerializedName("accessToken")
-    val accessToken: String
+    val accessToken: String,
 )

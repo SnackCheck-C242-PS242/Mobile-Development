@@ -1,7 +1,6 @@
 package com.snackcheck.view.profile.photo
 
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -29,7 +28,6 @@ class PhotoProfileViewModel(private val repository: UserRepository) : ViewModel(
         viewModelScope.launch {
             val data = repository.getUserDataPreferences()
             _userData.value = data
-            Log.d("HomeViewModel", "User Data: ${_userData.value}")
         }
     }
 
@@ -41,7 +39,6 @@ class PhotoProfileViewModel(private val repository: UserRepository) : ViewModel(
             val response = repository.postPhotoProfile(profilePhoto)
             if (response.status == "success") {
                 _postResponseResult.value = ResultState.Success(response)
-                Log.d("PhotoProfileViewModel", "Response: $response")
                 repository.saveProfilePhotoUrl(response.profilePhotoUrl.toString())
                 getProfile()
             } else {
@@ -58,7 +55,6 @@ class PhotoProfileViewModel(private val repository: UserRepository) : ViewModel(
             val response = repository.putPhotoProfile(profilePhoto)
             if (response.status == "success") {
                 _putResponseResult.value = ResultState.Success(response)
-                Log.d("PhotoProfileViewModel", "Response: $response")
                 repository.saveProfilePhotoUrl(response.profilePhotoUrl.toString())
                 getProfile()
             } else {

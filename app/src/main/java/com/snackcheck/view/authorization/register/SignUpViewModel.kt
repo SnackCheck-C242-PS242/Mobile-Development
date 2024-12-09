@@ -22,13 +22,14 @@ class SignUpViewModel(private val repository: UserRepository) : ViewModel() {
         fullName: String,
         email: String,
         password: String,
-        confirmPassword: String
+        confirmPassword: String,
     ) {
         viewModelScope.launch {
             try {
                 _responseResult.value = ResultState.Loading
-                val response = repository.register(username, fullName, email, password, confirmPassword)
-                if (response.status=="success") {
+                val response =
+                    repository.register(username, fullName, email, password, confirmPassword)
+                if (response.status == "success") {
                     _responseResult.value = ResultState.Success(response)
                 }
             } catch (e: HttpException) {
