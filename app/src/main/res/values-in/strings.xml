@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SnackCheck</string>
+    <string name="app_logo">Logo aplikasi</string>
+    <string name="background">Latar Belakang</string>
+
+    <string name="sign_up">Daftar</string>
+    <string name="sign_up_btn_text">Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="login_btn_text">Masuk</string>
+    <string name="email">Email</string>
+    <string name="username">Nama Pengguna</string>
+    <string name="password">Kata Sandi</string>
+
+    <string name="title_home">Beranda</string>
+    <string name="title_prediction">Prediksi</string>
+    <string name="title_history">Riwayat</string>
+    <string name="title_setting">Pengaturan</string>
+    <string name="title_verification">Verifikasi</string>
+    <string name="title_history_detail">Detil Riwayat</string>
+
+    <string name="login_page_title_content_description">Deskripsi konten halaman masuk</string>
+    <string name="login_button_content_description">Deskripsi konten tombol masuk</string>
+    <string name="do_not_have_any_account">Belum punya akun?</string>
+    <string name="sign_up_page_title_content_description">Deskripsi konten halaman daftar</string>
+    <string name="already_have_an_account">Sudah punya akun?</string>
+
+    <string name="verify">Verifikasi</string>
+    <string name="resend_code">Kirim ulang kode verifikasi</string>
+    <string name="verification_page_title_content_description">Deskripsi konten halaman verifikasi</string>
+    <string name="verification_success_page_title_content_description">Deskripsi konten halaman verifikasi sukses</string>
+    <string name="did_not_receive_code_text">Tidak menerima kode verifikasi?</string>
+    <string name="title_verification_success">Verifikasi Berhasil!</string>
+    <string name="can_login_text">Sekarang Anda bisa masuk dengan akun Anda!</string>
+    <string name="enjoy_text">Nikmati snack, peduli kesehatan, dengan aplikasi SnackCheck kami!</string>
+    <string name="go_to_login">Ke Halaman Masuk</string>
+    <string name="register_now">Daftar Sekarang</string>
+    <string name="welcome_to_snackcheck">Selamat Datang di SnackCheck App!</string>
+    <string name="welcome_description">SnackCheck membantu Anda membuat pilihan makanan yang lebih sehat! Cukup masukkan data gizi, dan biarkan model pembelajaran mesin kami menganalisisnya untuk menentukan apakah makanan tersebut sehat atau tidak.\n\nMulailah membuat pilihan makanan yang lebih baik untuk kesehatan Anda hari ini!</string>
+    <string name="logout_btn_text">Keluar</string>
+    <string name="reset_password">Atur Ulang Kata Sandi</string>
+    <string name="send_code_btn_text">Kirim Kode</string>
+    <string name="reset_password_page_title_content_description">Deskripsi konten judul halaman Atur Ulang Kata Sandi</string>
+    <string name="input_new_password_page_title_content_description">Deskripsi konten judul halaman Masukkan Kata Sandi Baru</string>
+
+    <string name="hello">Halo</string>
+    <string name="you">Kamu!</string>
+    <string name="name">Nama</string>
+
+    <string name="dark_mode_title">Mode Gelap</string>
+    <string name="dark_mode_subtitle">Aktifkan mode gelap</string>
+    <string name="language_title">Bahasa</string>
+    <string name="title_profile">Profil</string>
+    <string name="profile_picture_description">Foto Profil</string>
+    <string name="user_name_profile">johndoe007</string>
+    <string name="edit_photo">Edit Foto</string>
+    <string name="upload_photo">Unggah Foto</string>
+    <string name="full_name_profile">John Doe</string>
+    <string name="email_profile">johndoe@gmail.com</string>
+    <string name="title_username_profile">Nama Pengguna</string>
+    <string name="username_icon">Ikon Nama Pengguna</string>
+    <string name="title_full_name_profile">Nama Lengkap</string>
+    <string name="full_name_icon">Ikon Nama Lengkap</string>
+    <string name="title_email_profile">Email</string>
+    <string name="email_icon">Ikon Email</string>
+    <string name="theme">Tema</string>
+    <string name="dark_mode">Mode gelap</string>
+    <string name="go_to_language_setting">Pergi ke pengaturan bahasa</string>
+    <string name="language">Bahasa</string>
+    <string name="save_changes">Simpan Perubahan</string>
+    <string name="choose_from_gallery">Pilih dari Galeri</string>
+    <string name="cancel">Batal</string>
+    <string name="title_profile_picture">Foto Profil</string>
+    <string name="no_image_selected">Tidak ada gambar yang dipilih</string>
+    <string name="forgot_password">Lupa Kata Sandi?</string>
+
+    <string name="news_title">Judul Berita</string>
+    <string name="news_description">Deskripsi Berita</string>
+    <string name="title_news">Berita</string>
+    <string name="no_news">Tidak ada berita ditemukan</string>
+    <string name="failed_to_remove">Gagal menghapus.</string>
+    <string name="snack_name_cannot_be_empty">Nama camilan tidak boleh kosong.</string>
+
+    <string name="result">Hasil</string>
+    <string name="timestamp">Waktu</string>
+
+    <string name="nutrition">Nutrisi</string>
+    <string name="snack_name">Nama Camilan</string>
+    <string name="amount">Jumlah</string>
+    <string name="gram">(g)</string>
+    <string name="milligram">(mg)</string>
+    <string name="amount_gram">Jumlah (g)</string>
+    <string name="amount_milligram">Jumlah (mg)</string>
+    <string name="analyze_btn_text">Analisis</string>
+    <string name="fat">Lemak</string>
+    <string name="colon_char">:</string>
+    <string name="carbohydrates">Karbohidrat</string>
+    <string name="saturated_fat">Lemak Jenuh</string>
+    <string name="sugars">Gula</string>
+    <string name="fiber">Serat</string>
+    <string name="proteins">Protein</string>
+    <string name="sodium">Garam</string>
+    <string name="nutrition_data">Data Nutrisi</string>
+    <string name="prediction_result">Hasil Prediksi</string>
+    <string name="no_data">Tidak ada data</string>
+    <string name="title_nutritional_data_form">Formulir Data Nutrisi</string>
+    <string name="snack_name_example">Ini adalah nama camilan</string>
+    <string name="title_result">Hasil</string>
+
+    <string name="no_prediction">Tidak Ada Prediksi</string>
+    <string name="recommendation_example">Camilan ini lebih baik Anda konsumsi sekali seminggu</string>
+
+    <string name="confirm_btn_text">Konfirmasi</string>
+    <string name="clear_history">Hapus Riwayat</string>
+    <string name="hint_search_history">Riwayat Pencarian</string>
+
+    <string name="please_fill_the_form_correctly">Silakan isi formulir dengan benar</string>
+    <string name="register_success">Pendaftaran berhasil. Silakan verifikasi akun Anda</string>
+    <string name="register_failed">Pendaftaran gagal</string>
+    <string name="error_invalid_email">Silakan masukkan alamat email yang valid</string>
+    <string name="regex_email">[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}</string>
+    <string name="password_minimum_characters">Kata sandi harus terdiri dari minimal 8 karakter</string>
+    <string name="password_confirmation_error">Konfirmasi kata sandi harus sama dengan kata sandi</string>
+    <string name="password_confirmation">Konfirmasi Kata Sandi</string>
+    <string name="message_signup_page">Silakan masukkan data pribadi Anda</string>
+    <string name="message_login_page">Masukkan nama pengguna dan kata sandi untuk login</string>
+    <string name="please_wait">Tunggu sebentar..</string>
+    <string name="reload_history">Muat Ulang Riwayat</string>
+    <string name="no_history">Tidak ada riwayat ditemukan</string>
+
+    <string name="message_verification_page">Masukkan kode verifikasi dari email</string>
+    <string name="message_reset_password_email">Masukkan email yang digunakan pada akun Anda</string>
+    <string name="message_reset_password_input">Masukkan kata sandi baru Anda</string>
+    <string name="new_password">Kata Sandi Baru</string>
+    <string name="new_password_confirmation">Konfirmasi Kata Sandi Baru</string>
+    <string name="reset_password_success">Reset kata sandi berhasil!</string>
+    <string name="connection_error">Kesalahan koneksi</string>
+    <string name="server_timeout">Waktu habis server</string>
+    <string name="verification_succes">Verifikasi berhasil</string>
+
+    <string name="please_fill_in_all_otp_fields">Harap isi semua kolom OTP</string>
+    <string name="logout_failed">Gagal keluar</string>
+    <string name="language_option">id</string>
+</resources>

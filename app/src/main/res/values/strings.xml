@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SnackCheck</string>
     <string name="app_logo">App logo</string>
@@ -11,57 +12,28 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
 
-    <string name="login_page_title_content_description">Login page title content description</string>
-    <string name="login_button_content_description">Login button content description</string>
-    <string name="do_not_have_any_account">Don\'t have any account?</string>
-    <string name="sign_up_page_title_content_description">Sign up page title content description</string>
-    <string name="already_have_an_account">Already have an account?</string>
     <string name="title_home">Home</string>
     <string name="title_prediction">Prediction</string>
     <string name="title_history">History</string>
     <string name="title_setting">Setting</string>
     <string name="title_verification">Verification</string>
+    <string name="title_history_detail">History Detail</string>
+
+    <string name="login_page_title_content_description">Login page title content description</string>
+    <string name="login_button_content_description">Login button content description</string>
+    <string name="do_not_have_any_account">Don\'t have any account?</string>
+    <string name="sign_up_page_title_content_description">Sign up page title content description</string>
+    <string name="already_have_an_account">Already have an account?</string>
+
     <string name="verify">Verify</string>
     <string name="resend_code">Re-send code</string>
     <string name="verification_page_title_content_description">Verification page title content description</string>
     <string name="verification_success_page_title_content_description">Verification Success page title content description</string>
     <string name="did_not_receive_code_text">Didn’t receive any verification code?</string>
-    <string name="hello">Hello</string>
-    <string name="you">You!</string>
-    <string name="name">Name</string>
-
-    <string name="result">Result</string>
-    <string name="timestamp">Timestamp</string>
-
-    <string name="nutrition">Nutrition</string>
-    <string name="snack_name">Snack name</string>
-    <string name="amount">Amount</string>
-    <string name="gram">(g)</string>
-    <string name="milligram">(mg)</string>
-    <string name="amount_gram">Amount (g)</string>
-    <string name="amount_milligram">Amount (mg)</string>
-    <string name="analyze_btn_text">Analyze</string>
-
     <string name="title_verification_success">Verification Success!</string>
     <string name="can_login_text">You can now login with your account!</string>
     <string name="enjoy_text">Enjoy your snack, take care of your health, with our only app, SnackCheck</string>
     <string name="go_to_login">Go to Login Page</string>
-    <string name="title_result">Result</string>
-    <string name="snack_name_example">This is snack name</string>
-    <string name="fat">Fat</string>
-    <string name="colon_char">:</string>
-    <string name="carbohydrates">Carbohydrates</string>
-    <string name="saturated_fat">Saturated Fat</string>
-    <string name="sugars">Sugars</string>
-    <string name="fiber">Fiber</string>
-    <string name="proteins">Proteins</string>
-    <string name="sodium">Salt</string>
-    <string name="nutrition_data">Nutrition Data</string>
-    <string name="prediction_result">Prediction Result</string>
-    <string name="no_data">No data</string>
-    <string name="title_nutritional_data_form">Nutritional Data Form</string>
-    <string name="no_prediction">No Prediction</string>
-    <string name="recommendation_example">This snack is better for you to consume at once a week</string>
     <string name="register_now">Register Now</string>
     <string name="welcome_to_snackcheck">Welcome to SnackCheck App!</string>
     <string name="welcome_description">SnackCheck helps you make healthier food choices! Simply input the nutritional data, and let our machine learning model analyze it to determine if the food is healthy or not.\n\nStart making better food choices for your health today!</string>
@@ -70,22 +42,11 @@
     <string name="send_code_btn_text">Send Code</string>
     <string name="reset_password_page_title_content_description">Reset Password page title content description</string>
     <string name="input_new_password_page_title_content_description">Input New Password page title content description</string>
-    <string name="confirm_btn_text">Confirm</string>
-    <string name="clear_history">Clear History</string>
-    <string name="hint_search_history">Search History</string>
-    <string name="please_fill_the_form_correctly">Please fill the form correctly</string>
-    <string name="register_success">Registration is success. Please verify your account</string>
-    <string name="register_failed">Registration is failed</string>
-    <string name="error_invalid_email">Please enter a valid email address</string>
-    <string name="regex_email">[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}</string>
-    <string name="password_minimum_characters">Password must be at least 8 characters long</string>
-    <string name="password_confirmation_error">Password confirmation must be same as password</string>
-    <string name="password_confirmation">Confirm Password</string>
-    <string name="message_signup_page">Please enter your personal data</string>
-    <string name="message_login_page">Enter your username and password to login</string>
-    <string name="please_wait">Please Wait..</string>
-    <string name="reload_history">Reload History</string>
-    <string name="no_history">No history found</string>
+
+    <string name="hello">Hello</string>
+    <string name="you">You!</string>
+    <string name="name">Name</string>
+
     <string name="dark_mode_title">Dark Mode</string>
     <string name="dark_mode_subtitle">Enable dark mode</string>
     <string name="language_title">Language</string>
@@ -112,22 +73,73 @@
     <string name="title_profile_picture">Profile Picture</string>
     <string name="no_image_selected">No image selected</string>
     <string name="forgot_password">Forgot Password?</string>
+
+    <string name="news_title">News Title</string>
+    <string name="news_description">News description</string>
+    <string name="title_news">News</string>
+    <string name="no_news">No news found</string>
+    <string name="failed_to_remove">Failed to remove.</string>
+    <string name="snack_name_cannot_be_empty">Snack name cannot be empty.</string>
+
+    <string name="result">Result</string>
+    <string name="timestamp">Timestamp</string>
+
+    <string name="nutrition">Nutrition</string>
+    <string name="snack_name">Snack name</string>
+    <string name="amount">Amount</string>
+    <string name="gram">(g)</string>
+    <string name="milligram">(mg)</string>
+    <string name="amount_gram">Amount (g)</string>
+    <string name="amount_milligram">Amount (mg)</string>
+    <string name="analyze_btn_text">Analyze</string>
+    <string name="fat">Fat</string>
+    <string name="colon_char">:</string>
+    <string name="carbohydrates">Carbohydrates</string>
+    <string name="saturated_fat">Saturated Fat</string>
+    <string name="sugars">Sugars</string>
+    <string name="fiber">Fiber</string>
+    <string name="proteins">Proteins</string>
+    <string name="sodium">Salt</string>
+    <string name="nutrition_data">Nutrition Data</string>
+    <string name="prediction_result">Prediction Result</string>
+    <string name="no_data">No data</string>
+    <string name="title_nutritional_data_form">Nutritional Data Form</string>
+    <string name="snack_name_example">This is snack name</string>
+    <string name="title_result">Result</string>
+
+    <string name="no_prediction">No Prediction</string>
+    <string name="recommendation_example">This snack is better for you to consume at once a week</string>
+
+    <string name="confirm_btn_text">Confirm</string>
+    <string name="clear_history">Clear History</string>
+    <string name="hint_search_history">Search History</string>
+
+    <string name="please_fill_the_form_correctly">Please fill the form correctly</string>
+    <string name="register_success">Registration is success. Please verify your account</string>
+    <string name="register_failed">Registration is failed</string>
+    <string name="error_invalid_email">Please enter a valid email address</string>
+    <string name="regex_email">[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}</string>
+    <string name="password_minimum_characters">Password must be at least 8 characters long</string>
+    <string name="password_confirmation_error">Password confirmation must be same as password</string>
+    <string name="password_confirmation">Confirm Password</string>
+    <string name="message_signup_page">Please enter your personal data</string>
+    <string name="message_login_page">Enter your username and password to login</string>
+    <string name="please_wait">Please Wait..</string>
+    <string name="reload_history">Reload History</string>
+    <string name="no_history">No history found</string>
+
     <string name="message_verification_page">Enter the verification code from email</string>
     <string name="message_reset_password_email">Enter email that used on your account</string>
     <string name="message_reset_password_input">Enter your new password</string>
     <string name="new_password">New Password</string>
     <string name="new_password_confirmation">New Password Confirmation</string>
     <string name="reset_password_success">Reset password is success!</string>
-    <string name="title_history_detail">History Detail</string>
     <string name="connection_error">Connection error</string>
     <string name="server_timeout">Server timeout</string>
     <string name="verification_succes">Verification success</string>
-    <string name="news_title">News Title</string>
-    <string name="news_description">News description</string>
-    <string name="title_news">News</string>
-    <string name="no_news">No news found</string>
+
+
     <string name="please_fill_in_all_otp_fields">Please fill in all OTP fields</string>
-    <string name="failed_to_remove">Failed to remove.</string>
-    <string name="snack_name_cannot_be_empty">Snack name cannot be empty.</string>
     <string name="logout_failed">Logout failed</string>
+    <string name="language_option">en</string>
 </resources>

@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
         binding.rvHistory.adapter = historyAdapter
         binding.rvNews.adapter = newsAdapter
 
-        viewModel.getNews()
+        viewModel.getNews(getString(R.string.language_option))
         viewModel.newsResponse.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is ResultState.Loading -> {
@@ -67,13 +67,17 @@ class HomeFragment : Fragment() {
                     binding.progressBarNews.visibility = View.GONE
                     binding.rvNews.visibility = View.VISIBLE
                     newsAdapter = NewsAdapter(result.data)
-                    binding.rvNews.apply {
-                        layoutManager = LinearLayoutManager(
-                            requireContext(),
-                            LinearLayoutManager.HORIZONTAL,
-                            false
-                        )
-                        adapter = newsAdapter
+                    if (result.data.isNotEmpty()){
+                        binding.rvNews.apply {
+                            layoutManager = LinearLayoutManager(
+                                requireContext(),
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
+                            adapter = newsAdapter
+                        }
+                    } else {
+                        binding.tvNoNews.visibility = View.VISIBLE
                     }
                 }
 
@@ -83,7 +87,6 @@ class HomeFragment : Fragment() {
                     binding.tvNoNews.visibility = View.VISIBLE
                 }
             }
-
         }
 
         viewModel.getProfile()

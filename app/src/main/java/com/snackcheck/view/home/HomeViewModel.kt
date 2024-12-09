@@ -25,12 +25,12 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
     private val _newsResponse = MutableLiveData<ResultState<List<ArticlesItem>>>()
     val newsResponse = _newsResponse
 
-    fun getNews() {
+    fun getNews(language: String) {
         viewModelScope.launch {
             try {
                 _newsResponse.value = ResultState.Loading
                 val response =
-                    ApiConfig.getNewsApiService().getNews("food", "health", "en", BuildConfig.API_KEY)
+                    ApiConfig.getNewsApiService().getNews("food", "health", language, BuildConfig.API_KEY)
                 if (response.status == "ok") {
                     val filteredArticles = response.articles.filter { article ->
                         article.title != "[Removed]" && article.description != "[Removed]" && article.content != "[Removed]"
