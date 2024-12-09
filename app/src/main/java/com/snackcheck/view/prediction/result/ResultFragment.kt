@@ -26,7 +26,7 @@ class ResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val snackPredictResponse = arguments?.getParcelable<SnackPredictResponse>("snackPredictResponse")
+        @Suppress("DEPRECATION") val snackPredictResponse = arguments?.getParcelable<SnackPredictResponse>("snackPredictResponse")
         Log.d("ResultFragment", "Snack Predict Response: $snackPredictResponse")
         val snackName = snackPredictResponse?.result?.snackName
         Log.d("ResultFragment", "Snack Name: $snackName")
@@ -42,7 +42,7 @@ class ResultFragment : Fragment() {
             binding.tvSugarsAmount.text = it.sugars.toString()
             binding.tvFiberAmount.text = it.fiber.toString()
             binding.tvProteinsAmount.text = it.proteins.toString()
-            binding.tvSodiumAmount.text = it.sodium.toString()
+            binding.tvSodiumAmount.text = (it.sodium?.times(1000)).toString()
         } ?: run {
             binding.tvSnackNamePlaceholder.text = getString(R.string.no_data)
         }

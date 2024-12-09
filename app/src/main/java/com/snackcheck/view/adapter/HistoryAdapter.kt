@@ -1,7 +1,9 @@
 package com.snackcheck.view.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +11,7 @@ import com.snackcheck.helper.withDateFormat
 import com.snackcheck.data.remote.model.HistoryData
 import com.snackcheck.databinding.ItemHistoryBinding
 
-class HistoryAdapter : ListAdapter<HistoryData, HistoryAdapter.HistoryViewHolder>(DIFF_CALLBACK) {
+class HistoryAdapter(private val onItemClicked: (HistoryData) -> Unit) : ListAdapter<HistoryData, HistoryAdapter.HistoryViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
@@ -29,6 +31,10 @@ class HistoryAdapter : ListAdapter<HistoryData, HistoryAdapter.HistoryViewHolder
                 binding.tvSnackName.text = history.snackName
                 binding.tvResult.text = history.healthStatus
                 binding.tvTimeCreated.text = history.createdAt.withDateFormat()
+
+                binding.root.setOnClickListener {
+                    onItemClicked(history)
+                }
             }
     }
 

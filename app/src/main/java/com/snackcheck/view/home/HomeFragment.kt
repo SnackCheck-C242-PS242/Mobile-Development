@@ -11,11 +11,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.snackcheck.R
+import com.snackcheck.data.ResultState
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.FragmentHomeBinding
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.adapter.HistoryAdapter
+import com.snackcheck.view.adapter.NewsAdapter
 
 
 class HomeFragment : Fragment() {
@@ -26,6 +28,7 @@ class HomeFragment : Fragment() {
     private lateinit var factory: ViewModelFactory
     private val viewModel by viewModels<HomeViewModel> { factory }
     private lateinit var historyAdapter: HistoryAdapter
+    private var newsAdapter: NewsAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,8 +44,41 @@ class HomeFragment : Fragment() {
         pref = UserPreference.getInstance(requireContext().dataStore)
         factory = ViewModelFactory.getInstance(requireContext(), pref)
 
-        historyAdapter = HistoryAdapter()
+        historyAdapter = HistoryAdapter {
+            val bundle = Bundle().apply {
+                putString("snackId", it.snackId)
+            }
+
+            findNavController().navigate(R.id.action_home_to_history_detail, bundle)
+        }
+
         binding.rvHistory.adapter = historyAdapter
+        binding.rvNews.adapter = newsAdapter
+
+        viewModel.getNews()
+        viewModel.newsResponse.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is ResultState.Loading -> {
+                    binding.progressBarNews.visibility = View.VISIBLE
+                    binding.rvNews.visibility = View.GONE
+                }
+                is ResultState.Success -> {
+                    binding.progressBarNews.visibility = View.GONE
+                    binding.rvNews.visibility = View.VISIBLE
+                    newsAdapter = NewsAdapter(result.data)
+                    binding.rvNews.apply {
+                        layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                        adapter = newsAdapter
+                    }
+                }
+                is ResultState.Error -> {
+                    binding.progressBarNews.visibility = View.GONE
+                    binding.rvNews.visibility = View.GONE
+                    binding.tvNoNews.visibility = View.VISIBLE
+                }
+            }
+
+        }
 
         viewModel.getProfile()
         viewModel.userData.observe(viewLifecycleOwner) { profileData ->

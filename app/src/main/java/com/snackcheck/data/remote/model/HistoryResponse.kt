@@ -11,6 +11,9 @@ data class HistoryResponse(
 )
 
 data class HistoryData(
+    @field:SerializedName("snackId")
+    val snackId: String,
+
     @field:SerializedName("snackName")
     val snackName: String,
 

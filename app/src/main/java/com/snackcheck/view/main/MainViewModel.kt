@@ -14,17 +14,14 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
     private val _userData = MutableLiveData<ProfileData?>()
     val userData: LiveData<ProfileData?> = _userData
 
-    fun getToken(): LiveData<String?> {
-        return repository.getToken().asLiveData()
+    fun clearUserData() {
+        viewModelScope.launch {
+            repository.clearUserData()
+        }
     }
 
-    fun refreshToken(refreshToken: String) {
-        viewModelScope.launch {
-            val newAccessToken = repository.refreshToken(refreshToken)
-            Log.d("MainViewModel", "Old token: $refreshToken")
-            Log.d("MainViewModel", "New token: $newAccessToken")
-            repository.saveToken(newAccessToken.accessToken)
-        }
+    fun getToken(): LiveData<String?> {
+        return repository.getToken().asLiveData()
     }
 
     fun getProfile() {

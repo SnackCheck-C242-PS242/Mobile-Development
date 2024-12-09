@@ -118,4 +118,12 @@
     <string name="new_password">New Password</string>
     <string name="new_password_confirmation">New Password Confirmation</string>
     <string name="reset_password_success">Reset password is success!</string>
+    <string name="title_history_detail">History Detail</string>
+    <string name="connection_error">Connection error</string>
+    <string name="server_timeout">Server timeout</string>
+    <string name="verification_succes">Verification success</string>
+    <string name="news_title">News Title</string>
+    <string name="news_description">News description</string>
+    <string name="title_news">News</string>
+    <string name="no_news">No news found</string>
 </resources>

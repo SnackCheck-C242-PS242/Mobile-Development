@@ -9,7 +9,13 @@
         android:id="@+id/navigation_home"
         android:name="com.snackcheck.view.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_history_detail"
+            app:destination="@id/navigation_history_detail"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="false" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_prediction"
@@ -31,15 +37,30 @@
         <argument
             android:name="snackDetail"
             app:argType="com.snackcheck.data.local.entity.SnackDetail" />
-        <argument
-            android:name="result"
-            app:argType="string" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_history"
-        android:name="com.snackcheck.view.history.HistoryFragment"
+        android:name="com.snackcheck.view.history.all.HistoryFragment"
         android:label="fragment_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_history_to_history_detail"
+            app:destination="@id/navigation_history_detail"
+            app:popUpTo="@id/navigation_history"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_history_detail"
+        android:name="com.snackcheck.view.history.detail.HistoryDetailFragment"
+        android:label="fragment_history_detail"
+        tools:layout="@layout/fragment_history_detail">
+        <argument
+            android:name="snackId"
+            app:argType="string" />
+    </fragment>
+
     <fragment
         android:id="@+id/navigation_setting"
         android:name="com.snackcheck.view.setting.SettingFragment"
@@ -49,7 +70,7 @@
         android:id="@+id/navigation_profile"
         android:name="com.snackcheck.view.profile.info.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profile_to_photo_profile"
             app:destination="@id/navigation_photo_profile"

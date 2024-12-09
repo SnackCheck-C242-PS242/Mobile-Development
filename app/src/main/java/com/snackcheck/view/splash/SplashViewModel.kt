@@ -18,15 +18,6 @@ class SplashViewModel(private val repository: UserRepository) : ViewModel() {
         return repository.getToken().asLiveData()
     }
 
-    fun refreshToken(refreshToken: String) {
-        viewModelScope.launch {
-            val newAccessToken = repository.refreshToken(refreshToken)
-            Log.d("MainViewModel", "Old token: $refreshToken")
-            Log.d("MainViewModel", "New token: $newAccessToken")
-            repository.saveToken(newAccessToken.accessToken)
-        }
-    }
-
     fun getProfile() {
         viewModelScope.launch {
             val data = repository.getUserDataPreferences()

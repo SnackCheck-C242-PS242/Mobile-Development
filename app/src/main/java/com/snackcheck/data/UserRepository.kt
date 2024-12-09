@@ -52,6 +52,10 @@ class UserRepository private constructor(
         }
     }
 
+    suspend fun getHistoryId(snackId: String) = apiService.getHistoryById(snackId)
+
+    suspend fun clearHistory() = apiService.clearHistory()
+
     suspend fun saveToken(token: String) = userPreference.saveToken(token)
 
     suspend fun predictSnack(snackDetail: SnackDetail) = apiService.predictSnack(snackDetail)
@@ -69,6 +73,8 @@ class UserRepository private constructor(
         userPreference.logout()
         return Result.success("Success")
     }
+
+    suspend fun clearUserData() = userPreference.logout()
 
     suspend fun verifyAccount(email: String, verificationCode: String) = apiService.verifyAccount(email, verificationCode)
 

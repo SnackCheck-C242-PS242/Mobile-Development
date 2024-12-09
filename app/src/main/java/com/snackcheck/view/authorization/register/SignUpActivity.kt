@@ -14,6 +14,7 @@ import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.ActivitySignUpBinding
 import com.snackcheck.di.Injection
+import com.snackcheck.helper.isNetworkAvailable
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.authorization.login.LoginActivity
 import com.snackcheck.view.authorization.verification.VerificationActivity
@@ -48,13 +49,21 @@ class SignUpActivity : AppCompatActivity() {
 
             btnSignup.setOnClickListener{
                 if (edFullName.text!!.isNotEmpty() && edUsername.text!!.isNotEmpty() && edEmail.text!!.isNotEmpty() && edPassword.text?.length!! >= 8 && (edPasswordConfirmation.text!!.toString() == edPassword.text.toString())){
-                    viewModel.register(
-                        fullName = edFullName.text.toString(),
-                        username = edUsername.text.toString(),
-                        email = edEmail.text.toString(),
-                        password = edPassword.text.toString(),
-                        confirmPassword = edPasswordConfirmation.text.toString()
-                    )
+                    if (isNetworkAvailable(this@SignUpActivity)) {
+                        viewModel.register(
+                            fullName = edFullName.text.toString(),
+                            username = edUsername.text.toString(),
+                            email = edEmail.text.toString(),
+                            password = edPassword.text.toString(),
+                            confirmPassword = edPasswordConfirmation.text.toString()
+                        )
+                    } else {
+                        Toast.makeText(
+                            this@SignUpActivity,
+                            getString(R.string.connection_error),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 } else {
                     Toast.makeText(
                         this@SignUpActivity,

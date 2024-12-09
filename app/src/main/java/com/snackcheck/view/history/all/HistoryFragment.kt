@@ -1,13 +1,15 @@
-package com.snackcheck.view.history
+package com.snackcheck.view.history.all
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.snackcheck.R
+import com.snackcheck.data.ResultState
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.FragmentHistoryBinding
@@ -37,11 +39,48 @@ class HistoryFragment : Fragment() {
         pref = UserPreference.getInstance(requireContext().dataStore)
         factory = ViewModelFactory.getInstance(requireContext(), pref)
 
-        historyAdapter = HistoryAdapter()
+        historyAdapter = HistoryAdapter {
+            val bundle = Bundle().apply {
+                putString("snackId", it.snackId)
+            }
+
+            findNavController().navigate(R.id.action_history_to_history_detail, bundle)
+        }
         binding.rvHistory.adapter = historyAdapter
 
         loadHistory()
         setupRecyclerView()
+        setupAction()
+    }
+
+    private fun setupAction() {
+        binding.apply {
+            btnClearHistory.setOnClickListener {
+                viewModel.clearHistory()
+                viewModel.responseClearHistory.observe(viewLifecycleOwner){ response ->
+                    when (response) {
+                        is ResultState.Loading -> {
+                            progressBar.visibility = View.VISIBLE
+                            rvHistory.visibility = View.GONE
+                            btnReloadHistory.visibility = View.GONE
+                            tvNoHistory.visibility = View.GONE
+                        }
+                        is ResultState.Success -> {
+                            progressBar.visibility = View.GONE
+                            rvHistory.visibility = View.GONE
+                            btnReloadHistory.visibility = View.VISIBLE
+                            tvNoHistory.visibility = View.VISIBLE
+                        }
+                        is ResultState.Error -> {
+                            progressBar.visibility = View.GONE
+                            rvHistory.visibility = View.GONE
+                            btnReloadHistory.visibility = View.VISIBLE
+                            tvNoHistory.visibility = View.VISIBLE
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun setupRecyclerView() {

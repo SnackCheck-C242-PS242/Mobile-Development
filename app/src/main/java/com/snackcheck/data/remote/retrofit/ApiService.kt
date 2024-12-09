@@ -1,6 +1,7 @@
 package com.snackcheck.data.remote.retrofit
 
 import com.snackcheck.data.local.entity.SnackDetail
+import com.snackcheck.data.remote.model.HistoryDetailResponse
 import com.snackcheck.data.remote.model.HistoryResponse
 import com.snackcheck.data.remote.model.LoginResponse
 import com.snackcheck.data.remote.model.MessageResponse
@@ -10,6 +11,7 @@ import com.snackcheck.data.remote.model.SnackPredictResponse
 import com.snackcheck.data.remote.model.TokenResponse
 import okhttp3.MultipartBody
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -17,6 +19,7 @@ import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface ApiService {
     // ** AUTHENTICATION API **
@@ -69,11 +72,18 @@ interface ApiService {
     ): MessageResponse
 
     @FormUrlEncoded
-    @PUT("auth/reset")
+    @POST("auth/resetCodeVerification")
+    suspend fun verifyResetCode(
+        @Field("email") email: String,
+        @Field("resetCode") resetCode: String
+    ): MessageResponse
+
+    @FormUrlEncoded
+    @PUT("auth/password")
     suspend fun resetPassword(
         @Field("email") email: String,
         @Field("resetCode") resetCode: String,
-        @Field("password") password: String,
+        @Field("newPassword") password: String,
         @Field("confirmPassword") confirmPassword: String
     ): MessageResponse
 
@@ -87,6 +97,16 @@ interface ApiService {
     // History API
     @GET("snack/histories")
     suspend fun getHistory(): HistoryResponse
+
+    // History By ID API
+    @GET("snack/histories/{snackId}")
+    suspend fun getHistoryById(
+        @Path("snackId") snackId: String
+    ): HistoryDetailResponse
+
+    // Clear History
+    @DELETE("snack/histories")
+    suspend fun clearHistory(): MessageResponse
 
     // ** PROFILE API **
     // Profile Info API

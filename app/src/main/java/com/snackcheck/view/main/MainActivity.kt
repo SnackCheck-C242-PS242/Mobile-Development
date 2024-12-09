@@ -3,7 +3,9 @@ package com.snackcheck.view.main
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getToken().observe(this) { token ->
             if (token.isNullOrEmpty()) {
+                viewModel.clearUserData()
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             } else if (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -43,6 +47,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
             ) {
+                viewModel.clearUserData()
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             }
@@ -52,11 +57,10 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
-        // Pastikan NavHostFragment ditemukan
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        // Hubungkan Bottom Navigation dengan NavController
         navView.setupWithNavController(navController)
 
 
@@ -67,6 +71,7 @@ class MainActivity : AppCompatActivity() {
                     navController.popBackStack(R.id.navigation_prediction, false)
                     navController.navigate(R.id.navigation_prediction)
                 }
+
                 else -> navController.navigate(menuItem.itemId)
             }
             true

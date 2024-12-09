@@ -11,7 +11,8 @@ import com.snackcheck.view.authorization.login.LoginViewModel
 import com.snackcheck.view.authorization.register.SignUpViewModel
 import com.snackcheck.view.authorization.reset_password.ResetPasswordViewModel
 import com.snackcheck.view.authorization.verification.VerificationViewModel
-import com.snackcheck.view.history.HistoryViewModel
+import com.snackcheck.view.history.all.HistoryViewModel
+import com.snackcheck.view.history.detail.HistoryDetailViewModel
 import com.snackcheck.view.home.HomeViewModel
 import com.snackcheck.view.main.MainViewModel
 import com.snackcheck.view.prediction.form.FormViewModel
@@ -66,6 +67,9 @@ class ViewModelFactory(
             }
             modelClass.isAssignableFrom(InputNewPasswordViewModel::class.java) -> {
                 InputNewPasswordViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(HistoryDetailViewModel::class.java) -> {
+                HistoryDetailViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

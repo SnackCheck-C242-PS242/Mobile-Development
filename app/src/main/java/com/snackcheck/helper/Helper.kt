@@ -1,5 +1,8 @@
 package com.snackcheck.helper
 
+import android.content.Context
+import android.net.ConnectivityManager
+import androidx.core.content.ContextCompat.getSystemService
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
@@ -15,4 +18,10 @@ fun String.withDateFormat(): String {
         e.printStackTrace()
         this
     }
+}
+
+fun isNetworkAvailable(context: Context): Boolean {
+    val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val networkInfo = connectivityManager.activeNetworkInfo
+    return networkInfo != null && networkInfo.isConnected
 }

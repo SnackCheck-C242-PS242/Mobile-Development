@@ -15,7 +15,6 @@ import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.ActivityResetPasswordBinding
 import com.snackcheck.di.Injection
 import com.snackcheck.view.ViewModelFactory
-import com.snackcheck.view.authorization.input_new_password.InputNewPasswordActivity
 import com.snackcheck.view.authorization.verification.VerificationActivity
 
 class ResetPasswordActivity : AppCompatActivity() {
@@ -59,7 +58,7 @@ class ResetPasswordActivity : AppCompatActivity() {
                         dialog.dismiss()
                         Toast.makeText(
                             this@ResetPasswordActivity,
-                            getString(R.string.register_success),
+                            getString(R.string.verification_succes),
                             Toast.LENGTH_SHORT
                         ).show()
 

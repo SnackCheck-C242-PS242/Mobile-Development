@@ -14,6 +14,7 @@ import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.ActivityLoginBinding
 import com.snackcheck.di.Injection
+import com.snackcheck.helper.isNetworkAvailable
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.authorization.register.SignUpActivity
 import com.snackcheck.view.authorization.reset_password.ResetPasswordActivity
@@ -53,10 +54,18 @@ class LoginActivity : AppCompatActivity() {
 
             btnLogin.setOnClickListener {
                 if (edUsername.text!!.isNotEmpty() && edPassword.text?.length!! >= 8) {
-                    viewModel.login(
-                        username = edUsername.text.toString(),
-                        password = edPassword.text.toString()
-                    )
+                    if (isNetworkAvailable(this@LoginActivity)) {
+                        viewModel.login(
+                            username = edUsername.text.toString(),
+                            password = edPassword.text.toString()
+                        )
+                    } else {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            getString(R.string.connection_error),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 } else {
                     Toast.makeText(
                         this@LoginActivity,
@@ -71,6 +80,21 @@ class LoginActivity : AppCompatActivity() {
             builder.setView(R.layout.layout_loading)
             val dialog: AlertDialog = builder.create()
 
+            viewModel.profileResult.observe(this@LoginActivity) { result ->
+                when (result) {
+                    is ResultState.Success -> {
+                        val profileData = result.data.data
+                        viewModel.saveProfile(profileData)
+                    }
+
+                    is ResultState.Error -> {
+                        Toast.makeText(this@LoginActivity, result.error, Toast.LENGTH_SHORT).show()
+                    }
+
+                    else -> {}
+                }
+            }
+
             viewModel.responseResult.observe(this@LoginActivity) { response ->
                 when (response) {
                     is ResultState.Loading -> dialog.show()
@@ -82,7 +106,6 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     }
-
                     is ResultState.Error -> {
                         dialog.dismiss()
                         Toast.makeText(
@@ -91,6 +114,7 @@ class LoginActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
+
                     else -> dialog.dismiss()
                 }
             }

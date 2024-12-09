@@ -5,11 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
+import com.snackcheck.R
 import com.snackcheck.data.ResultState
 import com.snackcheck.data.UserRepository
 import com.snackcheck.data.remote.model.MessageResponse
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import java.net.SocketTimeoutException
 
 class SignUpViewModel(private val repository: UserRepository) : ViewModel() {
     private val _responseResult = MutableLiveData<ResultState<MessageResponse>>()
@@ -33,6 +35,8 @@ class SignUpViewModel(private val repository: UserRepository) : ViewModel() {
                 val errorBody = e.response()?.errorBody()?.string()
                 val errorMessage = Gson().fromJson(errorBody, MessageResponse::class.java).message
                 _responseResult.value = ResultState.Error(errorMessage.toString())
+            } catch (e: SocketTimeoutException) {
+                _responseResult.value = ResultState.Error(R.string.server_timeout.toString())
             }
         }
     }

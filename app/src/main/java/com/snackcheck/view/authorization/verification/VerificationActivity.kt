@@ -36,14 +36,6 @@ class VerificationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-
-
         setupOtpFocus()
         setupAction()
     }
@@ -54,6 +46,37 @@ class VerificationActivity : AppCompatActivity() {
 
         binding.apply {
             if (isForgotPassword) {
+                btnVerifySignup.visibility = View.GONE
+                btnVerifyForgotPassword.visibility = View.VISIBLE
+                btnVerifyForgotPassword.setOnClickListener {
+                    val otp1 = edOtp1.text.toString()
+                    val otp2 = edOtp2.text.toString()
+                    val otp3 = edOtp3.text.toString()
+                    val otp4 = edOtp4.text.toString()
+                    val otp5 = edOtp5.text.toString()
+
+                    if (otp1.isEmpty() || otp2.isEmpty() || otp3.isEmpty() || otp4.isEmpty() || otp5.isEmpty()) {
+                        Toast.makeText(
+                            this@VerificationActivity,
+                            "Please fill in all OTP fields",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        return@setOnClickListener
+                    }
+
+                    val verificationCode = "$otp1$otp2$otp3$otp4$otp5"
+
+                    val intent =
+                        Intent(this@VerificationActivity, InputNewPasswordActivity::class.java)
+                    intent.putExtra(InputNewPasswordActivity.EXTRA_EMAIL, email)
+                    intent.putExtra(
+                        InputNewPasswordActivity.EXTRA_VERIFICATION_CODE,
+                        verificationCode
+                    )
+                    startActivity(intent)
+                    finish()
+                }
+            } else {
                 btnVerifySignup.visibility = View.VISIBLE
                 btnVerifyForgotPassword.visibility = View.GONE
                 btnVerifySignup.setOnClickListener {
@@ -71,29 +94,6 @@ class VerificationActivity : AppCompatActivity() {
 
                     val verificationCode = "$otp1$otp2$otp3$otp4$otp5"
                     viewModel.verify(email, verificationCode)
-                }
-            } else {
-                btnVerifySignup.visibility = View.GONE
-                btnVerifyForgotPassword.visibility = View.VISIBLE
-                btnVerifyForgotPassword.setOnClickListener {
-                    val otp1 = edOtp1.text.toString()
-                    val otp2 = edOtp2.text.toString()
-                    val otp3 = edOtp3.text.toString()
-                    val otp4 = edOtp4.text.toString()
-                    val otp5 = edOtp5.text.toString()
-
-                    if (otp1.isEmpty() || otp2.isEmpty() || otp3.isEmpty() || otp4.isEmpty() || otp5.isEmpty()) {
-                        Toast.makeText(this@VerificationActivity, "Please fill in all OTP fields", Toast.LENGTH_SHORT).show()
-                        return@setOnClickListener
-                    }
-
-                    val verificationCode = "$otp1$otp2$otp3$otp4$otp5"
-
-                    val intent = Intent(this@VerificationActivity, InputNewPasswordActivity::class.java)
-                    intent.putExtra(InputNewPasswordActivity.EXTRA_EMAIL, email)
-                    intent.putExtra(InputNewPasswordActivity.EXTRA_VERIFICATION_CODE, verificationCode)
-                    startActivity(intent)
-                    finish()
                 }
             }
 
