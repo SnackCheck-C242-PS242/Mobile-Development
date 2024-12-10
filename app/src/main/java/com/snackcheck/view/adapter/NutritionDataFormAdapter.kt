@@ -2,6 +2,7 @@ package com.snackcheck.view.adapter
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -53,26 +54,12 @@ class NutritionDataFormAdapter(private val viewModel: FormViewModel) :
         fun bind(item: NutritionItem) {
             // Observasi perubahan status nutrisi
             viewModel.nutrientStatus.observe((binding.root.context as LifecycleOwner)) { statusMap ->
-                // Ambil daftar nutrisi yang tersedia
-                // val availableNutrients = statusMap.filterValues { it == 0 }.keys.toMutableList()
-                val availableNutrients = statusMap.filterValues { it == 0 }
-                    .keys.map { nutrient ->
-                        // Ambil string resource untuk setiap nutrisi
-                        when (nutrient) {
-                            "Fat" -> binding.root.context.getString(R.string.fat)
-                            "Saturated Fat" -> binding.root.context.getString(R.string.saturated_fat)
-                            "Carbohydrates" -> binding.root.context.getString(R.string.carbohydrates)
-                            "Sugars" -> binding.root.context.getString(R.string.sugars)
-                            "Fiber" -> binding.root.context.getString(R.string.fiber)
-                            "Proteins" -> binding.root.context.getString(R.string.proteins)
-                            "Salt" -> binding.root.context.getString(R.string.sodium)
-                            else -> nutrient
-                        }
-                    }.toMutableList()
 
+                val availableNutrients = statusMap.filterValues { it == 0 }.keys.toMutableList()
 
                 // Jika item.name sudah dipilih, tambahkan ke daftar dropdown
                 if (item.name.isNotEmpty() && !availableNutrients.contains(item.name)) {
+                    Log.d("NutritionDataFormAdapter", "Item.name: ${item.name}")
                     availableNutrients.add(0, item.name)
                 }
 
@@ -87,6 +74,7 @@ class NutritionDataFormAdapter(private val viewModel: FormViewModel) :
                 binding.tvAutoComplete.setText(item.name, false)
             }
 
+
             // Tangani pemilihan dropdown
             binding.tvAutoComplete.setOnItemClickListener { _, _, pos, _ ->
                 val selected = (binding.tvAutoComplete.adapter.getItem(pos) as String)
@@ -97,6 +85,9 @@ class NutritionDataFormAdapter(private val viewModel: FormViewModel) :
                 // Perbarui nilai item
                 previousSelection = selected
                 item.name = selected
+
+                Log.d("NutritionDataFormAdapter", "Selected: $selected")
+                Log.d("NutritionDataFormAdapter", "Previous Selection: $previousSelection")
 
                 // Tetapkan nilai dropdown dengan segera
                 if (selected == binding.root.context.getString(R.string.sodium)) {

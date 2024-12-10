@@ -141,4 +141,14 @@
     <string name="please_fill_in_all_otp_fields">Harap isi semua kolom OTP</string>
     <string name="logout_failed">Gagal keluar</string>
     <string name="language_option">id</string>
+
+    <string name="very_low_amount">Sangat rendah</string>
+    <string name="low_amount">Cukup rendah</string>
+    <string name="moderate_amount">Biasa</string>
+    <string name="high_amount">Cukup tinggi</string>
+    <string name="very_high_amount">Sangat tinggi</string>
+    <string name="good_nutrition">Nutrisi Baik</string>
+    <string name="bad_nutrition">Nutrisi Buruk</string>
+    <string name="close">Tutup</string>
+    <string name="hint">Petunjuk</string>
 </resources>

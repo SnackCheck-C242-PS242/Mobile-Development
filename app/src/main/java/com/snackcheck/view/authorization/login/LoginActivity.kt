@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
 
         val pref = UserPreference.getInstance(dataStore)
         val userRepository = Injection.provideRepository(this)
-        val viewModelFactory = ViewModelFactory(userRepository, pref)
+        val viewModelFactory = ViewModelFactory(userRepository, pref, application)
         viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

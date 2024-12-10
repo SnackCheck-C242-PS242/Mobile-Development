@@ -1,16 +1,19 @@
 package com.snackcheck.view.history.detail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.snackcheck.R
 import com.snackcheck.data.ResultState
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.data.pref.dataStore
+import com.snackcheck.data.remote.model.Categories
 import com.snackcheck.data.remote.model.HistoryData
 import com.snackcheck.databinding.FragmentHistoryDetailBinding
 import com.snackcheck.view.ViewModelFactory
@@ -56,6 +59,18 @@ class HistoryDetailFragment : Fragment() {
             btnBack.setOnClickListener {
                 requireActivity().onBackPressed()
             }
+
+            val builder: AlertDialog.Builder =
+                MaterialAlertDialogBuilder(
+                    this@HistoryDetailFragment.requireContext(),
+                    R.style.MaterialAlertDialog_Rounded
+                )
+            builder.setView(R.layout.layout_category_hint)
+            val dialog: AlertDialog = builder.create()
+
+            tbHint.setOnClickListener {
+                dialog.show()
+            }
         }
     }
 
@@ -67,7 +82,7 @@ class HistoryDetailFragment : Fragment() {
             tvCarbohydratesAmount.text = historyData.nutritions.carbohydrates.toString()
             tvSugarsAmount.text = historyData.nutritions.sugars.toString()
             tvFiberAmount.text = historyData.nutritions.fiber.toString()
-            tvProteinsAmount.text = historyData.nutritions.proteins.toString()
+            tvProteinsAmount.text = historyData.nutritions.protein.toString()
             tvSodiumAmount.text = historyData.nutritions.sodium.toString()
 
             val healthStatus = historyData.healthStatus
@@ -81,6 +96,10 @@ class HistoryDetailFragment : Fragment() {
             }
             binding.tvPredictionResultPlaceholder.text = healthStatus
             binding.tvRecommendationPlaceholder.text = recommendation
+
+            val categories = historyData.categories
+
+            setupCategories(categories)
         }
     }
 
@@ -109,6 +128,187 @@ class HistoryDetailFragment : Fragment() {
                     binding.btnReloadHistory.visibility = View.VISIBLE
                     binding.tvNoHistory.visibility = View.VISIBLE
                 }
+            }
+        }
+    }
+
+    private fun setupCategories(categories: Categories) {
+        binding.apply {
+            when (categories.fat) {
+                "1" -> {
+                    ivCategoryFat.setImageResource(R.drawable.ic_very_low)
+                    ivCategoryFat.setColorFilter(resources.getColor(R.color.card_color_green))
+                }
+                "2" -> {
+                    ivCategoryFat.setImageResource(R.drawable.ic_low)
+                    ivCategoryFat.setColorFilter(resources.getColor(R.color.card_color_light_green))
+                }
+                "3" -> {
+                    ivCategoryFat.setImageResource(R.drawable.ic_moderate)
+                    ivCategoryFat.setColorFilter(resources.getColor(R.color.md_theme_onPrimaryContainer))
+                }
+                "4" -> {
+                    ivCategoryFat.setImageResource(R.drawable.ic_high)
+                    ivCategoryFat.setColorFilter(resources.getColor(R.color.card_color_light_red))
+                }
+                "5" -> {
+                    ivCategoryFat.setImageResource(R.drawable.ic_very_high)
+                    ivCategoryFat.setColorFilter(resources.getColor(R.color.card_color_red))
+                }
+                else -> {}
+            }
+
+            when (categories.saturatedFat) {
+                "1" -> {
+                    ivCategorySaturatedFat.setImageResource(R.drawable.ic_very_low)
+                    ivCategorySaturatedFat.setColorFilter(resources.getColor(R.color.card_color_green))
+                }
+                "2" -> {
+                    ivCategorySaturatedFat.setImageResource(R.drawable.ic_low)
+                    ivCategorySaturatedFat.setColorFilter(resources.getColor(R.color.card_color_light_green))
+                }
+                "3" -> {
+                    ivCategorySaturatedFat.setImageResource(R.drawable.ic_moderate)
+                    ivCategorySaturatedFat.setColorFilter(resources.getColor(R.color.md_theme_onPrimaryContainer))
+                }
+                "4" -> {
+                    ivCategorySaturatedFat.setImageResource(R.drawable.ic_high)
+                    ivCategorySaturatedFat.setColorFilter(resources.getColor(R.color.card_color_light_red))
+                }
+                "5" -> {
+                    ivCategorySaturatedFat.setImageResource(R.drawable.ic_very_high)
+                    ivCategorySaturatedFat.setColorFilter(resources.getColor(R.color.card_color_red))
+                }
+                else -> {}
+            }
+
+            when (categories.sugars) {
+                "1" -> {
+                    ivCategorySugars.setImageResource(R.drawable.ic_very_low)
+                    ivCategorySugars.setColorFilter(resources.getColor(R.color.card_color_green))
+                }
+
+                "2" -> {
+                    ivCategorySugars.setImageResource(R.drawable.ic_low)
+                    ivCategorySugars.setColorFilter(resources.getColor(R.color.card_color_light_green))
+                }
+
+                "3" -> {
+                    ivCategorySugars.setImageResource(R.drawable.ic_moderate)
+                    ivCategorySugars.setColorFilter(resources.getColor(R.color.md_theme_onPrimaryContainer))
+                }
+
+                "4" -> {
+                    ivCategorySugars.setImageResource(R.drawable.ic_high)
+                    ivCategorySugars.setColorFilter(resources.getColor(R.color.card_color_light_red))
+                }
+
+                "5" -> {
+                    ivCategorySugars.setImageResource(R.drawable.ic_very_high)
+                    ivCategorySugars.setColorFilter(resources.getColor(R.color.card_color_red))
+                }
+                else -> {}
+            }
+
+            when (categories.carbohydrates) {
+                "1" -> {
+                    ivCategoryCarbohydrates.setImageResource(R.drawable.ic_very_low)
+                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_red))
+                }
+                "2" -> {
+                    ivCategoryCarbohydrates.setImageResource(R.drawable.ic_low)
+                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_light_red))
+                }
+                "3" -> {
+                    ivCategoryCarbohydrates.setImageResource(R.drawable.ic_moderate)
+                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.md_theme_onPrimaryContainer))
+                }
+                "4" -> {
+                    ivCategoryCarbohydrates.setImageResource(R.drawable.ic_high)
+                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_light_green))
+                }
+                "5" -> {
+                    ivCategoryCarbohydrates.setImageResource(R.drawable.ic_very_high)
+                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_green))
+                }
+                else -> {}
+            }
+
+            when (categories.protein) {
+                "1" -> {
+                    ivCategoryProtein.setImageResource(R.drawable.ic_very_low)
+                    ivCategoryProtein.setColorFilter(resources.getColor(R.color.card_color_red))
+                }
+                "2" -> {
+                    ivCategoryProtein.setImageResource(R.drawable.ic_low)
+                    ivCategoryProtein.setColorFilter(resources.getColor(R.color.card_color_light_red))
+                }
+                "3" -> {
+                    ivCategoryProtein.setImageResource(R.drawable.ic_moderate)
+                    ivCategoryProtein.setColorFilter(resources.getColor(R.color.md_theme_onPrimaryContainer))
+                }
+                "4" -> {
+                    ivCategoryProtein.setImageResource(R.drawable.ic_high)
+                    ivCategoryProtein.setColorFilter(resources.getColor(R.color.card_color_light_green))
+                }
+                "5" -> {
+                    ivCategoryProtein.setImageResource(R.drawable.ic_very_high)
+                    ivCategoryProtein.setColorFilter(resources.getColor(R.color.card_color_green))
+                }
+                else -> {}
+            }
+
+            when (categories.fiber) {
+                "1" -> {
+                    ivCategoryFiber.setImageResource(R.drawable.ic_very_low)
+                    ivCategoryFiber.setColorFilter(resources.getColor(R.color.card_color_red))
+                }
+                "2" -> {
+                    ivCategoryFiber.setImageResource(R.drawable.ic_low)
+                    ivCategoryFiber.setColorFilter(resources.getColor(R.color.card_color_light_red))
+                }
+                "3" -> {
+                    ivCategoryFiber.setImageResource(R.drawable.ic_moderate)
+                    ivCategoryFiber.setColorFilter(resources.getColor(R.color.md_theme_onPrimaryContainer))
+                }
+                "4" -> {
+                    ivCategoryFiber.setImageResource(R.drawable.ic_high)
+                    ivCategoryFiber.setColorFilter(resources.getColor(R.color.card_color_light_green))
+                }
+                "5" -> {
+                    ivCategoryFiber.setImageResource(R.drawable.ic_very_high)
+                    ivCategoryFiber.setColorFilter(resources.getColor(R.color.card_color_green))
+                }
+                else -> {}
+            }
+
+            when (categories.sodium) {
+                "1" -> {
+                    ivCategorySodium.setImageResource(R.drawable.ic_very_low)
+                    ivCategorySodium.setColorFilter(resources.getColor(R.color.card_color_green))
+                }
+
+                "2" -> {
+                    ivCategorySodium.setImageResource(R.drawable.ic_low)
+                    ivCategorySodium.setColorFilter(resources.getColor(R.color.card_color_light_green))
+                }
+
+                "3" -> {
+                    ivCategorySodium.setImageResource(R.drawable.ic_moderate)
+                    ivCategorySodium.setColorFilter(resources.getColor(R.color.md_theme_onPrimaryContainer))
+                }
+
+                "4" -> {
+                    ivCategorySodium.setImageResource(R.drawable.ic_high)
+                    ivCategorySodium.setColorFilter(resources.getColor(R.color.card_color_light_red))
+                }
+
+                "5" -> {
+                    ivCategorySodium.setImageResource(R.drawable.ic_very_high)
+                    ivCategorySodium.setColorFilter(resources.getColor(R.color.card_color_red))
+                }
+
+                else -> {}
             }
         }
     }

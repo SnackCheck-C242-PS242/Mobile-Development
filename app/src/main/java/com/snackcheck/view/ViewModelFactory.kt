@@ -1,5 +1,6 @@
 package com.snackcheck.view
 
+import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -24,6 +25,7 @@ import com.snackcheck.view.splash.SplashViewModel
 class ViewModelFactory(
     private val repository: UserRepository,
     private val pref: UserPreference,
+    private val application: Application
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
@@ -54,7 +56,7 @@ class ViewModelFactory(
             }
 
             modelClass.isAssignableFrom(FormViewModel::class.java) -> {
-                FormViewModel(repository) as T
+                FormViewModel(application, repository) as T
             }
 
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
@@ -94,7 +96,7 @@ class ViewModelFactory(
         private var instance: ViewModelFactory? = null
         fun getInstance(context: Context, pref: UserPreference): ViewModelFactory =
             instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(Injection.provideRepository(context), pref)
+                instance ?: ViewModelFactory(Injection.provideRepository(context), pref, context.applicationContext as Application)
             }.also { instance = it }
     }
 }

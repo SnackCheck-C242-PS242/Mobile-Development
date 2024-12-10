@@ -1,9 +1,11 @@
 package com.snackcheck.view.prediction.form
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.snackcheck.R
 import com.snackcheck.data.ResultState
 import com.snackcheck.data.UserRepository
 import com.snackcheck.data.local.entity.NutritionData
@@ -12,9 +14,19 @@ import com.snackcheck.data.local.entity.SnackDetail
 import com.snackcheck.data.remote.model.SnackPredictResponse
 import kotlinx.coroutines.launch
 
-class FormViewModel(private val repository: UserRepository) : ViewModel() {
+class FormViewModel(application: Application, private val repository: UserRepository) : AndroidViewModel(application) {
 
-    private val allNutrients = listOf("Fat", "Saturated Fat", "Carbohydrates", "Sugars", "Fiber", "Proteins", "Salt")
+    private val context = application.applicationContext
+
+    private val allNutrients = listOf(
+        context.getString(R.string.fat),
+        context.getString(R.string.saturated_fat),
+        context.getString(R.string.carbohydrates),
+        context.getString(R.string.sugars),
+        context.getString(R.string.fiber),
+        context.getString(R.string.proteins),
+        context.getString(R.string.sodium)
+    )
 
     private val _nutrientStatus = MutableLiveData(
         allNutrients.associateWith { 0 }
@@ -50,13 +62,13 @@ class FormViewModel(private val repository: UserRepository) : ViewModel() {
         }
 
         val nutritionData = NutritionData(
-            fat = formData["Fat"] ?: 0.0,
-            saturatedFat = formData["Saturated Fat"] ?: 0.0,
-            carbohydrates = formData["Carbohydrates"] ?: 0.0,
-            sugars = formData["Sugars"] ?: 0.0,
-            fiber = formData["Fiber"] ?: 0.0,
-            proteins = formData["Proteins"] ?: 0.0,
-            sodium = ((formData["Salt"] ?: 0.0) * 1/1000)
+            fat = formData[context.getString(R.string.fat)] ?: 0.0,
+            saturated_fat = formData[context.getString(R.string.saturated_fat)] ?: 0.0,
+            carbohydrates = formData[context.getString(R.string.carbohydrates)] ?: 0.0,
+            sugars = formData[context.getString(R.string.sugars)] ?: 0.0,
+            fiber = formData[context.getString(R.string.fiber)] ?: 0.0,
+            protein = formData[context.getString(R.string.proteins)] ?: 0.0,
+            sodium = ((formData[context.getString(R.string.sodium)] ?: 0.0) * 1 / 1000)
         )
 
         return SnackDetail(snackName = snackName, nutritions = nutritionData)

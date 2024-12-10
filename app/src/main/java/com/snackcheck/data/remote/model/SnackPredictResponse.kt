@@ -32,28 +32,55 @@ data class SnackPredictResult(
 
     @field:SerializedName("recommendation")
     val recommendation: String? = null,
+
+    @field:SerializedName("categories")
+    val categories: Categories? = null,
 ) : Parcelable
 
 @Parcelize
 data class Nutritions(
     @field:SerializedName("fat")
-    val fat: Double? = null,
+    val fat: Double? = 0.0,
 
-    @field:SerializedName("saturatedFat")
-    val saturatedFat: Double? = null,
+    @field:SerializedName("saturated_fat")
+    val saturatedFat: Double? = 0.0,
 
     @field:SerializedName("carbohydrates")
-    val carbohydrates: Double? = null,
+    val carbohydrates: Double? = 0.0,
 
     @field:SerializedName("sugars")
-    val sugars: Double? = null,
+    val sugars: Double? = 0.0,
 
     @field:SerializedName("fiber")
-    val fiber: Double? = null,
+    val fiber: Double? = 0.0,
 
-    @field:SerializedName("proteins")
-    val proteins: Double? = null,
+    @field:SerializedName("protein")
+    val protein: Double? = 0.0,
 
     @field:SerializedName("sodium")
-    val sodium: Double? = null,
+    val sodium: Double? = 0.0,
+) : Parcelable
+
+@Parcelize
+data class Categories(
+    @field:SerializedName("fat")
+    val fat: String? = null,
+
+    @field:SerializedName("saturated_fat")
+    val saturatedFat: String? = null,
+
+    @field:SerializedName("carbohydrates")
+    val carbohydrates: String? = null,
+
+    @field:SerializedName("sugars")
+    val sugars: String? = null,
+
+    @field:SerializedName("fiber")
+    val fiber: String? = null,
+
+    @field:SerializedName("proteins")
+    val protein: String? = null,
+
+    @field:SerializedName("sodium")
+    val sodium: String? = null,
 ) : Parcelable

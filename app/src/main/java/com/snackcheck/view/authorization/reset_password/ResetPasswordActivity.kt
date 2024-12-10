@@ -27,7 +27,7 @@ class ResetPasswordActivity : AppCompatActivity() {
 
         val pref = UserPreference.getInstance(dataStore)
         val userRepository = Injection.provideRepository(this)
-        val viewModelFactory = ViewModelFactory(userRepository, pref)
+        val viewModelFactory = ViewModelFactory(userRepository, pref, application)
         viewModel = ViewModelProvider(this, viewModelFactory)[ResetPasswordViewModel::class.java]
 
         super.onCreate(savedInstanceState)

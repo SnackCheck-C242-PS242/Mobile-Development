@@ -25,7 +25,7 @@ class InputNewPasswordActivity : AppCompatActivity() {
 
         val pref = UserPreference.getInstance(dataStore)
         val userRepository = Injection.provideRepository(this)
-        val viewModelFactory = ViewModelFactory(userRepository, pref)
+        val viewModelFactory = ViewModelFactory(userRepository, pref, application)
         viewModel = ViewModelProvider(this, viewModelFactory)[InputNewPasswordViewModel::class.java]
 
         super.onCreate(savedInstanceState)

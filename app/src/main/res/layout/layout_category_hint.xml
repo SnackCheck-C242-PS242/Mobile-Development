@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Categories -->
+    <TextView
+        android:id="@+id/very_low"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/very_low_amount"
+        android:drawablePadding="8dp"
+        android:layout_marginBottom="8dp"
+        app:drawableStartCompat="@drawable/ic_very_low" />
+
+    <TextView
+        android:id="@+id/low"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/low_amount"
+        android:drawablePadding="8dp"
+        android:layout_marginBottom="8dp"
+        app:drawableStartCompat="@drawable/ic_low" />
+
+    <TextView
+        android:id="@+id/moderate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/moderate_amount"
+        android:drawablePadding="8dp"
+        android:layout_marginBottom="8dp"
+        app:drawableStartCompat="@drawable/ic_moderate" />
+
+    <TextView
+        android:id="@+id/high"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/high_amount"
+        android:drawablePadding="8dp"
+        android:layout_marginBottom="8dp"
+        app:drawableStartCompat="@drawable/ic_high" />
+
+    <TextView
+        android:id="@+id/very_high"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/very_high_amount"
+        android:drawablePadding="8dp"
+        android:layout_marginBottom="16dp"
+        app:drawableStartCompat="@drawable/ic_very_high" />
+
+    <!-- Nutrition Indicators -->
+    <TextView
+        android:id="@+id/green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/good_nutrition"
+        android:drawablePadding="8dp"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp"
+        app:drawableStartCompat="@drawable/ic_rectangle"
+        app:drawableTint="@color/card_color_green" />
+
+    <TextView
+        android:id="@+id/red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bad_nutrition"
+        android:drawablePadding="8dp"
+        android:padding="8dp"
+        android:layout_marginBottom="16dp"
+        app:drawableStartCompat="@drawable/ic_rectangle"
+        app:drawableTint="@color/card_color_red" />
+</LinearLayout>

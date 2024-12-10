@@ -26,6 +26,9 @@ data class HistoryData(
     @field:SerializedName("recommendation")
     val recommendation: String,
 
+    @field:SerializedName("categories")
+    val categories: Categories,
+
     @field:SerializedName("createdAt")
     val createdAt: String,
 )

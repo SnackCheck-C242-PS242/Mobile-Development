@@ -142,4 +142,14 @@
     <string name="please_fill_in_all_otp_fields">Please fill in all OTP fields</string>
     <string name="logout_failed">Logout failed</string>
     <string name="language_option">en</string>
+
+    <string name="very_low_amount">Very low amount</string>
+    <string name="low_amount">Low amount</string>
+    <string name="moderate_amount">Moderate amount</string>
+    <string name="high_amount">High amount</string>
+    <string name="very_high_amount">Very high amount</string>
+    <string name="good_nutrition">Good Nutrition</string>
+    <string name="bad_nutrition">Bad Nutrition</string>
+    <string name="close">Close</string>
+    <string name="hint">Hint</string>
 </resources>
