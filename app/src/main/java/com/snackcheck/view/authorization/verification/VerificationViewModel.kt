@@ -22,6 +22,8 @@ class VerificationViewModel(private val repository: UserRepository) : ViewModel(
                 val response = repository.verifyAccount(email, verificationCode)
                 if (response.status == "success") {
                     _responseResult.value = ResultState.Success(response)
+                } else {
+                    _responseResult.value = ResultState.Error(response.message.toString())
                 }
             } catch (e: Exception) {
                 _responseResult.value = ResultState.Error(e.message.toString())
@@ -36,6 +38,8 @@ class VerificationViewModel(private val repository: UserRepository) : ViewModel(
                 val response = repository.verifyResetCode(email, resetCode)
                 if (response.status == "success") {
                     _resetResponseResult.value = ResultState.Success(response)
+                } else {
+                    _resetResponseResult.value = ResultState.Error(response.message.toString())
                 }
             } catch (e: Exception) {
                 _resetResponseResult.value = ResultState.Error(e.message.toString())
