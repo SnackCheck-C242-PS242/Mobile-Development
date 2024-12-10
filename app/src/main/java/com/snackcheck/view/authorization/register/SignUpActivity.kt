@@ -2,6 +2,7 @@ package com.snackcheck.view.authorization.register
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -24,7 +25,6 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var viewModel: SignUpViewModel
     private lateinit var binding: ActivitySignUpBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -33,6 +33,9 @@ class SignUpActivity : AppCompatActivity() {
         val userRepository = Injection.provideRepository(this)
         val viewModelFactory = ViewModelFactory(userRepository, pref, application)
         viewModel = ViewModelProvider(this, viewModelFactory)[SignUpViewModel::class.java]
+        Log.d("VerificationActivity", "application: ${application}")
+        Log.d("VerificationActivity", "pref: ${pref}")
+
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

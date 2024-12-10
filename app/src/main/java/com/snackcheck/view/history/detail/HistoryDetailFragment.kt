@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -141,7 +140,7 @@ class HistoryDetailFragment : Fragment() {
                 }
                 "2" -> {
                     ivCategoryFat.setImageResource(R.drawable.ic_low)
-                    ivCategoryFat.setColorFilter(resources.getColor(R.color.card_color_light_green))
+                    ivCategoryFat.setColorFilter(resources.getColor(R.color.card_color_lime))
                 }
                 "3" -> {
                     ivCategoryFat.setImageResource(R.drawable.ic_moderate)
@@ -149,7 +148,7 @@ class HistoryDetailFragment : Fragment() {
                 }
                 "4" -> {
                     ivCategoryFat.setImageResource(R.drawable.ic_high)
-                    ivCategoryFat.setColorFilter(resources.getColor(R.color.card_color_light_red))
+                    ivCategoryFat.setColorFilter(resources.getColor(R.color.card_color_orange))
                 }
                 "5" -> {
                     ivCategoryFat.setImageResource(R.drawable.ic_very_high)
@@ -165,7 +164,7 @@ class HistoryDetailFragment : Fragment() {
                 }
                 "2" -> {
                     ivCategorySaturatedFat.setImageResource(R.drawable.ic_low)
-                    ivCategorySaturatedFat.setColorFilter(resources.getColor(R.color.card_color_light_green))
+                    ivCategorySaturatedFat.setColorFilter(resources.getColor(R.color.card_color_lime))
                 }
                 "3" -> {
                     ivCategorySaturatedFat.setImageResource(R.drawable.ic_moderate)
@@ -173,7 +172,7 @@ class HistoryDetailFragment : Fragment() {
                 }
                 "4" -> {
                     ivCategorySaturatedFat.setImageResource(R.drawable.ic_high)
-                    ivCategorySaturatedFat.setColorFilter(resources.getColor(R.color.card_color_light_red))
+                    ivCategorySaturatedFat.setColorFilter(resources.getColor(R.color.card_color_orange))
                 }
                 "5" -> {
                     ivCategorySaturatedFat.setImageResource(R.drawable.ic_very_high)
@@ -190,7 +189,7 @@ class HistoryDetailFragment : Fragment() {
 
                 "2" -> {
                     ivCategorySugars.setImageResource(R.drawable.ic_low)
-                    ivCategorySugars.setColorFilter(resources.getColor(R.color.card_color_light_green))
+                    ivCategorySugars.setColorFilter(resources.getColor(R.color.card_color_lime))
                 }
 
                 "3" -> {
@@ -200,7 +199,7 @@ class HistoryDetailFragment : Fragment() {
 
                 "4" -> {
                     ivCategorySugars.setImageResource(R.drawable.ic_high)
-                    ivCategorySugars.setColorFilter(resources.getColor(R.color.card_color_light_red))
+                    ivCategorySugars.setColorFilter(resources.getColor(R.color.card_color_orange))
                 }
 
                 "5" -> {
@@ -217,7 +216,7 @@ class HistoryDetailFragment : Fragment() {
                 }
                 "2" -> {
                     ivCategoryCarbohydrates.setImageResource(R.drawable.ic_low)
-                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_light_red))
+                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_orange))
                 }
                 "3" -> {
                     ivCategoryCarbohydrates.setImageResource(R.drawable.ic_moderate)
@@ -225,7 +224,7 @@ class HistoryDetailFragment : Fragment() {
                 }
                 "4" -> {
                     ivCategoryCarbohydrates.setImageResource(R.drawable.ic_high)
-                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_light_green))
+                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_lime))
                 }
                 "5" -> {
                     ivCategoryCarbohydrates.setImageResource(R.drawable.ic_very_high)
@@ -241,7 +240,7 @@ class HistoryDetailFragment : Fragment() {
                 }
                 "2" -> {
                     ivCategoryProtein.setImageResource(R.drawable.ic_low)
-                    ivCategoryProtein.setColorFilter(resources.getColor(R.color.card_color_light_red))
+                    ivCategoryProtein.setColorFilter(resources.getColor(R.color.card_color_orange))
                 }
                 "3" -> {
                     ivCategoryProtein.setImageResource(R.drawable.ic_moderate)
@@ -249,7 +248,7 @@ class HistoryDetailFragment : Fragment() {
                 }
                 "4" -> {
                     ivCategoryProtein.setImageResource(R.drawable.ic_high)
-                    ivCategoryProtein.setColorFilter(resources.getColor(R.color.card_color_light_green))
+                    ivCategoryProtein.setColorFilter(resources.getColor(R.color.card_color_lime))
                 }
                 "5" -> {
                     ivCategoryProtein.setImageResource(R.drawable.ic_very_high)
@@ -265,7 +264,7 @@ class HistoryDetailFragment : Fragment() {
                 }
                 "2" -> {
                     ivCategoryFiber.setImageResource(R.drawable.ic_low)
-                    ivCategoryFiber.setColorFilter(resources.getColor(R.color.card_color_light_red))
+                    ivCategoryFiber.setColorFilter(resources.getColor(R.color.card_color_orange))
                 }
                 "3" -> {
                     ivCategoryFiber.setImageResource(R.drawable.ic_moderate)
@@ -273,7 +272,7 @@ class HistoryDetailFragment : Fragment() {
                 }
                 "4" -> {
                     ivCategoryFiber.setImageResource(R.drawable.ic_high)
-                    ivCategoryFiber.setColorFilter(resources.getColor(R.color.card_color_light_green))
+                    ivCategoryFiber.setColorFilter(resources.getColor(R.color.card_color_lime))
                 }
                 "5" -> {
                     ivCategoryFiber.setImageResource(R.drawable.ic_very_high)
@@ -290,7 +289,7 @@ class HistoryDetailFragment : Fragment() {
 
                 "2" -> {
                     ivCategorySodium.setImageResource(R.drawable.ic_low)
-                    ivCategorySodium.setColorFilter(resources.getColor(R.color.card_color_light_green))
+                    ivCategorySodium.setColorFilter(resources.getColor(R.color.card_color_lime))
                 }
 
                 "3" -> {
@@ -300,7 +299,7 @@ class HistoryDetailFragment : Fragment() {
 
                 "4" -> {
                     ivCategorySodium.setImageResource(R.drawable.ic_high)
-                    ivCategorySodium.setColorFilter(resources.getColor(R.color.card_color_light_red))
+                    ivCategorySodium.setColorFilter(resources.getColor(R.color.card_color_orange))
                 }
 
                 "5" -> {

@@ -1,7 +1,9 @@
 package com.snackcheck.view
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.snackcheck.data.UserRepository
@@ -94,9 +96,14 @@ class ViewModelFactory(
     companion object {
         @Volatile
         private var instance: ViewModelFactory? = null
+
         fun getInstance(context: Context, pref: UserPreference): ViewModelFactory =
             instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(Injection.provideRepository(context), pref, context.applicationContext as Application)
+                if (context is Application || context is Activity || context is Fragment) {
+                    instance ?: ViewModelFactory(Injection.provideRepository(context), pref, context.applicationContext as Application)
+                } else {
+                    throw IllegalArgumentException("Invalid context type: ${context.javaClass.name}")
+                }
             }.also { instance = it }
     }
 }

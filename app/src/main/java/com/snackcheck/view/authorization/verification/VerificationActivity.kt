@@ -7,30 +7,34 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.snackcheck.R
 import com.snackcheck.data.ResultState
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.data.pref.dataStore
 import com.snackcheck.databinding.ActivityVerificationBinding
+import com.snackcheck.di.Injection
 import com.snackcheck.view.ViewModelFactory
 import com.snackcheck.view.authorization.input_new_password.InputNewPasswordActivity
 import com.snackcheck.view.authorization.verification_success.VerificationSuccessActivity
 
 class VerificationActivity : AppCompatActivity() {
-    private val pref = UserPreference.getInstance(dataStore)
+
+    private lateinit var viewModel: VerificationViewModel
     private lateinit var binding: ActivityVerificationBinding
-    private val factory: ViewModelFactory = ViewModelFactory.getInstance(this, pref)
-    private val viewModel: VerificationViewModel by viewModels {
-        factory
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityVerificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val pref = UserPreference.getInstance(dataStore)
+        val userRepository = Injection.provideRepository(this)
+        val viewModelFactory = ViewModelFactory(userRepository, pref, application)
+        viewModel = ViewModelProvider(this, viewModelFactory)[VerificationViewModel::class.java]
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
