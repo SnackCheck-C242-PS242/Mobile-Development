@@ -151,4 +151,5 @@
     <string name="bad_nutrition">Nutrisi Buruk</string>
     <string name="close">Tutup</string>
     <string name="hint">Petunjuk</string>
+    <string name="password_reset_code_sent">Kode reset kata sandi dikirim</string>
 </resources>

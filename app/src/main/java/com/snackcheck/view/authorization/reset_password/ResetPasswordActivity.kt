@@ -61,7 +61,7 @@ class ResetPasswordActivity : AppCompatActivity() {
                         dialog.dismiss()
                         Toast.makeText(
                             this@ResetPasswordActivity,
-                            getString(R.string.verification_succes),
+                            getString(R.string.password_reset_code_sent),
                             Toast.LENGTH_SHORT
                         ).show()
 

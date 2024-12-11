@@ -152,4 +152,5 @@
     <string name="bad_nutrition">Bad Nutrition</string>
     <string name="close">Close</string>
     <string name="hint">Hint</string>
+    <string name="password_reset_code_sent">Password reset code sent</string>
 </resources>
