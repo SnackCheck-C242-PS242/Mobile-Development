@@ -15,7 +15,7 @@
         android:src="@drawable/logo_with_title"
         android:paddingTop="32dp"
         android:scaleType="fitCenter"
-        android:contentDescription="@string/"
+        android:contentDescription="@string/app_logo"
         app:layout_constraintBottom_toTopOf="@id/form_background"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

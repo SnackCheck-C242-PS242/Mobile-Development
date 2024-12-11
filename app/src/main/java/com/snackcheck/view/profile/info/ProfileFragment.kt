@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
-import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -15,7 +14,6 @@ import com.snackcheck.R
 import com.snackcheck.data.pref.UserPreference
 import com.snackcheck.databinding.FragmentProfileBinding
 import com.snackcheck.view.ViewModelFactory
-import com.snackcheck.view.home.HomeViewModel
 import com.snackcheck.data.pref.dataStore
 
 class ProfileFragment : Fragment() {
