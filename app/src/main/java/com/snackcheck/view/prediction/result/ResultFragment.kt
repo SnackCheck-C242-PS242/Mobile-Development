@@ -161,11 +161,11 @@ class ResultFragment : Fragment() {
             when (categories.carbohydrates) {
                 "1" -> {
                     ivCategoryCarbohydrates.setImageResource(R.drawable.ic_very_low)
-                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_red))
+                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_green))
                 }
                 "2" -> {
                     ivCategoryCarbohydrates.setImageResource(R.drawable.ic_low)
-                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_orange))
+                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_lime))
                 }
                 "3" -> {
                     ivCategoryCarbohydrates.setImageResource(R.drawable.ic_moderate)
@@ -173,11 +173,11 @@ class ResultFragment : Fragment() {
                 }
                 "4" -> {
                     ivCategoryCarbohydrates.setImageResource(R.drawable.ic_high)
-                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_lime))
+                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_orange))
                 }
                 "5" -> {
                     ivCategoryCarbohydrates.setImageResource(R.drawable.ic_very_high)
-                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_green))
+                    ivCategoryCarbohydrates.setColorFilter(resources.getColor(R.color.card_color_red))
                 }
                 else -> {}
             }

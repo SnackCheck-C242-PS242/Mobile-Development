@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_white">#FFFFFF</color>
-    <color name="card_color_green">#31A350</color>
+    <color name="card_color_green">#4CAF50</color>
     <color name="card_color_red">#A33135</color>
-    <color name="card_color_lime">#C9FF59</color>
+    <color name="card_color_lime">#4CAF50</color>
     <color name="card_color_orange">#FF5722</color>
     <color name="md_theme_primary">#ED754F</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>
