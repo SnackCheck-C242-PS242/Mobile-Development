@@ -29,9 +29,9 @@ class InputNewPasswordViewModel(private val repository: UserRepository) : ViewMo
                     repository.resetPassword(email, resetCode, newPassword, confirmPassword)
                 if (response.status == "success") {
                     _responseResult.value = ResultState.Success(response)
+                } else {
+                    _responseResult.value = ResultState.Error(response.message.toString())
                 }
-            } catch (e: Exception) {
-                _responseResult.value = ResultState.Error(e.message.toString())
             } catch (e: HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()
                 val errorMessage = Gson().fromJson(errorBody, MessageResponse::class.java).message

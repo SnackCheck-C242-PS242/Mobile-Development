@@ -25,6 +25,7 @@ class VerificationActivity : AppCompatActivity() {
 
     private lateinit var viewModel: VerificationViewModel
     private lateinit var binding: ActivityVerificationBinding
+    private lateinit var verificationCode: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityVerificationBinding.inflate(layoutInflater)
@@ -66,7 +67,7 @@ class VerificationActivity : AppCompatActivity() {
                         return@setOnClickListener
                     }
 
-                    val verificationCode = "$otp1$otp2$otp3$otp4$otp5"
+                    verificationCode = "$otp1$otp2$otp3$otp4$otp5"
                     viewModel.verifyResetCode(email, verificationCode)
                 }
             } else {
@@ -89,11 +90,10 @@ class VerificationActivity : AppCompatActivity() {
                         return@setOnClickListener
                     }
 
-                    val verificationCode = "$otp1$otp2$otp3$otp4$otp5"
+                    verificationCode = "$otp1$otp2$otp3$otp4$otp5"
                     viewModel.verify(email, verificationCode)
                 }
             }
-
 
         }
 
@@ -112,6 +112,7 @@ class VerificationActivity : AppCompatActivity() {
                     dialog.dismiss()
                     val intent =
                         Intent(this@VerificationActivity, InputNewPasswordActivity::class.java)
+                    intent.putExtra(InputNewPasswordActivity.EXTRA_VERIFICATION_CODE, verificationCode)
                     intent.putExtra(InputNewPasswordActivity.EXTRA_EMAIL, email)
                     startActivity(intent)
                 }
