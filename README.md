@@ -31,5 +31,5 @@ SnackCheck is a smart mobile app designed to help you make healthier snack choic
 
 | Setting                       | Home (Dark Mode)             | Change Language              |
 |-------------------------------|------------------------------|------------------------------|
-| ![Setting](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Setting.png?raw=true) | ![Home (Dark Mode)](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Home%20(Dark).jpg?raw=true) | ![Change Profile Picture](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Change%20Profile%20Picture.png?raw=true) |
+| ![Setting](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Setting.png?raw=true) | ![Home (Dark Mode)](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Home%20(Dark%20Mode).png?raw=true) | ![Change Language](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Change%20Language.png?raw=true) |
 
