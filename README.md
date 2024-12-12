@@ -6,7 +6,7 @@
 # Mobile Development
 SnackCheck is a smart mobile app designed to help you make healthier snack choices. By analyzing the nutritional data of various snacks, SnackCheck provides health predictions and consumption recommendations tailored to your needs. Whether you're trying to eat healthier or simply looking for snack options that fit your diet, SnackCheck offers personalized insights to guide you.
 
-## Key Features Include:
+## Features:
 
 - **Splash Screen**: The starting point of the app, featuring the SnackCheck logo prominently in the center, along with the tagline.
 
@@ -50,4 +50,7 @@ SnackCheck is a smart mobile app designed to help you make healthier snack choic
 | Setting                       | Home (Dark Mode)             | Change Language              |
 |-------------------------------|------------------------------|------------------------------|
 | ![Setting](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Setting.png?raw=true) | ![Home (Dark Mode)](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Home%20(Dark%20Mode).png?raw=true) | ![Change Language](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Change%20Language.png?raw=true) |
+
+## SnackCheck APK:
+You can download SnackCheck apps [here](https://github.com/SnackCheck-C242-PS242/Mobile-Development/tree/main/SnackCheck%20APK)
 
