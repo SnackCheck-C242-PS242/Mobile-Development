@@ -21,3 +21,7 @@ SnackCheck is a smart mobile app designed to help you make healthier snack choic
 |-------------------------------|------------------------------|------------------------------|
 | ![Forget Password](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Forget%20Password.png?raw=true) | ![OTP](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/OTP.png?raw=true) | ![Input New Password](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/New%20Password.png?raw=true) |
 
+| Home Screen                   | Input Data                   | Analysis Result              |
+|-------------------------------|------------------------------|------------------------------|
+| ![Home Screen](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Home.png?raw=true) | ![Input Data](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Prediction.png?raw=true) | ![Analysis Result](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Result.png?raw=true) |
+
