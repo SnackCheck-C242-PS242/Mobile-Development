@@ -10,3 +10,10 @@ SnackCheck is a smart mobile app designed to help you make healthier snack choic
 - Health Prediction: Evaluate the potential health impact of a snack based on its nutritional content.
 - Personalized Recommendations: Get snack suggestions that align with your dietary goals and health preferences.
 - Nutritional Data: Detailed breakdown of each snack’s nutritional profile, helping you make informed decisions.
+
+## Screenshots
+
+| Splash Screen                 | Login Screen                 | SignUp Screen                |
+|-------------------------------|------------------------------|------------------------------|
+| ![Splash Screen](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Splash%20Screen.png?raw=true) | ![Login Screen](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Login.png?raw=true) | ![SignUp Screen](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Sign%20Up.png?raw=true) |
+
