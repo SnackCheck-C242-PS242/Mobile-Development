@@ -85,6 +85,11 @@ class LoginActivity : AppCompatActivity() {
                     is ResultState.Success -> {
                         val profileData = result.data.data
                         viewModel.saveProfile(profileData)
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(intent)
+                        finish()
                     }
 
                     is ResultState.Error -> {
@@ -100,11 +105,6 @@ class LoginActivity : AppCompatActivity() {
                     is ResultState.Loading -> dialog.show()
                     is ResultState.Success -> {
                         dialog.dismiss()
-                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                        intent.flags =
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                        startActivity(intent)
-                        finish()
                     }
 
                     is ResultState.Error -> {
