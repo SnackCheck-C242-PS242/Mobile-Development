@@ -25,3 +25,11 @@ SnackCheck is a smart mobile app designed to help you make healthier snack choic
 |-------------------------------|------------------------------|------------------------------|
 | ![Home Screen](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Home.png?raw=true) | ![Input Data](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Prediction.png?raw=true) | ![Analysis Result](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Result.png?raw=true) |
 
+| Analysis History              | User Profile                 | Change Profile Picture       |
+|-------------------------------|------------------------------|------------------------------|
+| ![Analysis History](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/History.png?raw=true) | ![User Profile](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Profile.png?raw=true) | ![Change Profile Picture](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Change%20Profile%20Picture.png?raw=true) |
+
+| Setting                       | Home (Dark Mode)             | Change Language              |
+|-------------------------------|------------------------------|------------------------------|
+| ![Setting](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Setting.png?raw=true) | ![Home (Dark Mode)](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Home%20(Dark).jpg?raw=true) | ![Change Profile Picture](https://github.com/SnackCheck-C242-PS242/Mobile-Development/blob/main/Screenshot/Change%20Profile%20Picture.png?raw=true) |
+
