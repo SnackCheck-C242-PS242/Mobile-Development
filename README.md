@@ -7,9 +7,16 @@
 SnackCheck is a smart mobile app designed to help you make healthier snack choices. By analyzing the nutritional data of various snacks, SnackCheck provides health predictions and consumption recommendations tailored to your needs. Whether you're trying to eat healthier or simply looking for snack options that fit your diet, SnackCheck offers personalized insights to guide you.
 
 ## Key Features Include:
-o Health Prediction: Evaluate the potential health impact of a snack based on its nutritional content.
+- Splash Screen: The starting point of the app, featuring the SnackCheck logo prominently in the center, along with the tagline.
+- Login: Designed for quick and secure access, requiring a username and password. Additionally, users can recover their accounts through the 'Forgot Password?' feature.
+- SignUp: Onboarding process for new users. It collects key information such as name, email, and a secure password with a confirm password field.
+- Home: Once logged in, users are greeted by a personalized home screen. At the top, users are addressed by name, making the experience more engaging. Key features like 'Prediction' and 'History' are prominently displayed for quick navigation.
+- Health Prediction: Evaluate the potential health impact of a snack based on its nutritional content.
 - Personalized Recommendations: Get snack suggestions that align with your dietary goals and health preferences.
 - Nutritional Data: Detailed breakdown of each snack’s nutritional profile, helping you make informed decisions.
+- History: Users can revisit past snack analyses. Each record includes the snack name, prediction result, and the analysis date for easy tracking of previously checked items.
+- Profile: In the Profile section, users can personalize their app experience by editing their profile picture.\
+- Setting: Allows users to switch between light and dark themes, choose their preferred language, and log out securely. This ensures accessibility and flexibility for all users."
 
 ## Screenshots
 
